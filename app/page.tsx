@@ -51,10 +51,11 @@ export default function LandingPage() {
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
           <div className="flex items-center gap-6">
             <Link href="/" className="flex items-center gap-2">
-              <div className="h-9 w-9 bg-[#1E293B] rounded-xl flex items-center justify-center text-white">
-                <GraduationCap className="h-5 w-5" />
-              </div>
-              <span className="text-xl font-bold tracking-tight text-[#1E293B]">EduTrack</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" className="h-7 w-auto" fill="none">
+                <text x="0" y="40" fontFamily="Inter, system-ui, sans-serif" fontSize="42" fontWeight="800" letterSpacing="-2" fill="#1E293B">
+                  Edu<tspan fontWeight="800" fill="#5483B3">track</tspan>
+                </text>
+              </svg>
             </Link>
 
             {/* Individual / Company Pill Toggle */}
@@ -151,7 +152,7 @@ export default function LandingPage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                 <Link href={session ? "/dashboard" : "/register"} className="w-full sm:w-auto">
                   <Button className="w-full sm:w-auto h-12 px-8 bg-[#1E293B] hover:bg-[#334155] text-white font-bold text-xs rounded-full shadow-md group transition-all">
-                    Explore Product <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1.5 transition-transform" />
+                    Daftar Sekarang <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1.5 transition-transform" />
                   </Button>
                 </Link>
                 <Link href="/docs" className="w-full sm:w-auto">
@@ -353,10 +354,11 @@ export default function LandingPage() {
             <div className="flex flex-col md:flex-row justify-between gap-12 mb-16">
                <div className="space-y-6 max-w-sm">
                   <div className="flex items-center gap-2">
-                     <div className="h-9 w-9 bg-white rounded-xl flex items-center justify-center text-[#1E293B]">
-                        <GraduationCap className="h-5 w-5" />
-                     </div>
-                     <span className="text-xl font-bold tracking-tight text-white">EduTrack</span>
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" className="h-7 w-auto" fill="none">
+                       <text x="0" y="40" fontFamily="Inter, system-ui, sans-serif" fontSize="42" fontWeight="800" letterSpacing="-2" fill="#F1F5F9">
+                         Edu<tspan fontWeight="800" fill="#5483B3">track</tspan>
+                       </text>
+                     </svg>
                   </div>
                   <p className="text-xs text-[#94A3B8] leading-relaxed font-semibold">
                      Platform monitoring dan akselerasi akademik digital untuk menciptakan ekosistem belajar yang terstruktur, transparan, dan terukur.

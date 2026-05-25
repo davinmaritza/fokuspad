@@ -57,10 +57,13 @@ export default function DocsPage() {
       <header className="sticky top-0 w-full z-50 bg-[#FDFCF7]/90 backdrop-blur-xl border-b border-[#E2E8F0] h-20">
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 bg-[#1E293B] rounded-2xl flex items-center justify-center text-white shrink-0">
-              <GraduationCap className="h-5.5 w-5.5" />
-            </div>
-            <span className="text-xl font-bold tracking-tight text-[#1E293B]">EduTrack</span>
+            <Link href="/" className="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" className="h-7 w-auto" fill="none">
+                <text x="0" y="40" fontFamily="Inter, system-ui, sans-serif" fontSize="42" fontWeight="800" letterSpacing="-2" fill="#1E293B">
+                  Edu<tspan fontWeight="800" fill="#5483B3">track</tspan>
+                </text>
+              </svg>
+            </Link>
             <div className="h-4 w-px bg-[#E2E8F0] hidden sm:block" />
             <span className="text-xs font-bold text-[#64748B] hidden sm:block">Dokumentasi Alur Kerja</span>
           </div>
@@ -123,7 +126,7 @@ export default function DocsPage() {
                     <GraduationCap className="h-64 w-64 -rotate-12" />
                  </div>
                  <h3 className="text-xl font-bold font-serif mb-3 flex items-center gap-2">
-                   <Sparkles className="h-5 w-5 text-yellow-400" /> Ringkasan Fungsi Utama
+                   <BookOpen className="h-5 w-5 text-sky-400" /> Ringkasan Fungsi Utama
                  </h3>
                  <p className="text-xs text-slate-300 leading-relaxed max-w-2xl">
                    Sistem kami menggunakan otorisasi berbasis peran (Role-Based Access Control) yang ketat. Siswa hanya dapat mengelola data progres belajarnya sendiri, Guru dibatasi melihat rombongan belajar tempat mereka mengajar saja, dan Admin memegang kendali penuh atas manajemen pengguna dan jadwal.

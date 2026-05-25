@@ -84,12 +84,11 @@ export default function LoginPage() {
         <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none" />
         
         <Link href="/" className="relative z-10 block">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 bg-white rounded-2xl flex items-center justify-center text-[#1E293B]">
-              <GraduationCap className="h-5.5 w-5.5" />
-            </div>
-            <span className="text-xl font-extrabold tracking-tight text-white">EduTrack</span>
-          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" className="h-8 w-auto" fill="none">
+            <text x="0" y="40" fontFamily="Inter, system-ui, sans-serif" fontSize="42" fontWeight="800" letterSpacing="-2" fill="#F1F5F9">
+              Edu<tspan fontWeight="800" fill="#5483B3">track</tspan>
+            </text>
+          </svg>
         </Link>
 
         <div className="relative z-10 space-y-8">
