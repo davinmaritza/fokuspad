@@ -11,10 +11,14 @@ import {
   Calendar, 
   MessageSquare, 
   CheckCircle2, 
-  ShieldAlert, 
   Clock, 
   TrendingUp, 
-  Key
+  Key,
+  ListTodo,
+  FileText,
+  BadgeAlert,
+  Award,
+  Sparkles
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -25,11 +29,10 @@ export default function DocsPage() {
 
   const sections = [
     { id: 'overview', name: 'Ringkasan Sistem' },
-    { id: 'admin', name: '1. Peran Administrator' },
-    { id: 'teacher', name: '2. Peran Guru Mata Pelajaran' },
-    { id: 'student', name: '3. Peran Siswa' },
-    { id: 'features', name: '4. Fitur Unggulan' },
-    { id: 'faq', name: 'Pertanyaan Terkait Alur' }
+    { id: 'admin', name: '1. Otoritas Administrator' },
+    { id: 'teacher', name: '2. Fitur Lengkap Guru' },
+    { id: 'student', name: '3. Fitur Lengkap Siswa' },
+    { id: 'faq', name: 'Pertanyaan Alur Kerja' }
   ]
 
   const scrollToSection = (id: string) => {
@@ -44,18 +47,16 @@ export default function DocsPage() {
 
   return (
     <div className="min-h-screen bg-[#FDFCF7] text-[#1E293B] font-sans antialiased">
-      {/* Top Banner Navbar */}
+      {/* Navbar */}
       <header className="sticky top-0 w-full z-50 bg-[#FDFCF7]/90 backdrop-blur-xl border-b border-[#E2E8F0] h-20">
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="h-9 w-9 bg-[#1E293B] rounded-xl flex items-center justify-center text-white">
-                <GraduationCap className="h-5 w-5" />
-              </div>
-              <span className="text-xl font-bold tracking-tight text-[#1E293B]">EduTrack</span>
-            </Link>
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 bg-[#1E293B] rounded-2xl flex items-center justify-center text-white shrink-0">
+              <GraduationCap className="h-5.5 w-5.5" />
+            </div>
+            <span className="text-xl font-bold tracking-tight text-[#1E293B]">EduTrack</span>
             <div className="h-4 w-px bg-[#E2E8F0] hidden sm:block" />
-            <span className="text-xs font-bold text-[#64748B] hidden sm:block">Dokumentasi Cara Kerja</span>
+            <span className="text-xs font-bold text-[#64748B] hidden sm:block">Dokumentasi Alur Kerja</span>
           </div>
 
           <Link href="/">
@@ -70,7 +71,7 @@ export default function DocsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
           {/* Sidebar Navigation */}
           <aside className="lg:col-span-1 space-y-3 lg:sticky lg:top-32 h-fit">
-            <p className="text-[10px] font-black uppercase tracking-widest text-[#94A3B8] px-3 mb-4">DAFTAR ISI</p>
+            <p className="text-[10px] font-black uppercase tracking-widest text-[#94A3B8] px-3 mb-4">DAFTAR ISI DOKUMENTASI</p>
             <nav className="space-y-1">
               {sections.map((section) => (
                 <button
@@ -94,61 +95,61 @@ export default function DocsPage() {
             {/* Overview Section */}
             <section id="overview" className="space-y-6 scroll-mt-32">
               <div className="space-y-3">
-                <span className="text-xs font-black uppercase tracking-widest text-[#5483B3] block">CARA KERJA</span>
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#0F172A] font-serif">Bagaimana EduTrack Beroperasi?</h1>
+                <span className="text-xs font-black uppercase tracking-widest text-[#5483B3] block">MEMULAI</span>
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#0F172A] font-serif">Cara Kerja Ekosistem EduTrack</h1>
               </div>
               <p className="text-sm text-[#64748B] leading-relaxed">
-                EduTrack adalah ekosistem pendidikan digital modern yang mempermudah kolaborasi guru, siswa, dan sekolah secara asinkronus dan transparan. Sistem kami dirancang secara spesifik dengan batasan otorisasi peran (*role-based access control*) untuk menjamin keamanan data akademik.
+                EduTrack adalah platform monitoring kemajuan akademik sekolah terintegrasi. Sistem ini menjembatani interaksi administrasi antara Administrator, Guru Mata Pelajaran, serta Siswa dengan metode kolaboratif terstruktur.
               </p>
-              <Card className="bg-white border border-[#E2E8F0] rounded-3xl overflow-hidden shadow-sm">
-                <CardContent className="p-6 md:p-8 space-y-4">
-                  <h4 className="font-bold text-sm text-[#0F172A]">Tiga Pilar Otorisasi Utama:</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-[#F8FAFC] p-5 rounded-2xl border border-[#E2E8F0] space-y-2">
-                      <div className="h-8 w-8 bg-[#1E293B] text-white rounded-lg flex items-center justify-center"><Key className="h-4 w-4" /></div>
-                      <h5 className="text-xs font-bold text-[#0F172A]">Administrator</h5>
-                      <p className="text-[11px] text-[#64748B] leading-relaxed">Mengelola penuh basis data sekolah, membuat mata pelajaran, menetapkan guru, dan menyusun jadwal kelas.</p>
-                    </div>
-                    <div className="bg-[#F8FAFC] p-5 rounded-2xl border border-[#E2E8F0] space-y-2">
-                      <div className="h-8 w-8 bg-[#1E293B] text-white rounded-lg flex items-center justify-center"><Users className="h-4 w-4" /></div>
-                      <h5 className="text-xs font-bold text-[#0F172A]">Guru Mata Pelajaran</h5>
-                      <p className="text-[11px] text-[#64748B] leading-relaxed">Membagikan modul/materi, membuat penugasan, melakukan absensi mandiri, serta merekap progress belajar siswa.</p>
-                    </div>
-                    <div className="bg-[#F8FAFC] p-5 rounded-2xl border border-[#E2E8F0] space-y-2">
-                      <div className="h-8 w-8 bg-[#1E293B] text-white rounded-lg flex items-center justify-center"><GraduationCap className="h-4 w-4" /></div>
-                      <h5 className="text-xs font-bold text-[#0F172A]">Siswa Terdaftar</h5>
-                      <p className="text-[11px] text-[#64748B] leading-relaxed">Mengisi lembar kemajuan belajar topik mandiri, mengumpulkan lembar tugas, dan menyusun notes kegiatan harian.</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              
+              <div className="bg-[#1E293B] text-white rounded-3xl p-8 relative overflow-hidden shadow-md">
+                 <div className="absolute top-0 right-0 opacity-5 pointer-events-none">
+                    <GraduationCap className="h-64 w-64 -rotate-12" />
+                 </div>
+                 <h3 className="text-xl font-bold font-serif mb-3 flex items-center gap-2">
+                   <Sparkles className="h-5 w-5 text-yellow-400" /> Ringkasan Fungsi Utama
+                 </h3>
+                 <p className="text-xs text-slate-300 leading-relaxed max-w-2xl">
+                   Sistem kami menggunakan otorisasi berbasis peran (Role-Based Access Control) yang ketat. Siswa hanya dapat mengelola data progres belajarnya sendiri, Guru dibatasi melihat rombongan belajar tempat mereka mengajar saja, dan Admin memegang kendali penuh atas manajemen pengguna dan jadwal.
+                 </p>
+              </div>
             </section>
 
             {/* Admin Section */}
             <section id="admin" className="space-y-6 scroll-mt-32">
               <div className="h-px bg-[#E2E8F0] w-full" />
               <div className="space-y-3">
-                <span className="text-xs font-black uppercase tracking-widest text-[#5483B3] block">PILAR PERTAMA</span>
-                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[#0F172A] font-serif">Alur Kerja Administrator (Admin)</h2>
+                <span className="text-xs font-black uppercase tracking-widest text-[#5483B3] block">OTORISASI UTAMA</span>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[#0F172A] font-serif">1. Peran & Fungsi Administrator</h2>
               </div>
               <p className="text-sm text-[#64748B] leading-relaxed">
-                Administrator bertindak sebagai pemegang kendali utama di EduTrack. Admin berkewajiban menyiapkan data sekolah sebelum guru dan siswa mulai berinteraksi dengan sistem.
+                Administrator memegang hak akses tertinggi untuk mengonfigurasi data master sekolah. Sebelum guru dan siswa menggunakan platform, Admin harus menyelesaikan pengaturan berikut:
               </p>
               <div className="space-y-4">
-                {[
-                  { step: '1', title: 'Pembuatan Pengguna (User Management)', desc: 'Admin membuat akun untuk Guru, Siswa, dan Pelatih Ekskul secara manual melalui dashboard atau impor massal berbasis JSON/CSV.' },
-                  { step: '2', title: 'Pembuatan Rombongan Belajar (Rombel/Kelas)', desc: 'Menyusun daftar kelas (contoh: XI RPL 1, X DKV 2) beserta jenjang tingkatannya untuk pengelompokan siswa.' },
-                  { step: '3', title: 'Pemetaan Mata Pelajaran & Guru Pengampu', desc: 'Membuat modul subjek pelajaran (contoh: Matematika, Pemrograman Web) dan menugaskan guru tertentu sebagai pengampu utama subjek tersebut.' },
-                  { step: '4', title: 'Penyusunan Jadwal Belajar (Class Schedule)', desc: 'Menghubungkan ruang kelas, hari, waktu mulai/selesai, mata pelajaran, dan guru pengampu ke dalam sistem penjadwalan terpadu.' }
-                ].map((item, idx) => (
-                  <div key={idx} className="flex gap-4 items-start p-4 bg-white border border-[#E2E8F0] rounded-2xl shadow-sm">
-                    <span className="h-8 w-8 rounded-lg bg-[#E2E8F0]/50 flex items-center justify-center text-xs font-bold text-[#1E293B] shrink-0">{item.step}</span>
-                    <div>
-                      <h4 className="text-sm font-bold text-[#0F172A]">{item.title}</h4>
-                      <p className="text-xs text-[#64748B] leading-relaxed mt-1">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
+                 <div className="p-6 bg-white border border-[#E2E8F0] rounded-3xl shadow-sm space-y-2">
+                    <h4 className="text-sm font-bold text-[#0F172A] flex items-center gap-2">
+                       <Key className="h-4.5 w-4.5 text-[#5483B3]" /> Manajemen Pengguna (Users)
+                    </h4>
+                    <p className="text-xs text-[#64748B] leading-relaxed pl-6.5">
+                       Admin menambahkan akun Guru, Siswa, dan Pelatih Ekskul. Pada pembuatan profil siswa, Admin berkewajiban mengisi data identitas seperti nama lengkap, NIS, email, password awal, serta **Nomor Absen**.
+                    </p>
+                 </div>
+                 <div className="p-6 bg-white border border-[#E2E8F0] rounded-3xl shadow-sm space-y-2">
+                    <h4 className="text-sm font-bold text-[#0F172A] flex items-center gap-2">
+                       <Users className="h-4.5 w-4.5 text-[#5483B3]" /> Manajemen Kelas & Rombel
+                    </h4>
+                    <p className="text-xs text-[#64748B] leading-relaxed pl-6.5">
+                       Menyusun tingkatan kelas beserta nama rombongan belajarnya (contoh: XII RPL 1). Admin juga menugaskan siswa ke dalam kelas-kelas yang telah dibuat agar terpetakan dengan rapi.
+                    </p>
+                 </div>
+                 <div className="p-6 bg-white border border-[#E2E8F0] rounded-3xl shadow-sm space-y-2">
+                    <h4 className="text-sm font-bold text-[#0F172A] flex items-center gap-2">
+                       <Calendar className="h-4.5 w-4.5 text-[#5483B3]" /> Manajemen Jadwal (Schedule Planner)
+                    </h4>
+                    <p className="text-xs text-[#64748B] leading-relaxed pl-6.5">
+                       Admin menyusun jadwal belajar mengajar mingguan dengan menetapkan hari, jam mulai, jam selesai, ruang kelas, mata pelajaran, dan menunjuk guru pengampu mata pelajaran tersebut.
+                    </p>
+                 </div>
               </div>
             </section>
 
@@ -156,41 +157,78 @@ export default function DocsPage() {
             <section id="teacher" className="space-y-6 scroll-mt-32">
               <div className="h-px bg-[#E2E8F0] w-full" />
               <div className="space-y-3">
-                <span className="text-xs font-black uppercase tracking-widest text-[#5483B3] block">PILAR KEDUA</span>
-                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[#0F172A] font-serif">Alur Kerja Guru Mata Pelajaran (Teacher)</h2>
+                <span className="text-xs font-black uppercase tracking-widest text-[#5483B3] block">FITUR GURU</span>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[#0F172A] font-serif">2. Panduan & Fitur Guru Pengampu</h2>
               </div>
               <p className="text-sm text-[#64748B] leading-relaxed">
-                Guru memiliki kontrol penuh atas aktivitas pembelajaran mandiri dan manajemen tugas di dalam ruang kelas yang mereka ajar.
+                Guru Mata Pelajaran memiliki kendali atas proses belajar mengajar harian. Hak akses Guru dirancang khusus agar mereka fokus hanya pada ruang lingkup kelas yang diampu:
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 bg-white border border-[#E2E8F0] rounded-3xl space-y-3 shadow-sm">
-                  <div className="h-9 w-9 bg-[#E0F2FE] text-[#0369A1] rounded-xl flex items-center justify-center"><Users className="h-5 w-5" /></div>
-                  <h4 className="text-sm font-bold text-[#0F172A]">Directory Siswa Terbatas</h4>
-                  <p className="text-xs text-[#64748B] leading-relaxed">
-                    Guru hanya memiliki otorisasi untuk melihat profil dan log belajar siswa yang terdaftar di dalam mata pelajaran yang mereka ampu saja.
-                  </p>
-                </div>
-                <div className="p-6 bg-white border border-[#E2E8F0] rounded-3xl space-y-3 shadow-sm">
-                  <div className="h-9 w-9 bg-[#E0F2FE] text-[#0369A1] rounded-xl flex items-center justify-center"><ClipboardList className="h-5 w-5" /></div>
-                  <h4 className="text-sm font-bold text-[#0F172A]">Sistem Manajemen Tugas (Classroom)</h4>
-                  <p className="text-xs text-[#64748B] leading-relaxed">
-                    Membagikan modul materi digital (PDF/link eksternal), menerbitkan instruksi penugasan, menetapkan tenggat waktu, dan langsung memberikan feedback berupa skor nilai tugas.
-                  </p>
-                </div>
-                <div className="p-6 bg-white border border-[#E2E8F0] rounded-3xl space-y-3 shadow-sm">
-                  <div className="h-9 w-9 bg-[#E0F2FE] text-[#0369A1] rounded-xl flex items-center justify-center"><Clock className="h-5 w-5" /></div>
-                  <h4 className="text-sm font-bold text-[#0F172A]">Absensi Guru Mandiri</h4>
-                  <p className="text-xs text-[#64748B] leading-relaxed">
-                    Melakukan pencatatan jam kehadiran (check-in) dan kepulangan (check-out) kerja secara real-time yang langsung diarsipkan ke dalam basis data admin pusat untuk keperluan audit.
-                  </p>
-                </div>
-                <div className="p-6 bg-white border border-[#E2E8F0] rounded-3xl space-y-3 shadow-sm">
-                  <div className="h-9 w-9 bg-[#E0F2FE] text-[#0369A1] rounded-xl flex items-center justify-center"><GraduationCap className="h-5 w-5" /></div>
-                  <h4 className="text-sm font-bold text-[#0F172A]">Rapi Berdasarkan Absen</h4>
-                  <p className="text-xs text-[#64748B] leading-relaxed">
-                    Daftar siswa di dalam kelas diurutkan secara konsisten berdasarkan nomor absen kelas untuk memudahkan entri rekapitulasi nilai mingguan.
-                  </p>
-                </div>
+              
+              <div className="space-y-6">
+                 {/* Feature 1 */}
+                 <div className="flex gap-5 items-start">
+                    <div className="h-10 w-10 rounded-2xl bg-[#E0F2FE] text-[#0369A1] flex items-center justify-center shrink-0">
+                       <Users className="h-5 w-5" />
+                    </div>
+                    <div className="space-y-1.5">
+                       <h4 className="text-sm font-bold text-[#0F172A]">Pembatasan Kelola Kelas (Class Scoping)</h4>
+                       <p className="text-xs text-[#64748B] leading-relaxed">
+                         Guru tidak dapat melihat seluruh kelas di sekolah. Halaman "Kelola Kelas" pada akun guru disaring secara otomatis hanya menampilkan daftar kelas di mana guru tersebut terdaftar mengajar berdasarkan jadwal (*Class Schedule*) yang diatur Admin.
+                       </p>
+                    </div>
+                 </div>
+
+                 {/* Feature 2 */}
+                 <div className="flex gap-5 items-start">
+                    <div className="h-10 w-10 rounded-2xl bg-[#E0F2FE] text-[#0369A1] flex items-center justify-center shrink-0">
+                       <ListTodo className="h-5 w-5" />
+                    </div>
+                    <div className="space-y-1.5">
+                       <h4 className="text-sm font-bold text-[#0F172A]">Penyaringan Data Siswa (Student Directory Filter)</h4>
+                       <p className="text-xs text-[#64748B] leading-relaxed">
+                         Daftar direktori siswa disaring otomatis. Guru hanya akan melihat data profil siswa yang mengambil mata pelajaran yang mereka ajar. Siswa dalam kelas diurutkan rapi berdasarkan **Nomor Absen** serta dapat dikelompokkan berdasarkan kelasnya dengan menekan tombol toggle *"Kelompokkan Kelas"*.
+                       </p>
+                    </div>
+                 </div>
+
+                 {/* Feature 3 */}
+                 <div className="flex gap-5 items-start">
+                    <div className="h-10 w-10 rounded-2xl bg-[#E0F2FE] text-[#0369A1] flex items-center justify-center shrink-0">
+                       <FileText className="h-5 w-5" />
+                    </div>
+                    <div className="space-y-1.5">
+                       <h4 className="text-sm font-bold text-[#0F172A]">Pembagian Materi & Tugas (Classroom Feed)</h4>
+                       <p className="text-xs text-[#64748B] leading-relaxed">
+                         Melalui Classroom Feed di setiap kelas, Guru dapat membuat postingan materi (dapat melampirkan berkas dokumen atau link video eksternal) serta menerbitkan Tugas. Guru dapat menetapkan skor maksimal, memberikan catatan koreksi (feedback), serta memasukkan nilai setelah siswa mengumpulkan tugas.
+                       </p>
+                    </div>
+                 </div>
+
+                 {/* Feature 4 */}
+                 <div className="flex gap-5 items-start">
+                    <div className="h-10 w-10 rounded-2xl bg-[#E0F2FE] text-[#0369A1] flex items-center justify-center shrink-0">
+                       <Clock className="h-5 w-5" />
+                    </div>
+                    <div className="space-y-1.5">
+                       <h4 className="text-sm font-bold text-[#0F172A]">Absensi Kehadiran Kerja (Teacher Attendance Log)</h4>
+                       <p className="text-xs text-[#64748B] leading-relaxed">
+                         Guru dapat mencatat kehadiran harian secara mandiri dengan mengeklik tombol *Check-in* saat datang mengajar dan *Check-out* di akhir jam kerja. Guru dapat melampirkan catatan status (seperti Hadir, Sakit, atau Izin) beserta lampiran keterangan tertulis.
+                       </p>
+                    </div>
+                 </div>
+
+                 {/* Feature 5 */}
+                 <div className="flex gap-5 items-start">
+                    <div className="h-10 w-10 rounded-2xl bg-[#E0F2FE] text-[#0369A1] flex items-center justify-center shrink-0">
+                       <MessageSquare className="h-5 w-5" />
+                    </div>
+                    <div className="space-y-1.5">
+                       <h4 className="text-sm font-bold text-[#0F172A]">Forum Diskusi Subjek</h4>
+                       <p className="text-xs text-[#64748B] leading-relaxed">
+                         Guru dapat memantau ruang diskusi kelas, menjawab pertanyaan siswa terkait materi pelajaran yang diampu, serta mengelola interaksi tanya jawab.
+                       </p>
+                    </div>
+                 </div>
               </div>
             </section>
 
@@ -198,52 +236,65 @@ export default function DocsPage() {
             <section id="student" className="space-y-6 scroll-mt-32">
               <div className="h-px bg-[#E2E8F0] w-full" />
               <div className="space-y-3">
-                <span className="text-xs font-black uppercase tracking-widest text-[#5483B3] block">PILAR KETIGA</span>
-                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[#0F172A] font-serif">Alur Kerja Siswa (Student)</h2>
+                <span className="text-xs font-black uppercase tracking-widest text-[#5483B3] block">FITUR SISWA</span>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[#0F172A] font-serif">3. Panduan & Fitur Siswa</h2>
               </div>
               <p className="text-sm text-[#64748B] leading-relaxed">
-                Siswa didorong untuk proaktif memantau kemajuan belajarnya serta menyelesaikan target pembelajaran mingguan.
+                Siswa dibekali dengan modul personal untuk memicu pembelajaran mandiri, mencatat secara modular, dan memantau kemajuan belajarnya:
               </p>
-              <div className="space-y-4">
-                {[
-                  { title: 'Mengakses Progress Tracker', desc: 'Siswa dapat melihat log durasi belajar, persentase penguasaan setiap kompetensi dasar (topik), dan tingkat kesulitan materi yang telah diselesaikan.' },
-                  { title: 'Melakukan Pengumpulan Tugas', desc: 'Melihat tenggat penugasan dari guru, mengunggah berkas lampiran penyerahan tugas, serta memantau skor/umpan balik langsung dari guru pengampu.' },
-                  { title: 'Membuat Catatan & Agenda Harian (Block Editor)', desc: 'Fitur mirip Notion yang memungkinkan siswa membuat rangkuman materi belajar menggunakan blok tulisan interaktif, langsung tertaut pada kalender akademik.' }
-                ].map((item, idx) => (
-                  <div key={idx} className="p-5 bg-white border border-[#E2E8F0] rounded-2xl shadow-sm space-y-2">
-                    <h4 className="text-sm font-bold text-[#0F172A] flex items-center gap-2">
-                      <span className="h-5 w-5 rounded-full bg-[#1E293B] text-white text-[10px] font-bold flex items-center justify-center shrink-0">{idx + 1}</span>
-                      {item.title}
-                    </h4>
-                    <p className="text-xs text-[#64748B] leading-relaxed pl-7">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
+              
+              <div className="space-y-6">
+                 {/* Student Feature 1 */}
+                 <div className="flex gap-5 items-start">
+                    <div className="h-10 w-10 rounded-2xl bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center shrink-0">
+                       <TrendingUp className="h-5 w-5" />
+                    </div>
+                    <div className="space-y-1.5">
+                       <h4 className="text-sm font-bold text-[#0F172A]">Log Progres Belajar Mandiri (Progress Tracker)</h4>
+                       <p className="text-xs text-[#64748B] leading-relaxed">
+                         Setiap selesai mempelajari suatu subjek/topik pelajaran, siswa dapat mengisi form progres secara jujur dengan menyertakan durasi belajar (dalam menit), tingkat kesulitan topik (skala 1-5), serta ringkasan reflektif catatan pribadi.
+                       </p>
+                    </div>
+                 </div>
 
-            {/* Features Section */}
-            <section id="features" className="space-y-6 scroll-mt-32">
-              <div className="h-px bg-[#E2E8F0] w-full" />
-              <div className="space-y-3">
-                <span className="text-xs font-black uppercase tracking-widest text-[#5483B3] block">INTEGRATED FEATURES</span>
-                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[#0F172A] font-serif">Fitur Penunjang Unggulan</h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-6 bg-[#F8FAFC] border border-[#E2E8F0] rounded-3xl space-y-2">
-                  <div className="h-8 w-8 rounded-lg bg-[#5483B3]/10 text-[#5483B3] flex items-center justify-center mb-4"><Calendar className="h-4 w-4" /></div>
-                  <h4 className="text-xs font-bold text-[#0F172A]">Notion-Style Notes</h4>
-                  <p className="text-[11px] text-[#64748B] leading-relaxed">Editor kaya fitur berbasis blok untuk menulis materi, menambahkan checklist kegiatan, dan menyusun peta belajar.</p>
-                </div>
-                <div className="p-6 bg-[#F8FAFC] border border-[#E2E8F0] rounded-3xl space-y-2">
-                  <div className="h-8 w-8 rounded-lg bg-[#5483B3]/10 text-[#5483B3] flex items-center justify-center mb-4"><TrendingUp className="h-4 w-4" /></div>
-                  <h4 className="text-xs font-bold text-[#0F172A]">Gamifikasi Belajar</h4>
-                  <p className="text-[11px] text-[#64748B] leading-relaxed">Sistem peringkat dan leaderboard interaktif di sekolah berdasarkan akumulasi total durasi belajar mandiri siswa.</p>
-                </div>
-                <div className="p-6 bg-[#F8FAFC] border border-[#E2E8F0] rounded-3xl space-y-2">
-                  <div className="h-8 w-8 rounded-lg bg-[#5483B3]/10 text-[#5483B3] flex items-center justify-center mb-4"><MessageSquare className="h-4 w-4" /></div>
-                  <h4 className="text-xs font-bold text-[#0F172A]">Kolaborasi & Diskusi</h4>
-                  <p className="text-[11px] text-[#64748B] leading-relaxed">Forum komunikasi digital per kelas untuk mendukung diskusi asinkronus dan tanya jawab materi secara interaktif.</p>
-                </div>
+                 {/* Student Feature 2 */}
+                 <div className="flex gap-5 items-start">
+                    <div className="h-10 w-10 rounded-2xl bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center shrink-0">
+                       <Calendar className="h-5 w-5" />
+                    </div>
+                    <div className="space-y-1.5">
+                       <h4 className="text-sm font-bold text-[#0F172A]">Kalender Akademik & Notion-Style Notes</h4>
+                       <p className="text-xs text-[#64748B] leading-relaxed">
+                         Siswa dapat membuka menu kalender untuk melihat timeline akademik. Dengan mengeklik salah satu tanggal, siswa dapat membuka block-based editor (seperti Notion) untuk menulis rangkuman pelajaran, checklist tugas pribadi, atau catatan visual harian yang tersimpan otomatis secara real-time.
+                       </p>
+                    </div>
+                 </div>
+
+                 {/* Student Feature 3 */}
+                 <div className="flex gap-5 items-start">
+                    <div className="h-10 w-10 rounded-2xl bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center shrink-0">
+                       <ClipboardList className="h-5 w-5" />
+                    </div>
+                    <div className="space-y-1.5">
+                       <h4 className="text-sm font-bold text-[#0F172A]">Pengumpulan & Pemantauan Tugas</h4>
+                       <p className="text-xs text-[#64748B] leading-relaxed">
+                         Menerima instruksi tugas baru dari guru kelas. Siswa mengumpulkan tugas dengan mengetikkan lembar jawaban langsung atau mengunggah berkas lampiran pendukung. Siswa dapat memantau jika tugas telah dinilai beserta rekap nilai tugas rata-rata mereka.
+                       </p>
+                    </div>
+                 </div>
+
+                 {/* Student Feature 4 */}
+                 <div className="flex gap-5 items-start">
+                    <div className="h-10 w-10 rounded-2xl bg-[#F0FDF4] text-[#16A34A] flex items-center justify-center shrink-0">
+                       <Award className="h-5 w-5" />
+                    </div>
+                    <div className="space-y-1.5">
+                       <h4 className="text-sm font-bold text-[#0F172A]">Papan Peringkat Belajar (Leaderboard)</h4>
+                       <p className="text-xs text-[#64748B] leading-relaxed">
+                         Guna meningkatkan antusiasme, EduTrack menyusun Papan Peringkat sekolah secara otomatis berdasarkan total durasi jam belajar mandiri yang diinput secara valid oleh para siswa di Progress Tracker.
+                       </p>
+                    </div>
+                 </div>
               </div>
             </section>
 
@@ -251,17 +302,17 @@ export default function DocsPage() {
             <section id="faq" className="space-y-6 scroll-mt-32">
               <div className="h-px bg-[#E2E8F0] w-full" />
               <div className="space-y-3">
-                <span className="text-xs font-black uppercase tracking-widest text-[#5483B3] block">SUPPORT & RESOLUTIONS</span>
+                <span className="text-xs font-black uppercase tracking-widest text-[#5483B3] block">TANYA JAWAB</span>
                 <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[#0F172A] font-serif">Pertanyaan Terkait Alur Kerja</h2>
               </div>
               <div className="space-y-4">
-                <div className="p-5 bg-white border border-[#E2E8F0] rounded-2xl shadow-sm">
-                  <h4 className="text-xs font-bold text-[#0F172A] mb-2">Bagaimana jika siswa belum masuk ke kelas mana pun?</h4>
-                  <p className="text-[11px] text-[#64748B] leading-relaxed">Siswa tersebut akan masuk ke kelompok unassigned siswa. Admin sekolah atau guru wali kelas dapat membuka pengaturan kelas dan menambahkan siswa tersebut langsung dari dropdown daftar nama.</p>
+                <div className="p-6 bg-white border border-[#E2E8F0] rounded-2xl shadow-sm">
+                  <h4 className="text-xs font-bold text-[#0F172A] mb-2">Bagaimana cara penetapan nomor absen siswa dilakukan?</h4>
+                  <p className="text-[11px] text-[#64748B] leading-relaxed">Nomor absen ditentukan secara terpusat oleh Admin saat mendaftarkan data pengguna atau melakukan pembaruan profil di menu Kelola Pengguna. Hal ini memastikan nomor absen siswa bersifat unik dan valid.</p>
                 </div>
-                <div className="p-5 bg-white border border-[#E2E8F0] rounded-2xl shadow-sm">
-                  <h4 className="text-xs font-bold text-[#0F172A] mb-2">Apakah guru dapat mengubah nomor absensi siswa secara langsung?</h4>
-                  <p className="text-[11px] text-[#64748B] leading-relaxed">Tidak. Nomor absensi siswa dikelola terpusat oleh Admin pada dashboard Kelola Pengguna untuk menghindari tumpang tindih data. Guru hanya bertindak sebagai pembaca informasi saat melakukan penilaian.</p>
+                <div className="p-6 bg-white border border-[#E2E8F0] rounded-2xl shadow-sm">
+                  <h4 className="text-xs font-bold text-[#0F172A] mb-2">Mengapa siswa tidak dapat melihat jadwal kelas atau mapel tertentu?</h4>
+                  <p className="text-[11px] text-[#64748B] leading-relaxed">Jadwal dan pemetaan mata pelajaran siswa dipengaruhi oleh Rombongan Belajar (Kelas) yang ditentukan Admin. Jika siswa belum dimasukkan ke dalam kelas, maka mata pelajaran dan jadwal tidak akan tampil. Segera hubungi Admin untuk penugasan kelas.</p>
                 </div>
               </div>
             </section>
@@ -269,7 +320,7 @@ export default function DocsPage() {
         </div>
       </div>
 
-      {/* Mini Footer */}
+      {/* Footer */}
       <footer className="py-8 bg-[#1E293B] text-[#94A3B8] border-t border-[#334155] text-center text-xs">
         <p>© {new Date().getFullYear()} EduTrack — Dikembangkan oleh Davin Maritza. Hak Cipta Dilindungi.</p>
       </footer>

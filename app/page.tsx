@@ -71,13 +71,13 @@ export default function LandingPage() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8 text-[13px] font-bold text-[#64748B]">
-            <Link href="#features" className="hover:text-[#1E293B] transition-colors">Fitur</Link>
+            <Link href="/docs" className="hover:text-[#1E293B] transition-colors">Fitur</Link>
             <div className="relative group cursor-pointer flex items-center gap-1 hover:text-[#1E293B] transition-colors">
               <span>Layanan</span>
               <ChevronDown className="h-3 w-3" />
             </div>
-            <Link href="#how-it-works" className="hover:text-[#1E293B] transition-colors">Cara Kerja</Link>
-            <Link href="#faq" className="hover:text-[#1E293B] transition-colors">Bantuan & FAQ</Link>
+            <Link href="/docs" className="hover:text-[#1E293B] transition-colors">Cara Kerja</Link>
+            <Link href="/docs" className="hover:text-[#1E293B] transition-colors">Bantuan & FAQ</Link>
           </div>
 
           {/* Right Action */}
@@ -362,9 +362,9 @@ export default function LandingPage() {
                    <div className="space-y-4">
                       <h5 className="text-[10px] font-black uppercase tracking-wider text-white">Platform</h5>
                       <div className="flex flex-col gap-2.5 text-xs font-semibold text-[#94A3B8]">
-                         <Link href="#features" className="hover:text-white transition-colors">Fitur Utama</Link>
-                         <Link href="#how-it-works" className="hover:text-white transition-colors">Cara Kerja</Link>
-                         <Link href="#faq" className="hover:text-white transition-colors">Bantuan</Link>
+                         <Link href="/docs" className="hover:text-white transition-colors">Fitur Utama</Link>
+                         <Link href="/docs" className="hover:text-white transition-colors">Cara Kerja</Link>
+                         <Link href="/docs" className="hover:text-white transition-colors">Bantuan</Link>
                       </div>
                   </div>
                   <div className="space-y-4">
