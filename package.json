@@ -54,6 +54,7 @@
     "@types/bad-words": "^3.0.3",
     "@types/nodemailer": "^8.0.0",
     "@vercel/analytics": "1.6.1",
+    "@vercel/speed-insights": "^2.0.0",
     "autoprefixer": "^10.4.20",
     "bad-words": "^4.0.0",
     "bcryptjs": "^3.0.3",
