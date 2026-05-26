@@ -880,13 +880,14 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
                               )}
                               {!fixedRole && (
                                 <TableCell>
-                                  <Badge className={`rounded-md border-none text-[10px] font-bold px-2 py-0.5 ${
-                                    user.role === 'ADMIN' ? 'bg-purple-100 text-purple-700' : 
-                                    user.role === 'TEACHER' ? 'bg-[#5483B3]/10 text-[#5483B3]' : 
-                                    user.role === 'COACH' ? 'bg-orange-100 text-orange-700' : 'bg-green-100 text-green-700'
-                                  }`}>
-                                     {user.role === 'STUDENT' ? 'Siswa' : user.role === 'TEACHER' ? 'Guru' : user.role === 'COACH' ? 'Pelatih' : 'Admin'}
-                                  </Badge>
+                                   <Badge className={`rounded-md border-none text-[10px] font-bold px-2 py-0.5 ${
+                                     user.role === 'ADMIN' ? 'bg-purple-100 text-purple-700' : 
+                                     user.role === 'TEACHER' ? 'bg-[#5483B3]/10 text-[#5483B3]' : 
+                                     user.role === 'COACH' ? 'bg-orange-100 text-orange-700' : 
+                                     user.role === 'STUDENT' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
+                                   }`}>
+                                      {user.role === 'STUDENT' ? 'Siswa' : user.role === 'TEACHER' ? 'Guru' : user.role === 'COACH' ? 'Pelatih' : user.role === 'ADMIN' ? 'Admin' : 'Tamu'}
+                                   </Badge>
                                 </TableCell>
                               )}
                               <TableCell>

@@ -282,9 +282,11 @@ export function AdminOverview({ stats, recentUsers }: any) {
                     <span className={`text-[10px] font-semibold px-2.5 py-1 rounded-lg ${
                       u.role === 'STUDENT' ? 'bg-[#5483B3]/10 text-[#5483B3]' 
                       : u.role === 'TEACHER' ? 'bg-[#22C55E]/10 text-[#22C55E]'
-                      : 'bg-[#7DA0CA]/10 text-[#7DA0CA]'
+                      : u.role === 'ADMIN' ? 'bg-purple-400/10 text-purple-400'
+                      : u.role === 'COACH' ? 'bg-orange-400/10 text-orange-400'
+                      : 'bg-gray-400/10 text-gray-400'
                     }`}>
-                      {u.role === 'STUDENT' ? 'Siswa' : u.role === 'TEACHER' ? 'Guru' : 'Admin'}
+                      {u.role === 'STUDENT' ? 'Siswa' : u.role === 'TEACHER' ? 'Guru' : u.role === 'COACH' ? 'Pelatih' : u.role === 'ADMIN' ? 'Admin' : 'Tamu'}
                     </span>
                   </div>
                 )) : (
