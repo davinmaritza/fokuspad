@@ -54,6 +54,7 @@ const sidebarLinks = {
     { label: 'Forum Diskusi', icon: MessageSquare, href: '/dashboard/discussions' },
     { label: 'Data Siswa', icon: Users, href: '/dashboard/siswa-guru' },
     { label: 'Verifikasi Izin', icon: UserCheck, href: '/dashboard/teacher/requests' },
+    { label: 'Keuangan & SPP', icon: Wallet, href: '/dashboard/teacher/billing' },
     { label: 'Jadwal Kelas', icon: ClipboardList, href: '/dashboard/schedule' },
     { label: 'Kalender', icon: Calendar, href: '/dashboard/calendar' },
     { label: 'Laporan', icon: FileBarChart, href: '/dashboard/reports' },
