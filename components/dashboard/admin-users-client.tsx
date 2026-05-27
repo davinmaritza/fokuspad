@@ -142,11 +142,12 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
   })
 
   const [showPassword, setShowPassword] = useState(false)
-  const [classFilter, setClassFilter] = useState('ALL')
-  const [roleFilter, setRoleFilter] = useState('ALL')
   const [selectedIds, setSelectedIds] = useState<string[]>([])
+  const [tabFilter, setTabFilter] = useState('ALL')
+  const [classFilter, setClassFilter] = useState<string>('ALL')
+  const [roleFilter, setRoleFilter] = useState<string>('ALL')
 
-  const filteredUsers = users.filter((u: any) => {
+  const searchFilteredUsers = users.filter((u: any) => {
     const matchesSearch = u.name.toLowerCase().includes(search.toLowerCase()) || 
                          u.email.toLowerCase().includes(search.toLowerCase()) ||
                          u.nis?.toLowerCase().includes(search.toLowerCase())
@@ -154,6 +155,15 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
     const matchesRole = (!fixedRole && roleFilter !== 'ALL') ? u.role === roleFilter : (!fixedRole || u.role === fixedRole)
     return matchesSearch && matchesClass && matchesRole
   })
+
+  const filteredUsers = searchFilteredUsers.filter((u: any) => {
+    if (tabFilter === 'ALL') return true;
+    if (tabFilter === 'ACTIVE') return u.isActive !== false;
+    if (tabFilter === 'INACTIVE') return u.isActive === false;
+    return true;
+  });
+
+  const displayedUsers = filteredUsers;
 
   const handleSelectAll = () => {
     if (selectedIds.length === filteredUsers.length) {
@@ -511,7 +521,7 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
   }
 
   return (
-    <div className="flex h-screen bg-[#F4F7FE] overflow-hidden p-2 font-sans text-sm">
+    <div className="flex flex-col space-y-6 pb-20 w-full animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* LEFT SIDEBAR (Icon only) */}
       <div className="w-16 bg-white rounded-2xl shadow-sm flex flex-col items-center py-6 gap-6 mr-4">
         <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center text-white font-bold mb-4">
@@ -530,7 +540,7 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
       </div>
 
       {/* MAIN CONTENT */}
-      <div className="flex-1 flex flex-col min-w-0 bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100/50">
+      <div className="flex-1 flex flex-col min-w-0 bg-white rounded-2xl shadow-sm border border-gray-100/50">
         
         {/* TOP HEADER */}
         <div className="h-16 border-b border-gray-100 flex items-center justify-between px-6">
@@ -583,10 +593,9 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
             </div>
 
             <div className="flex gap-1 text-sm font-semibold">
-              <button className="px-4 py-2 border-b-2 border-purple-600 text-gray-900">Semua</button>
-              <button className="px-4 py-2 text-gray-500 hover:text-gray-900">Aktif</button>
-              <button className="px-4 py-2 text-gray-500 hover:text-gray-900">Baru</button>
-              <button className="px-4 py-2 text-gray-500 hover:text-gray-900">Nonaktif</button>
+              <button onClick={() => setTabFilter('ALL')} className={cn("px-4 py-2 transition-colors", tabFilter === 'ALL' ? "border-b-2 border-purple-600 text-gray-900" : "text-gray-500 hover:text-gray-900")}>Semua</button>
+              <button onClick={() => setTabFilter('ACTIVE')} className={cn("px-4 py-2 transition-colors", tabFilter === 'ACTIVE' ? "border-b-2 border-purple-600 text-gray-900" : "text-gray-500 hover:text-gray-900")}>Aktif</button>
+              <button onClick={() => setTabFilter('INACTIVE')} className={cn("px-4 py-2 transition-colors", tabFilter === 'INACTIVE' ? "border-b-2 border-purple-600 text-gray-900" : "text-gray-500 hover:text-gray-900")}>Nonaktif</button>
             </div>
           </div>
 
