@@ -10,12 +10,11 @@ const nextConfig = {
   },
   allowedDevOrigins: ['192.168.0.105'],
   turbopack: {},
-  experimental: {
-    serverComponentsExternalPackages: ['@prisma/client', 'prisma'],
-    outputFileTracingExcludes: {
-      '*': ['node_modules/@swc/core-windows-x64-msvc', 'node_modules/typescript']
-    }
+  serverExternalPackages: ['@prisma/client', 'prisma'],
+  outputFileTracingExcludes: {
+    '*': ['node_modules/@swc/core-windows-x64-msvc', 'node_modules/typescript']
   },
+  logging: false,
 }
 
 const withPWA = withPWAInit({
