@@ -17,9 +17,16 @@ export default async function Page() {
   const role = (session.user as any)?.role
   const userId = (session.user as any)?.id
 
-  if (RBAC.canAccessAdminDashboard(role)) {
-    redirect("/dashboard/admin?v=2")
-  }
+  // if (RBAC.canAccessAdminDashboard(role)) {
+  //   redirect("/dashboard/admin?v=2")
+  // }
+
+  return (
+    <div style={{ backgroundColor: 'blue', color: 'white', padding: '50px', fontSize: '24px', fontWeight: 'bold' }}>
+      DEBUG DASHBOARD: Role Anda adalah: {role || 'UNDEFINED'}. 
+      IsAdmin: {RBAC.canAccessAdminDashboard(role) ? 'YES' : 'NO'}
+    </div>
+  )
 
   if (RBAC.isParentLevel(role)) {
     redirect("/dashboard/parent")
