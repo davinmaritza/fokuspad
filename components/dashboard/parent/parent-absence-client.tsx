@@ -58,7 +58,7 @@ export function ParentAbsenceClient({ requests }: { requests: any[] }) {
       const res = await fetch("/api/parent/requests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, attachmentUrl: finalUrl })
+        body: JSON.stringify({ ...formData, attachmentFilename: filename })
       })
 
       if (res.ok) {

@@ -13,9 +13,9 @@ export async function PUT(req: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const { id, proofUrl } = await req.json()
+    const { id, proofFilename } = await req.json()
 
-    if (!id || !proofUrl) {
+    if (!id || !proofFilename) {
       return NextResponse.json({ error: "Data tidak lengkap" }, { status: 400 })
     }
 
@@ -27,6 +27,8 @@ export async function PUT(req: Request) {
     if (!bill) {
       return NextResponse.json({ error: "Tagihan tidak ditemukan" }, { status: 404 })
     }
+
+    const proofUrl = `https://bivafymwpctapaumpuhy.supabase.co/storage/v1/object/public/uploads/${proofFilename}`
 
     await prisma.billing.update({
       where: { id },

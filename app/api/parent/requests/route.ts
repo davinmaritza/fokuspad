@@ -13,13 +13,17 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const { startDate, endDate, reason, description, attachmentUrl } = await req.json()
+    const { startDate, endDate, reason, description, attachmentFilename } = await req.json()
 
     if (!startDate || !endDate || !reason || !description) {
       return NextResponse.json({ error: "Data tidak lengkap" }, { status: 400 })
     }
 
-    await prisma.absenceRequest.create({
+    const attachmentUrl = attachmentFilename 
+      ? `https://bivafymwpctapaumpuhy.supabase.co/storage/v1/object/public/uploads/${attachmentFilename}`
+      : null
+
+    const absence = await prisma.absenceRequest.create({
       data: {
         studentId,
         startDate: new Date(startDate),

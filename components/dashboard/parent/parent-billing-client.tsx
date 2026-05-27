@@ -46,13 +46,10 @@ export function ParentBillingClient({ billings, bankSettings }: { billings: any[
         throw new Error("Gagal mengunggah file ke server storage")
       }
 
-      const { data: { publicUrl } } = supabase.storage.from('uploads').getPublicUrl(filename)
-      const finalUrl = publicUrl
-
       const res = await fetch("/api/parent/billing", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: selectedBill.id, proofUrl: finalUrl })
+        body: JSON.stringify({ id: selectedBill.id, proofFilename: filename })
       })
 
       if (res.ok) {
