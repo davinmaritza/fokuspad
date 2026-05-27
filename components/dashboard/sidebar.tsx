@@ -68,6 +68,7 @@ const sidebarLinks = {
   ADMIN: [
     { label: 'Beranda', icon: LayoutDashboard, href: '/dashboard/admin' },
     { label: 'Kelola Pengguna', icon: Users, href: '/dashboard/admin/users' },
+    { label: 'Kelola Siswa', icon: Users, href: '/dashboard/admin/students' },
     { label: 'Kelola Kelas', icon: GraduationCap, href: '/dashboard/admin/classes' },
     { label: 'Kelola Mapel', icon: BookOpen, href: '/dashboard/admin/subjects' },
     { label: 'Kelola Materi', icon: ClipboardList, href: '/dashboard/kelola-materi' },
