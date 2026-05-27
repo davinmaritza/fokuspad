@@ -526,14 +526,14 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
       <div className="flex-1 flex flex-col min-w-0 bg-white rounded-2xl shadow-sm border border-gray-100/50">
         
         {/* TOP HEADER */}
-        <div className="h-16 border-b border-gray-100 flex items-center justify-between px-6">
+        <div className="h-auto md:h-16 py-4 md:py-0 border-b border-gray-100 flex flex-col md:flex-row items-start md:items-center justify-between px-4 md:px-6 gap-4">
           <div className="flex items-center gap-3 font-semibold text-gray-700">
             <Users className="h-5 w-5 text-gray-400" />
             <span className="text-gray-400">/</span>
             <span>{fixedRole ? fixedRole : 'Pengguna'}</span>
           </div>
           
-          <div className="flex-1 max-w-xl mx-8 relative">
+          <div className="flex-1 w-full md:max-w-xl mx-0 md:mx-8 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input 
               type="text" 
@@ -549,9 +549,9 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
         </div>
 
         {/* SUB HEADER (TOOLBAR) */}
-        <div className="h-16 flex items-center justify-between px-6">
-          <div className="flex items-center gap-6">
-            <div className="relative">
+        <div className="h-auto md:h-16 py-4 md:py-0 flex flex-col lg:flex-row items-start lg:items-center justify-between px-4 md:px-6 gap-4">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 w-full lg:w-auto">
+            <div className="relative w-full md:w-auto">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input 
                 type="text" 
@@ -567,14 +567,14 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
               <button className="p-1.5 text-gray-400 hover:text-gray-700"><LayoutGrid className="h-4 w-4" /></button>
             </div>
 
-            <div className="flex gap-1 text-sm font-semibold">
+            <div className="flex gap-1 text-sm font-semibold overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-hide">
               <button onClick={() => setTabFilter('ALL')} className={cn("px-4 py-2 transition-colors", tabFilter === 'ALL' ? "border-b-2 border-purple-600 text-gray-900" : "text-gray-500 hover:text-gray-900")}>Semua</button>
               <button onClick={() => setTabFilter('ACTIVE')} className={cn("px-4 py-2 transition-colors", tabFilter === 'ACTIVE' ? "border-b-2 border-purple-600 text-gray-900" : "text-gray-500 hover:text-gray-900")}>Aktif</button>
               <button onClick={() => setTabFilter('INACTIVE')} className={cn("px-4 py-2 transition-colors", tabFilter === 'INACTIVE' ? "border-b-2 border-purple-600 text-gray-900" : "text-gray-500 hover:text-gray-900")}>Nonaktif</button>
             </div>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex gap-3 w-full md:w-auto justify-end">
             <button className="px-4 py-2 border border-gray-200 text-gray-700 rounded-lg text-sm font-semibold flex items-center gap-2 hover:bg-gray-50 transition-colors">
               <Filter className="h-4 w-4" /> Filter
             </button>
@@ -584,6 +584,8 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
           </div>
         </div>
 
+        <div className="overflow-x-auto w-full">
+        <div className="min-w-[1000px]">
         {/* TABLE HEADER */}
         <div className="grid grid-cols-12 gap-4 px-6 py-3 border-y border-gray-100 bg-gray-50/50 text-xs font-semibold text-gray-500 uppercase tracking-wider items-center">
           <div className="col-span-1 flex items-center gap-3">
