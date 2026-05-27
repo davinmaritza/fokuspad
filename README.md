@@ -7,11 +7,13 @@ EduTrack adalah platform edukasi modern yang dirancang untuk mempermudah pemanta
 ### 🎓 Untuk Siswa
 - **Dashboard Personal:** Lihat ringkasan nilai, tugas yang belum dikerjakan, dan jadwal kelas hari ini.
 - **Progres Belajar:** Pantau grafik perkembangan nilai dan absensi secara real-time.
+- **Ujian Online (CBT):** Kerjakan ujian online (Pilihan Ganda) dengan sistem waktu dan *anti-cheat* langsung dari *dashboard*.
 - **Forum Diskusi:** Berinteraksi dengan guru dan teman sekelas untuk membahas materi pelajaran.
 - **Ekstrakurikuler:** Lihat daftar ekskul yang diikuti beserta jadwal kegiatannya.
 
 ### 👩‍🏫 Untuk Guru
 - **Manajemen Kelas & Mata Pelajaran:** Kelola materi, tugas, dan ujian dengan mudah.
+- **Pembuatan Ujian (CBT):** Buat soal, atur durasi ujian, jadwal, dan nilai siswa akan otomatis dihitung.
 - **Penilaian Otomatis & Manual:** Input nilai siswa dan berikan umpan balik (feedback) secara langsung.
 - **Pantauan Absensi:** Catat kehadiran siswa di setiap sesi kelas.
 - **Pengumuman:** Kirim informasi penting ke seluruh kelas atau siswa tertentu.
@@ -19,8 +21,12 @@ EduTrack adalah platform edukasi modern yang dirancang untuk mempermudah pemanta
 ### ⚙️ Untuk Administrator
 - **Kelola Pengguna:** Tambah, edit, atau hapus data Siswa dan Guru (mendukung *bulk import* via CSV).
 - **Manajemen Kurikulum:** Atur daftar kelas, mata pelajaran, dan penugasan guru.
-- **Statistik & Laporan:** Dapatkan wawasan (insights) tentang performa sekolah secara keseluruhan melalui grafik interaktif.
+- **Statistik & Laporan:** Dapatkan wawasan (insights) tentang performa sekolah secara keseluruhan melalui grafik interaktif (Chart).
 - **Kelola Ekstrakurikuler:** Atur daftar ekskul, pembina, dan anggotanya.
+
+### 🔔 Fitur Tambahan Terintegrasi
+- **Notifikasi Email Otomatis:** Setiap kali guru memberikan tugas baru, materi baru, atau ketika admin membuat pengumuman *broadcast*, sistem otomatis mengirimkan email notifikasi ke akun siswa/pengguna terkait (menggunakan Nodemailer/SMTP).
+- **Video Conference:** Terintegrasi langsung dengan platform video *conference* (seperti Google Meet atau Zoom) pada jadwal kelas.
 
 ## Teknologi yang Digunakan
 
