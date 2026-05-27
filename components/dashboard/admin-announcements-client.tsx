@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Megaphone, Send, Bell, Info, AlertCircle, Trash2, Clock, History } from 'lucide-react'
+import { Megaphone, Send, Bell, Info, AlertCircle, Trash2, Clock, History, Edit2, X } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -49,6 +49,7 @@ export function AdminAnnouncementsClient() {
     id: ''
   })
   const [selectedAnnouncement, setSelectedAnnouncement] = useState<any>(null)
+  const [editingId, setEditingId] = useState<string | null>(null)
 
   useEffect(() => {
     fetchAnnouncements()
@@ -70,24 +71,42 @@ export function AdminAnnouncementsClient() {
     e.preventDefault()
     setIsSubmitting(true)
     try {
-      const res = await fetch('/api/admin/announcements', {
-        method: 'POST',
+      const url = editingId ? `/api/admin/announcements/${editingId}` : '/api/admin/announcements'
+      const method = editingId ? 'PATCH' : 'POST'
+      
+      const res = await fetch(url, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       })
       if (res.ok) {
         const data = await res.json()
-        toast.success(`Pengumuman berhasil dikirim ke ${data.count} pengguna`)
+        if (editingId) {
+           toast.success('Pengumuman berhasil diperbarui')
+        } else {
+           toast.success(`Pengumuman berhasil dikirim ke ${data.count} pengguna`)
+        }
         setFormData({ title: '', message: '', type: 'SYSTEM' })
+        setEditingId(null)
         fetchAnnouncements()
       } else {
-        toast.error('Gagal mengirim pengumuman')
+        toast.error('Gagal memproses pengumuman')
       }
     } catch (error) {
       toast.error('Terjadi kesalahan sistem')
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  const handleEditClick = (announcement: any) => {
+    setFormData({
+       title: announcement.title,
+       message: announcement.message,
+       type: announcement.type
+    })
+    setEditingId(announcement.id)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handleDelete = async (id: string) => {
@@ -130,11 +149,26 @@ export function AdminAnnouncementsClient() {
         <div className="lg:col-span-7">
           <Card className="bg-[var(--card)] border-[var(--border)] rounded-2xl shadow-sm h-full overflow-hidden">
             <CardHeader className="p-6 md:p-8 border-b border-[var(--border)] bg-[var(--muted)]/30">
-               <CardTitle className="text-xl font-extrabold tracking-tight flex items-center gap-3">
-                 <div className="h-10 w-10 bg-[#5483B3]/10 rounded-lg flex items-center justify-center">
-                    <Megaphone className="h-5 w-5 text-[#5483B3]" />
+               <CardTitle className="text-xl font-extrabold tracking-tight flex items-center justify-between">
+                 <div className="flex items-center gap-3">
+                   <div className="h-10 w-10 bg-[#5483B3]/10 rounded-lg flex items-center justify-center">
+                      <Megaphone className="h-5 w-5 text-[#5483B3]" />
+                   </div>
+                   {editingId ? 'Edit Pengumuman' : 'Buat Siaran Baru'}
                  </div>
-                 Buat Siaran Baru
+                 {editingId && (
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      onClick={() => {
+                        setEditingId(null)
+                        setFormData({ title: '', message: '', type: 'SYSTEM' })
+                      }}
+                      className="text-muted-foreground"
+                    >
+                       <X className="h-4 w-4 mr-2" /> Batal Edit
+                    </Button>
+                 )}
                </CardTitle>
             </CardHeader>
             <CardContent className="p-6 md:p-8">
@@ -178,7 +212,7 @@ export function AdminAnnouncementsClient() {
                     disabled={isSubmitting} 
                     className="w-full bg-[#5483B3] hover:bg-[#3B6FA0] text-white rounded-xl font-bold text-sm h-12 transition-all shadow-md gap-2"
                   >
-                    {isSubmitting ? 'Mengirim...' : 'Kirim Siaran'}
+                    {isSubmitting ? 'Memproses...' : editingId ? 'Simpan Perubahan' : 'Kirim Siaran'}
                     <Send className="h-4 w-4" />
                   </Button>
                </form>
@@ -222,17 +256,30 @@ export function AdminAnnouncementsClient() {
                                       {format(new Date(a.createdAt), 'dd MMM yyyy HH:mm', { locale: idLocale })}
                                    </div>
                                 </div>
-                                <Button 
-                                  variant="ghost" 
-                                  size="icon" 
-                                  className="h-8 w-8 text-[var(--muted-foreground)] hover:text-red-500 hover:bg-red-50 rounded-lg transition-all opacity-0 group-hover:opacity-100"
-                                  onClick={(e) => {
-                                    e.stopPropagation()
-                                    handleDelete(a.id)
-                                  }}
-                                >
-                                   <Trash2 className="h-4 w-4" />
-                                </Button>
+                                <div className="flex items-center">
+                                   <Button 
+                                     variant="ghost" 
+                                     size="icon" 
+                                     className="h-8 w-8 text-[var(--muted-foreground)] hover:text-[#5483B3] hover:bg-[#5483B3]/10 rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                                     onClick={(e) => {
+                                       e.stopPropagation()
+                                       handleEditClick(a)
+                                     }}
+                                   >
+                                      <Edit2 className="h-4 w-4" />
+                                   </Button>
+                                   <Button 
+                                     variant="ghost" 
+                                     size="icon" 
+                                     className="h-8 w-8 text-[var(--muted-foreground)] hover:text-red-500 hover:bg-red-50 rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                                     onClick={(e) => {
+                                       e.stopPropagation()
+                                       handleDelete(a.id)
+                                     }}
+                                   >
+                                      <Trash2 className="h-4 w-4" />
+                                   </Button>
+                                </div>
                              </div>
                              <div 
                                className="text-sm text-[var(--muted-foreground)] font-medium leading-relaxed line-clamp-2"

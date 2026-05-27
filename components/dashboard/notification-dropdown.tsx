@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import useSWR from 'swr'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { formatDistanceToNow } from 'date-fns'
 import { id } from 'date-fns/locale'
 import { toast } from 'sonner'
@@ -19,6 +20,7 @@ import { toast } from 'sonner'
 const fetcher = (url: string) => fetch(url).then(res => res.json())
 
 export function NotificationDropdown() {
+  const router = useRouter()
   const { data: notifications, mutate } = useSWR('/api/notifications', fetcher, {
     refreshInterval: 10000, // Refresh every 10 seconds for real-time feel
   })
@@ -92,6 +94,7 @@ export function NotificationDropdown() {
                 className={`flex flex-col items-start gap-1 p-3 cursor-pointer hover:bg-[var(--muted)]/50 transition-colors ${!notif.read ? 'bg-[#5483B3]/5' : ''}`}
                 onClick={() => {
                   if (!notif.read) markAsRead(notif.id)
+                  router.push('/dashboard/notifications')
                 }}
               >
                 <div className="flex items-start justify-between w-full">
@@ -112,9 +115,11 @@ export function NotificationDropdown() {
         </div>
         <DropdownMenuSeparator className="bg-[var(--border)]" />
         <div className="p-2">
-          <Button variant="outline" className="w-full text-xs h-8 rounded-lg border-[var(--border)] text-[var(--foreground)]">
-            Lihat Semua Notifikasi
-          </Button>
+          <Link href="/dashboard/notifications" className="block w-full">
+            <Button variant="outline" className="w-full text-xs h-8 rounded-lg border-[var(--border)] text-[var(--foreground)]">
+              Lihat Semua Notifikasi
+            </Button>
+          </Link>
         </div>
       </DropdownMenuContent>
     </DropdownMenu>

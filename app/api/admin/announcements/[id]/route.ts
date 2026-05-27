@@ -26,3 +26,34 @@ export async function DELETE(
     return new NextResponse("Internal Error", { status: 500 })
   }
 }
+export async function PATCH(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  const session = await auth()
+  if (!session || (session.user as any).role !== 'ADMIN') {
+    return new NextResponse("Unauthorized", { status: 401 })
+  }
+
+  try {
+    const { id: announcementId } = await params
+    const body = await req.json()
+    const { title, message, type } = body
+
+    const updatedAnnouncement = await prisma.announcement.update({
+      where: { id: announcementId },
+      data: { title, message, type }
+    })
+
+    // Update related notifications
+    await prisma.notification.updateMany({
+      where: { announcementId: announcementId },
+      data: { title, message, type: type as any }
+    })
+
+    return NextResponse.json(updatedAnnouncement)
+  } catch (error) {
+    console.error("[ADMIN_ANNOUNCEMENT_PATCH]", error)
+    return new NextResponse("Internal Error", { status: 500 })
+  }
+}
