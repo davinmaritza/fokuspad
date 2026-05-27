@@ -69,6 +69,34 @@ import { cn } from '@/lib/utils'
 import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
 
+const ALL_ROLES = [
+  { value: "SUPER_ADMIN", label: "Super Admin" },
+  { value: "KETUA_YAYASAN", label: "Ketua Yayasan" },
+  { value: "KEPALA_SEKOLAH", label: "Kepala Sekolah" },
+  { value: "WAKASEK_KURIKULUM", label: "Wakasek Kurikulum" },
+  { value: "WAKASEK_KESISWAAN", label: "Wakasek Kesiswaan" },
+  { value: "WAKASEK_HUBIN", label: "Wakasek Hubin" },
+  { value: "KAPROG", label: "Kaprog" },
+  { value: "KEPALA_LAB", label: "Kepala Lab" },
+  { value: "TATA_USAHA", label: "Tata Usaha" },
+  { value: "BENDAHARA_YAYASAN", label: "Bendahara Yayasan" },
+  { value: "BENDAHARA_SEKOLAH", label: "Bendahara Sekolah" },
+  { value: "PANITIA_PPDB", label: "Panitia PPDB" },
+  { value: "GURU_MAPEL", label: "Guru Mapel" },
+  { value: "WALI_KELAS", label: "Wali Kelas" },
+  { value: "GURU_BK", label: "Guru BK" },
+  { value: "PUSTAKAWAN", label: "Pustakawan" },
+  { value: "PETUGAS_UKS", label: "Petugas UKS" },
+  { value: "STAF_SARPRAS", label: "Staf Sarpras" },
+  { value: "SISWA", label: "Siswa" },
+  { value: "ORANG_TUA", label: "Orang Tua" },
+  { value: "ALUMNI", label: "Alumni" },
+  { value: "STUDENT", label: "Student (Legacy)" },
+  { value: "TEACHER", label: "Teacher (Legacy)" },
+  { value: "ADMIN", label: "Admin (Legacy)" },
+  { value: "COACH", label: "Coach (Legacy)" }
+];
+
 export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRole, title }: any) {
   const [users, setUsers] = useState(initialUsers)
   const [search, setSearch] = useState('')
@@ -517,9 +545,7 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
                        </SelectTrigger>
                        <SelectContent className="bg-[var(--card)] border-[var(--border)] rounded-xl shadow-lg z-50">
                           <SelectItem value="ALL">Semua Peran</SelectItem>
-                          <SelectItem value="STUDENT">Siswa</SelectItem>
-                          <SelectItem value="TEACHER">Guru</SelectItem>
-                          <SelectItem value="ADMIN">Admin</SelectItem>
+                          {ALL_ROLES.map(r => <SelectItem key={r.value} value={r.value}>{r.label}</SelectItem>)}
                        </SelectContent>
                     </Select>
                  </div>
@@ -682,10 +708,7 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
                               <SelectValue placeholder="Pilih Peran" />
                             </SelectTrigger>
                             <SelectContent className="bg-[var(--card)] border-[var(--border)] rounded-xl shadow-lg z-50">
-                              <SelectItem value="STUDENT">Siswa</SelectItem>
-                              <SelectItem value="TEACHER">Guru</SelectItem>
-                              <SelectItem value="COACH">Pelatih</SelectItem>
-                              <SelectItem value="ADMIN">Admin</SelectItem>
+                              {ALL_ROLES.map(r => <SelectItem key={r.value} value={r.value}>{r.label}</SelectItem>)}
                             </SelectContent>
                           </Select>
                         </div>

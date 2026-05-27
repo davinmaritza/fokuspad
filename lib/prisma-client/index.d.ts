@@ -184,6 +184,36 @@ export type ExamAnswer = $Result.DefaultSelection<Prisma.$ExamAnswerPayload>
  */
 export type Billing = $Result.DefaultSelection<Prisma.$BillingPayload>
 /**
+ * Model Book
+ * 
+ */
+export type Book = $Result.DefaultSelection<Prisma.$BookPayload>
+/**
+ * Model BookCirculation
+ * 
+ */
+export type BookCirculation = $Result.DefaultSelection<Prisma.$BookCirculationPayload>
+/**
+ * Model MedicalInventory
+ * 
+ */
+export type MedicalInventory = $Result.DefaultSelection<Prisma.$MedicalInventoryPayload>
+/**
+ * Model MedicalRecord
+ * 
+ */
+export type MedicalRecord = $Result.DefaultSelection<Prisma.$MedicalRecordPayload>
+/**
+ * Model AlumniProfile
+ * 
+ */
+export type AlumniProfile = $Result.DefaultSelection<Prisma.$AlumniProfilePayload>
+/**
+ * Model JobPosting
+ * 
+ */
+export type JobPosting = $Result.DefaultSelection<Prisma.$JobPostingPayload>
+/**
  * Model AbsenceRequest
  * 
  */
@@ -283,6 +313,25 @@ export const BillingStatus: {
 export type BillingStatus = (typeof BillingStatus)[keyof typeof BillingStatus]
 
 
+export const CirculationStatus: {
+  BORROWED: 'BORROWED',
+  RETURNED: 'RETURNED',
+  OVERDUE: 'OVERDUE'
+};
+
+export type CirculationStatus = (typeof CirculationStatus)[keyof typeof CirculationStatus]
+
+
+export const AlumniStatus: {
+  WORKING: 'WORKING',
+  STUDYING: 'STUDYING',
+  ENTREPRENEUR: 'ENTREPRENEUR',
+  LOOKING_FOR_JOB: 'LOOKING_FOR_JOB'
+};
+
+export type AlumniStatus = (typeof AlumniStatus)[keyof typeof AlumniStatus]
+
+
 export const RequestStatus: {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
@@ -320,6 +369,14 @@ export const AttemptStatus: typeof $Enums.AttemptStatus
 export type BillingStatus = $Enums.BillingStatus
 
 export const BillingStatus: typeof $Enums.BillingStatus
+
+export type CirculationStatus = $Enums.CirculationStatus
+
+export const CirculationStatus: typeof $Enums.CirculationStatus
+
+export type AlumniStatus = $Enums.AlumniStatus
+
+export const AlumniStatus: typeof $Enums.AlumniStatus
 
 export type RequestStatus = $Enums.RequestStatus
 
@@ -787,6 +844,66 @@ export class PrismaClient<
     * ```
     */
   get billing(): Prisma.BillingDelegate<ExtArgs>;
+
+  /**
+   * `prisma.book`: Exposes CRUD operations for the **Book** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Books
+    * const books = await prisma.book.findMany()
+    * ```
+    */
+  get book(): Prisma.BookDelegate<ExtArgs>;
+
+  /**
+   * `prisma.bookCirculation`: Exposes CRUD operations for the **BookCirculation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BookCirculations
+    * const bookCirculations = await prisma.bookCirculation.findMany()
+    * ```
+    */
+  get bookCirculation(): Prisma.BookCirculationDelegate<ExtArgs>;
+
+  /**
+   * `prisma.medicalInventory`: Exposes CRUD operations for the **MedicalInventory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MedicalInventories
+    * const medicalInventories = await prisma.medicalInventory.findMany()
+    * ```
+    */
+  get medicalInventory(): Prisma.MedicalInventoryDelegate<ExtArgs>;
+
+  /**
+   * `prisma.medicalRecord`: Exposes CRUD operations for the **MedicalRecord** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MedicalRecords
+    * const medicalRecords = await prisma.medicalRecord.findMany()
+    * ```
+    */
+  get medicalRecord(): Prisma.MedicalRecordDelegate<ExtArgs>;
+
+  /**
+   * `prisma.alumniProfile`: Exposes CRUD operations for the **AlumniProfile** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AlumniProfiles
+    * const alumniProfiles = await prisma.alumniProfile.findMany()
+    * ```
+    */
+  get alumniProfile(): Prisma.AlumniProfileDelegate<ExtArgs>;
+
+  /**
+   * `prisma.jobPosting`: Exposes CRUD operations for the **JobPosting** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more JobPostings
+    * const jobPostings = await prisma.jobPosting.findMany()
+    * ```
+    */
+  get jobPosting(): Prisma.JobPostingDelegate<ExtArgs>;
 
   /**
    * `prisma.absenceRequest`: Exposes CRUD operations for the **AbsenceRequest** model.
@@ -1272,6 +1389,12 @@ export namespace Prisma {
     ExamAttempt: 'ExamAttempt',
     ExamAnswer: 'ExamAnswer',
     Billing: 'Billing',
+    Book: 'Book',
+    BookCirculation: 'BookCirculation',
+    MedicalInventory: 'MedicalInventory',
+    MedicalRecord: 'MedicalRecord',
+    AlumniProfile: 'AlumniProfile',
+    JobPosting: 'JobPosting',
     AbsenceRequest: 'AbsenceRequest'
   };
 
@@ -1288,7 +1411,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "userNote" | "attendance" | "class" | "subject" | "topic" | "progressLog" | "userSubject" | "classSchedule" | "material" | "extracurricular" | "extracurricularMember" | "extracurricularSession" | "extracurricularAttendance" | "assignment" | "assignmentSubmission" | "comment" | "notification" | "announcement" | "operator" | "settings" | "account" | "session" | "verificationToken" | "passwordResetToken" | "calendarReminder" | "document" | "discussionThread" | "discussionReply" | "exam" | "examQuestion" | "examAttempt" | "examAnswer" | "billing" | "absenceRequest"
+      modelProps: "user" | "userNote" | "attendance" | "class" | "subject" | "topic" | "progressLog" | "userSubject" | "classSchedule" | "material" | "extracurricular" | "extracurricularMember" | "extracurricularSession" | "extracurricularAttendance" | "assignment" | "assignmentSubmission" | "comment" | "notification" | "announcement" | "operator" | "settings" | "account" | "session" | "verificationToken" | "passwordResetToken" | "calendarReminder" | "document" | "discussionThread" | "discussionReply" | "exam" | "examQuestion" | "examAttempt" | "examAnswer" | "billing" | "book" | "bookCirculation" | "medicalInventory" | "medicalRecord" | "alumniProfile" | "jobPosting" | "absenceRequest"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3672,6 +3795,426 @@ export namespace Prisma {
           }
         }
       }
+      Book: {
+        payload: Prisma.$BookPayload<ExtArgs>
+        fields: Prisma.BookFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BookFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BookFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>
+          }
+          findFirst: {
+            args: Prisma.BookFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BookFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>
+          }
+          findMany: {
+            args: Prisma.BookFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>[]
+          }
+          create: {
+            args: Prisma.BookCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>
+          }
+          createMany: {
+            args: Prisma.BookCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BookCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>[]
+          }
+          delete: {
+            args: Prisma.BookDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>
+          }
+          update: {
+            args: Prisma.BookUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>
+          }
+          deleteMany: {
+            args: Prisma.BookDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BookUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.BookUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookPayload>
+          }
+          aggregate: {
+            args: Prisma.BookAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBook>
+          }
+          groupBy: {
+            args: Prisma.BookGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BookGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BookCountArgs<ExtArgs>
+            result: $Utils.Optional<BookCountAggregateOutputType> | number
+          }
+        }
+      }
+      BookCirculation: {
+        payload: Prisma.$BookCirculationPayload<ExtArgs>
+        fields: Prisma.BookCirculationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BookCirculationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookCirculationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BookCirculationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookCirculationPayload>
+          }
+          findFirst: {
+            args: Prisma.BookCirculationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookCirculationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BookCirculationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookCirculationPayload>
+          }
+          findMany: {
+            args: Prisma.BookCirculationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookCirculationPayload>[]
+          }
+          create: {
+            args: Prisma.BookCirculationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookCirculationPayload>
+          }
+          createMany: {
+            args: Prisma.BookCirculationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BookCirculationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookCirculationPayload>[]
+          }
+          delete: {
+            args: Prisma.BookCirculationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookCirculationPayload>
+          }
+          update: {
+            args: Prisma.BookCirculationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookCirculationPayload>
+          }
+          deleteMany: {
+            args: Prisma.BookCirculationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BookCirculationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.BookCirculationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BookCirculationPayload>
+          }
+          aggregate: {
+            args: Prisma.BookCirculationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBookCirculation>
+          }
+          groupBy: {
+            args: Prisma.BookCirculationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BookCirculationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BookCirculationCountArgs<ExtArgs>
+            result: $Utils.Optional<BookCirculationCountAggregateOutputType> | number
+          }
+        }
+      }
+      MedicalInventory: {
+        payload: Prisma.$MedicalInventoryPayload<ExtArgs>
+        fields: Prisma.MedicalInventoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MedicalInventoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalInventoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MedicalInventoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalInventoryPayload>
+          }
+          findFirst: {
+            args: Prisma.MedicalInventoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalInventoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MedicalInventoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalInventoryPayload>
+          }
+          findMany: {
+            args: Prisma.MedicalInventoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalInventoryPayload>[]
+          }
+          create: {
+            args: Prisma.MedicalInventoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalInventoryPayload>
+          }
+          createMany: {
+            args: Prisma.MedicalInventoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MedicalInventoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalInventoryPayload>[]
+          }
+          delete: {
+            args: Prisma.MedicalInventoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalInventoryPayload>
+          }
+          update: {
+            args: Prisma.MedicalInventoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalInventoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.MedicalInventoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MedicalInventoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.MedicalInventoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalInventoryPayload>
+          }
+          aggregate: {
+            args: Prisma.MedicalInventoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMedicalInventory>
+          }
+          groupBy: {
+            args: Prisma.MedicalInventoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MedicalInventoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MedicalInventoryCountArgs<ExtArgs>
+            result: $Utils.Optional<MedicalInventoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      MedicalRecord: {
+        payload: Prisma.$MedicalRecordPayload<ExtArgs>
+        fields: Prisma.MedicalRecordFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MedicalRecordFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalRecordPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MedicalRecordFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalRecordPayload>
+          }
+          findFirst: {
+            args: Prisma.MedicalRecordFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalRecordPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MedicalRecordFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalRecordPayload>
+          }
+          findMany: {
+            args: Prisma.MedicalRecordFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalRecordPayload>[]
+          }
+          create: {
+            args: Prisma.MedicalRecordCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalRecordPayload>
+          }
+          createMany: {
+            args: Prisma.MedicalRecordCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MedicalRecordCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalRecordPayload>[]
+          }
+          delete: {
+            args: Prisma.MedicalRecordDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalRecordPayload>
+          }
+          update: {
+            args: Prisma.MedicalRecordUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalRecordPayload>
+          }
+          deleteMany: {
+            args: Prisma.MedicalRecordDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MedicalRecordUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.MedicalRecordUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MedicalRecordPayload>
+          }
+          aggregate: {
+            args: Prisma.MedicalRecordAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMedicalRecord>
+          }
+          groupBy: {
+            args: Prisma.MedicalRecordGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MedicalRecordGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MedicalRecordCountArgs<ExtArgs>
+            result: $Utils.Optional<MedicalRecordCountAggregateOutputType> | number
+          }
+        }
+      }
+      AlumniProfile: {
+        payload: Prisma.$AlumniProfilePayload<ExtArgs>
+        fields: Prisma.AlumniProfileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AlumniProfileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniProfilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AlumniProfileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniProfilePayload>
+          }
+          findFirst: {
+            args: Prisma.AlumniProfileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniProfilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AlumniProfileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniProfilePayload>
+          }
+          findMany: {
+            args: Prisma.AlumniProfileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniProfilePayload>[]
+          }
+          create: {
+            args: Prisma.AlumniProfileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniProfilePayload>
+          }
+          createMany: {
+            args: Prisma.AlumniProfileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AlumniProfileCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniProfilePayload>[]
+          }
+          delete: {
+            args: Prisma.AlumniProfileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniProfilePayload>
+          }
+          update: {
+            args: Prisma.AlumniProfileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniProfilePayload>
+          }
+          deleteMany: {
+            args: Prisma.AlumniProfileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AlumniProfileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AlumniProfileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AlumniProfilePayload>
+          }
+          aggregate: {
+            args: Prisma.AlumniProfileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAlumniProfile>
+          }
+          groupBy: {
+            args: Prisma.AlumniProfileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AlumniProfileGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AlumniProfileCountArgs<ExtArgs>
+            result: $Utils.Optional<AlumniProfileCountAggregateOutputType> | number
+          }
+        }
+      }
+      JobPosting: {
+        payload: Prisma.$JobPostingPayload<ExtArgs>
+        fields: Prisma.JobPostingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.JobPostingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPostingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.JobPostingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPostingPayload>
+          }
+          findFirst: {
+            args: Prisma.JobPostingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPostingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.JobPostingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPostingPayload>
+          }
+          findMany: {
+            args: Prisma.JobPostingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPostingPayload>[]
+          }
+          create: {
+            args: Prisma.JobPostingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPostingPayload>
+          }
+          createMany: {
+            args: Prisma.JobPostingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.JobPostingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPostingPayload>[]
+          }
+          delete: {
+            args: Prisma.JobPostingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPostingPayload>
+          }
+          update: {
+            args: Prisma.JobPostingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPostingPayload>
+          }
+          deleteMany: {
+            args: Prisma.JobPostingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.JobPostingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.JobPostingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobPostingPayload>
+          }
+          aggregate: {
+            args: Prisma.JobPostingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateJobPosting>
+          }
+          groupBy: {
+            args: Prisma.JobPostingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<JobPostingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.JobPostingCountArgs<ExtArgs>
+            result: $Utils.Optional<JobPostingCountAggregateOutputType> | number
+          }
+        }
+      }
       AbsenceRequest: {
         payload: Prisma.$AbsenceRequestPayload<ExtArgs>
         fields: Prisma.AbsenceRequestFieldRefs
@@ -3931,6 +4474,9 @@ export namespace Prisma {
     billings: number
     absenceRequests: number
     reviewedRequests: number
+    bookCirculations: number
+    studentMedical: number
+    staffMedical: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3962,6 +4508,9 @@ export namespace Prisma {
     billings?: boolean | UserCountOutputTypeCountBillingsArgs
     absenceRequests?: boolean | UserCountOutputTypeCountAbsenceRequestsArgs
     reviewedRequests?: boolean | UserCountOutputTypeCountReviewedRequestsArgs
+    bookCirculations?: boolean | UserCountOutputTypeCountBookCirculationsArgs
+    studentMedical?: boolean | UserCountOutputTypeCountStudentMedicalArgs
+    staffMedical?: boolean | UserCountOutputTypeCountStaffMedicalArgs
   }
 
   // Custom InputTypes
@@ -4169,6 +4718,27 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountReviewedRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AbsenceRequestWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountBookCirculationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookCirculationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountStudentMedicalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MedicalRecordWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountStaffMedicalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MedicalRecordWhereInput
   }
 
 
@@ -4702,6 +5272,68 @@ export namespace Prisma {
 
 
   /**
+   * Count Type BookCountOutputType
+   */
+
+  export type BookCountOutputType = {
+    circulations: number
+  }
+
+  export type BookCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    circulations?: boolean | BookCountOutputTypeCountCirculationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BookCountOutputType without action
+   */
+  export type BookCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCountOutputType
+     */
+    select?: BookCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BookCountOutputType without action
+   */
+  export type BookCountOutputTypeCountCirculationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookCirculationWhereInput
+  }
+
+
+  /**
+   * Count Type MedicalInventoryCountOutputType
+   */
+
+  export type MedicalInventoryCountOutputType = {
+    records: number
+  }
+
+  export type MedicalInventoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    records?: boolean | MedicalInventoryCountOutputTypeCountRecordsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MedicalInventoryCountOutputType without action
+   */
+  export type MedicalInventoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalInventoryCountOutputType
+     */
+    select?: MedicalInventoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MedicalInventoryCountOutputType without action
+   */
+  export type MedicalInventoryCountOutputTypeCountRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MedicalRecordWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -5094,6 +5726,10 @@ export namespace Prisma {
     billings?: boolean | User$billingsArgs<ExtArgs>
     absenceRequests?: boolean | User$absenceRequestsArgs<ExtArgs>
     reviewedRequests?: boolean | User$reviewedRequestsArgs<ExtArgs>
+    bookCirculations?: boolean | User$bookCirculationsArgs<ExtArgs>
+    studentMedical?: boolean | User$studentMedicalArgs<ExtArgs>
+    staffMedical?: boolean | User$staffMedicalArgs<ExtArgs>
+    alumniProfile?: boolean | User$alumniProfileArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -5189,6 +5825,10 @@ export namespace Prisma {
     billings?: boolean | User$billingsArgs<ExtArgs>
     absenceRequests?: boolean | User$absenceRequestsArgs<ExtArgs>
     reviewedRequests?: boolean | User$reviewedRequestsArgs<ExtArgs>
+    bookCirculations?: boolean | User$bookCirculationsArgs<ExtArgs>
+    studentMedical?: boolean | User$studentMedicalArgs<ExtArgs>
+    staffMedical?: boolean | User$staffMedicalArgs<ExtArgs>
+    alumniProfile?: boolean | User$alumniProfileArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5230,6 +5870,10 @@ export namespace Prisma {
       billings: Prisma.$BillingPayload<ExtArgs>[]
       absenceRequests: Prisma.$AbsenceRequestPayload<ExtArgs>[]
       reviewedRequests: Prisma.$AbsenceRequestPayload<ExtArgs>[]
+      bookCirculations: Prisma.$BookCirculationPayload<ExtArgs>[]
+      studentMedical: Prisma.$MedicalRecordPayload<ExtArgs>[]
+      staffMedical: Prisma.$MedicalRecordPayload<ExtArgs>[]
+      alumniProfile: Prisma.$AlumniProfilePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5653,6 +6297,10 @@ export namespace Prisma {
     billings<T extends User$billingsArgs<ExtArgs> = {}>(args?: Subset<T, User$billingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BillingPayload<ExtArgs>, T, "findMany"> | Null>
     absenceRequests<T extends User$absenceRequestsArgs<ExtArgs> = {}>(args?: Subset<T, User$absenceRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AbsenceRequestPayload<ExtArgs>, T, "findMany"> | Null>
     reviewedRequests<T extends User$reviewedRequestsArgs<ExtArgs> = {}>(args?: Subset<T, User$reviewedRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AbsenceRequestPayload<ExtArgs>, T, "findMany"> | Null>
+    bookCirculations<T extends User$bookCirculationsArgs<ExtArgs> = {}>(args?: Subset<T, User$bookCirculationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookCirculationPayload<ExtArgs>, T, "findMany"> | Null>
+    studentMedical<T extends User$studentMedicalArgs<ExtArgs> = {}>(args?: Subset<T, User$studentMedicalArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicalRecordPayload<ExtArgs>, T, "findMany"> | Null>
+    staffMedical<T extends User$staffMedicalArgs<ExtArgs> = {}>(args?: Subset<T, User$staffMedicalArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicalRecordPayload<ExtArgs>, T, "findMany"> | Null>
+    alumniProfile<T extends User$alumniProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$alumniProfileArgs<ExtArgs>>): Prisma__AlumniProfileClient<$Result.GetResult<Prisma.$AlumniProfilePayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6628,6 +7276,81 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AbsenceRequestScalarFieldEnum | AbsenceRequestScalarFieldEnum[]
+  }
+
+  /**
+   * User.bookCirculations
+   */
+  export type User$bookCirculationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCirculation
+     */
+    select?: BookCirculationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookCirculationInclude<ExtArgs> | null
+    where?: BookCirculationWhereInput
+    orderBy?: BookCirculationOrderByWithRelationInput | BookCirculationOrderByWithRelationInput[]
+    cursor?: BookCirculationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BookCirculationScalarFieldEnum | BookCirculationScalarFieldEnum[]
+  }
+
+  /**
+   * User.studentMedical
+   */
+  export type User$studentMedicalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalRecord
+     */
+    select?: MedicalRecordSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalRecordInclude<ExtArgs> | null
+    where?: MedicalRecordWhereInput
+    orderBy?: MedicalRecordOrderByWithRelationInput | MedicalRecordOrderByWithRelationInput[]
+    cursor?: MedicalRecordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MedicalRecordScalarFieldEnum | MedicalRecordScalarFieldEnum[]
+  }
+
+  /**
+   * User.staffMedical
+   */
+  export type User$staffMedicalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalRecord
+     */
+    select?: MedicalRecordSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalRecordInclude<ExtArgs> | null
+    where?: MedicalRecordWhereInput
+    orderBy?: MedicalRecordOrderByWithRelationInput | MedicalRecordOrderByWithRelationInput[]
+    cursor?: MedicalRecordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MedicalRecordScalarFieldEnum | MedicalRecordScalarFieldEnum[]
+  }
+
+  /**
+   * User.alumniProfile
+   */
+  export type User$alumniProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AlumniProfile
+     */
+    select?: AlumniProfileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlumniProfileInclude<ExtArgs> | null
+    where?: AlumniProfileWhereInput
   }
 
   /**
@@ -39726,6 +40449,5844 @@ export namespace Prisma {
 
 
   /**
+   * Model Book
+   */
+
+  export type AggregateBook = {
+    _count: BookCountAggregateOutputType | null
+    _avg: BookAvgAggregateOutputType | null
+    _sum: BookSumAggregateOutputType | null
+    _min: BookMinAggregateOutputType | null
+    _max: BookMaxAggregateOutputType | null
+  }
+
+  export type BookAvgAggregateOutputType = {
+    stock: number | null
+  }
+
+  export type BookSumAggregateOutputType = {
+    stock: number | null
+  }
+
+  export type BookMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    author: string | null
+    isbn: string | null
+    stock: number | null
+    coverImage: string | null
+    createdAt: Date | null
+  }
+
+  export type BookMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    author: string | null
+    isbn: string | null
+    stock: number | null
+    coverImage: string | null
+    createdAt: Date | null
+  }
+
+  export type BookCountAggregateOutputType = {
+    id: number
+    title: number
+    author: number
+    isbn: number
+    stock: number
+    coverImage: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type BookAvgAggregateInputType = {
+    stock?: true
+  }
+
+  export type BookSumAggregateInputType = {
+    stock?: true
+  }
+
+  export type BookMinAggregateInputType = {
+    id?: true
+    title?: true
+    author?: true
+    isbn?: true
+    stock?: true
+    coverImage?: true
+    createdAt?: true
+  }
+
+  export type BookMaxAggregateInputType = {
+    id?: true
+    title?: true
+    author?: true
+    isbn?: true
+    stock?: true
+    coverImage?: true
+    createdAt?: true
+  }
+
+  export type BookCountAggregateInputType = {
+    id?: true
+    title?: true
+    author?: true
+    isbn?: true
+    stock?: true
+    coverImage?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type BookAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Book to aggregate.
+     */
+    where?: BookWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Books to fetch.
+     */
+    orderBy?: BookOrderByWithRelationInput | BookOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BookWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Books from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Books.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Books
+    **/
+    _count?: true | BookCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BookAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BookSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BookMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BookMaxAggregateInputType
+  }
+
+  export type GetBookAggregateType<T extends BookAggregateArgs> = {
+        [P in keyof T & keyof AggregateBook]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBook[P]>
+      : GetScalarType<T[P], AggregateBook[P]>
+  }
+
+
+
+
+  export type BookGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookWhereInput
+    orderBy?: BookOrderByWithAggregationInput | BookOrderByWithAggregationInput[]
+    by: BookScalarFieldEnum[] | BookScalarFieldEnum
+    having?: BookScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BookCountAggregateInputType | true
+    _avg?: BookAvgAggregateInputType
+    _sum?: BookSumAggregateInputType
+    _min?: BookMinAggregateInputType
+    _max?: BookMaxAggregateInputType
+  }
+
+  export type BookGroupByOutputType = {
+    id: string
+    title: string
+    author: string
+    isbn: string | null
+    stock: number
+    coverImage: string | null
+    createdAt: Date
+    _count: BookCountAggregateOutputType | null
+    _avg: BookAvgAggregateOutputType | null
+    _sum: BookSumAggregateOutputType | null
+    _min: BookMinAggregateOutputType | null
+    _max: BookMaxAggregateOutputType | null
+  }
+
+  type GetBookGroupByPayload<T extends BookGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BookGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BookGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BookGroupByOutputType[P]>
+            : GetScalarType<T[P], BookGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BookSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    author?: boolean
+    isbn?: boolean
+    stock?: boolean
+    coverImage?: boolean
+    createdAt?: boolean
+    circulations?: boolean | Book$circulationsArgs<ExtArgs>
+    _count?: boolean | BookCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["book"]>
+
+  export type BookSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    author?: boolean
+    isbn?: boolean
+    stock?: boolean
+    coverImage?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["book"]>
+
+  export type BookSelectScalar = {
+    id?: boolean
+    title?: boolean
+    author?: boolean
+    isbn?: boolean
+    stock?: boolean
+    coverImage?: boolean
+    createdAt?: boolean
+  }
+
+  export type BookInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    circulations?: boolean | Book$circulationsArgs<ExtArgs>
+    _count?: boolean | BookCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type BookIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $BookPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Book"
+    objects: {
+      circulations: Prisma.$BookCirculationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      author: string
+      isbn: string | null
+      stock: number
+      coverImage: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["book"]>
+    composites: {}
+  }
+
+  type BookGetPayload<S extends boolean | null | undefined | BookDefaultArgs> = $Result.GetResult<Prisma.$BookPayload, S>
+
+  type BookCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<BookFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: BookCountAggregateInputType | true
+    }
+
+  export interface BookDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Book'], meta: { name: 'Book' } }
+    /**
+     * Find zero or one Book that matches the filter.
+     * @param {BookFindUniqueArgs} args - Arguments to find a Book
+     * @example
+     * // Get one Book
+     * const book = await prisma.book.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BookFindUniqueArgs>(args: SelectSubset<T, BookFindUniqueArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Book that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {BookFindUniqueOrThrowArgs} args - Arguments to find a Book
+     * @example
+     * // Get one Book
+     * const book = await prisma.book.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BookFindUniqueOrThrowArgs>(args: SelectSubset<T, BookFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Book that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookFindFirstArgs} args - Arguments to find a Book
+     * @example
+     * // Get one Book
+     * const book = await prisma.book.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BookFindFirstArgs>(args?: SelectSubset<T, BookFindFirstArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Book that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookFindFirstOrThrowArgs} args - Arguments to find a Book
+     * @example
+     * // Get one Book
+     * const book = await prisma.book.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BookFindFirstOrThrowArgs>(args?: SelectSubset<T, BookFindFirstOrThrowArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Books that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Books
+     * const books = await prisma.book.findMany()
+     * 
+     * // Get first 10 Books
+     * const books = await prisma.book.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bookWithIdOnly = await prisma.book.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BookFindManyArgs>(args?: SelectSubset<T, BookFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Book.
+     * @param {BookCreateArgs} args - Arguments to create a Book.
+     * @example
+     * // Create one Book
+     * const Book = await prisma.book.create({
+     *   data: {
+     *     // ... data to create a Book
+     *   }
+     * })
+     * 
+     */
+    create<T extends BookCreateArgs>(args: SelectSubset<T, BookCreateArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Books.
+     * @param {BookCreateManyArgs} args - Arguments to create many Books.
+     * @example
+     * // Create many Books
+     * const book = await prisma.book.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BookCreateManyArgs>(args?: SelectSubset<T, BookCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Books and returns the data saved in the database.
+     * @param {BookCreateManyAndReturnArgs} args - Arguments to create many Books.
+     * @example
+     * // Create many Books
+     * const book = await prisma.book.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Books and only return the `id`
+     * const bookWithIdOnly = await prisma.book.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BookCreateManyAndReturnArgs>(args?: SelectSubset<T, BookCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Book.
+     * @param {BookDeleteArgs} args - Arguments to delete one Book.
+     * @example
+     * // Delete one Book
+     * const Book = await prisma.book.delete({
+     *   where: {
+     *     // ... filter to delete one Book
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BookDeleteArgs>(args: SelectSubset<T, BookDeleteArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Book.
+     * @param {BookUpdateArgs} args - Arguments to update one Book.
+     * @example
+     * // Update one Book
+     * const book = await prisma.book.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BookUpdateArgs>(args: SelectSubset<T, BookUpdateArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Books.
+     * @param {BookDeleteManyArgs} args - Arguments to filter Books to delete.
+     * @example
+     * // Delete a few Books
+     * const { count } = await prisma.book.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BookDeleteManyArgs>(args?: SelectSubset<T, BookDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Books.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Books
+     * const book = await prisma.book.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BookUpdateManyArgs>(args: SelectSubset<T, BookUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Book.
+     * @param {BookUpsertArgs} args - Arguments to update or create a Book.
+     * @example
+     * // Update or create a Book
+     * const book = await prisma.book.upsert({
+     *   create: {
+     *     // ... data to create a Book
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Book we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BookUpsertArgs>(args: SelectSubset<T, BookUpsertArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Books.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookCountArgs} args - Arguments to filter Books to count.
+     * @example
+     * // Count the number of Books
+     * const count = await prisma.book.count({
+     *   where: {
+     *     // ... the filter for the Books we want to count
+     *   }
+     * })
+    **/
+    count<T extends BookCountArgs>(
+      args?: Subset<T, BookCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BookCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Book.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BookAggregateArgs>(args: Subset<T, BookAggregateArgs>): Prisma.PrismaPromise<GetBookAggregateType<T>>
+
+    /**
+     * Group by Book.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BookGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BookGroupByArgs['orderBy'] }
+        : { orderBy?: BookGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BookGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Book model
+   */
+  readonly fields: BookFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Book.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BookClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    circulations<T extends Book$circulationsArgs<ExtArgs> = {}>(args?: Subset<T, Book$circulationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookCirculationPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Book model
+   */ 
+  interface BookFieldRefs {
+    readonly id: FieldRef<"Book", 'String'>
+    readonly title: FieldRef<"Book", 'String'>
+    readonly author: FieldRef<"Book", 'String'>
+    readonly isbn: FieldRef<"Book", 'String'>
+    readonly stock: FieldRef<"Book", 'Int'>
+    readonly coverImage: FieldRef<"Book", 'String'>
+    readonly createdAt: FieldRef<"Book", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Book findUnique
+   */
+  export type BookFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * Filter, which Book to fetch.
+     */
+    where: BookWhereUniqueInput
+  }
+
+  /**
+   * Book findUniqueOrThrow
+   */
+  export type BookFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * Filter, which Book to fetch.
+     */
+    where: BookWhereUniqueInput
+  }
+
+  /**
+   * Book findFirst
+   */
+  export type BookFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * Filter, which Book to fetch.
+     */
+    where?: BookWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Books to fetch.
+     */
+    orderBy?: BookOrderByWithRelationInput | BookOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Books.
+     */
+    cursor?: BookWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Books from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Books.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Books.
+     */
+    distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
+  }
+
+  /**
+   * Book findFirstOrThrow
+   */
+  export type BookFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * Filter, which Book to fetch.
+     */
+    where?: BookWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Books to fetch.
+     */
+    orderBy?: BookOrderByWithRelationInput | BookOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Books.
+     */
+    cursor?: BookWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Books from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Books.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Books.
+     */
+    distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
+  }
+
+  /**
+   * Book findMany
+   */
+  export type BookFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * Filter, which Books to fetch.
+     */
+    where?: BookWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Books to fetch.
+     */
+    orderBy?: BookOrderByWithRelationInput | BookOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Books.
+     */
+    cursor?: BookWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Books from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Books.
+     */
+    skip?: number
+    distinct?: BookScalarFieldEnum | BookScalarFieldEnum[]
+  }
+
+  /**
+   * Book create
+   */
+  export type BookCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Book.
+     */
+    data: XOR<BookCreateInput, BookUncheckedCreateInput>
+  }
+
+  /**
+   * Book createMany
+   */
+  export type BookCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Books.
+     */
+    data: BookCreateManyInput | BookCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Book createManyAndReturn
+   */
+  export type BookCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Books.
+     */
+    data: BookCreateManyInput | BookCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Book update
+   */
+  export type BookUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Book.
+     */
+    data: XOR<BookUpdateInput, BookUncheckedUpdateInput>
+    /**
+     * Choose, which Book to update.
+     */
+    where: BookWhereUniqueInput
+  }
+
+  /**
+   * Book updateMany
+   */
+  export type BookUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Books.
+     */
+    data: XOR<BookUpdateManyMutationInput, BookUncheckedUpdateManyInput>
+    /**
+     * Filter which Books to update
+     */
+    where?: BookWhereInput
+  }
+
+  /**
+   * Book upsert
+   */
+  export type BookUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Book to update in case it exists.
+     */
+    where: BookWhereUniqueInput
+    /**
+     * In case the Book found by the `where` argument doesn't exist, create a new Book with this data.
+     */
+    create: XOR<BookCreateInput, BookUncheckedCreateInput>
+    /**
+     * In case the Book was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BookUpdateInput, BookUncheckedUpdateInput>
+  }
+
+  /**
+   * Book delete
+   */
+  export type BookDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+    /**
+     * Filter which Book to delete.
+     */
+    where: BookWhereUniqueInput
+  }
+
+  /**
+   * Book deleteMany
+   */
+  export type BookDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Books to delete
+     */
+    where?: BookWhereInput
+  }
+
+  /**
+   * Book.circulations
+   */
+  export type Book$circulationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCirculation
+     */
+    select?: BookCirculationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookCirculationInclude<ExtArgs> | null
+    where?: BookCirculationWhereInput
+    orderBy?: BookCirculationOrderByWithRelationInput | BookCirculationOrderByWithRelationInput[]
+    cursor?: BookCirculationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BookCirculationScalarFieldEnum | BookCirculationScalarFieldEnum[]
+  }
+
+  /**
+   * Book without action
+   */
+  export type BookDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Book
+     */
+    select?: BookSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BookCirculation
+   */
+
+  export type AggregateBookCirculation = {
+    _count: BookCirculationCountAggregateOutputType | null
+    _avg: BookCirculationAvgAggregateOutputType | null
+    _sum: BookCirculationSumAggregateOutputType | null
+    _min: BookCirculationMinAggregateOutputType | null
+    _max: BookCirculationMaxAggregateOutputType | null
+  }
+
+  export type BookCirculationAvgAggregateOutputType = {
+    penalty: number | null
+  }
+
+  export type BookCirculationSumAggregateOutputType = {
+    penalty: number | null
+  }
+
+  export type BookCirculationMinAggregateOutputType = {
+    id: string | null
+    bookId: string | null
+    studentId: string | null
+    borrowDate: Date | null
+    dueDate: Date | null
+    returnDate: Date | null
+    status: $Enums.CirculationStatus | null
+    penalty: number | null
+  }
+
+  export type BookCirculationMaxAggregateOutputType = {
+    id: string | null
+    bookId: string | null
+    studentId: string | null
+    borrowDate: Date | null
+    dueDate: Date | null
+    returnDate: Date | null
+    status: $Enums.CirculationStatus | null
+    penalty: number | null
+  }
+
+  export type BookCirculationCountAggregateOutputType = {
+    id: number
+    bookId: number
+    studentId: number
+    borrowDate: number
+    dueDate: number
+    returnDate: number
+    status: number
+    penalty: number
+    _all: number
+  }
+
+
+  export type BookCirculationAvgAggregateInputType = {
+    penalty?: true
+  }
+
+  export type BookCirculationSumAggregateInputType = {
+    penalty?: true
+  }
+
+  export type BookCirculationMinAggregateInputType = {
+    id?: true
+    bookId?: true
+    studentId?: true
+    borrowDate?: true
+    dueDate?: true
+    returnDate?: true
+    status?: true
+    penalty?: true
+  }
+
+  export type BookCirculationMaxAggregateInputType = {
+    id?: true
+    bookId?: true
+    studentId?: true
+    borrowDate?: true
+    dueDate?: true
+    returnDate?: true
+    status?: true
+    penalty?: true
+  }
+
+  export type BookCirculationCountAggregateInputType = {
+    id?: true
+    bookId?: true
+    studentId?: true
+    borrowDate?: true
+    dueDate?: true
+    returnDate?: true
+    status?: true
+    penalty?: true
+    _all?: true
+  }
+
+  export type BookCirculationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookCirculation to aggregate.
+     */
+    where?: BookCirculationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookCirculations to fetch.
+     */
+    orderBy?: BookCirculationOrderByWithRelationInput | BookCirculationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BookCirculationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookCirculations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookCirculations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BookCirculations
+    **/
+    _count?: true | BookCirculationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BookCirculationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BookCirculationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BookCirculationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BookCirculationMaxAggregateInputType
+  }
+
+  export type GetBookCirculationAggregateType<T extends BookCirculationAggregateArgs> = {
+        [P in keyof T & keyof AggregateBookCirculation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBookCirculation[P]>
+      : GetScalarType<T[P], AggregateBookCirculation[P]>
+  }
+
+
+
+
+  export type BookCirculationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookCirculationWhereInput
+    orderBy?: BookCirculationOrderByWithAggregationInput | BookCirculationOrderByWithAggregationInput[]
+    by: BookCirculationScalarFieldEnum[] | BookCirculationScalarFieldEnum
+    having?: BookCirculationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BookCirculationCountAggregateInputType | true
+    _avg?: BookCirculationAvgAggregateInputType
+    _sum?: BookCirculationSumAggregateInputType
+    _min?: BookCirculationMinAggregateInputType
+    _max?: BookCirculationMaxAggregateInputType
+  }
+
+  export type BookCirculationGroupByOutputType = {
+    id: string
+    bookId: string
+    studentId: string
+    borrowDate: Date
+    dueDate: Date
+    returnDate: Date | null
+    status: $Enums.CirculationStatus
+    penalty: number
+    _count: BookCirculationCountAggregateOutputType | null
+    _avg: BookCirculationAvgAggregateOutputType | null
+    _sum: BookCirculationSumAggregateOutputType | null
+    _min: BookCirculationMinAggregateOutputType | null
+    _max: BookCirculationMaxAggregateOutputType | null
+  }
+
+  type GetBookCirculationGroupByPayload<T extends BookCirculationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BookCirculationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BookCirculationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BookCirculationGroupByOutputType[P]>
+            : GetScalarType<T[P], BookCirculationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BookCirculationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    bookId?: boolean
+    studentId?: boolean
+    borrowDate?: boolean
+    dueDate?: boolean
+    returnDate?: boolean
+    status?: boolean
+    penalty?: boolean
+    book?: boolean | BookDefaultArgs<ExtArgs>
+    student?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bookCirculation"]>
+
+  export type BookCirculationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    bookId?: boolean
+    studentId?: boolean
+    borrowDate?: boolean
+    dueDate?: boolean
+    returnDate?: boolean
+    status?: boolean
+    penalty?: boolean
+    book?: boolean | BookDefaultArgs<ExtArgs>
+    student?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bookCirculation"]>
+
+  export type BookCirculationSelectScalar = {
+    id?: boolean
+    bookId?: boolean
+    studentId?: boolean
+    borrowDate?: boolean
+    dueDate?: boolean
+    returnDate?: boolean
+    status?: boolean
+    penalty?: boolean
+  }
+
+  export type BookCirculationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    book?: boolean | BookDefaultArgs<ExtArgs>
+    student?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type BookCirculationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    book?: boolean | BookDefaultArgs<ExtArgs>
+    student?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $BookCirculationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BookCirculation"
+    objects: {
+      book: Prisma.$BookPayload<ExtArgs>
+      student: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      bookId: string
+      studentId: string
+      borrowDate: Date
+      dueDate: Date
+      returnDate: Date | null
+      status: $Enums.CirculationStatus
+      penalty: number
+    }, ExtArgs["result"]["bookCirculation"]>
+    composites: {}
+  }
+
+  type BookCirculationGetPayload<S extends boolean | null | undefined | BookCirculationDefaultArgs> = $Result.GetResult<Prisma.$BookCirculationPayload, S>
+
+  type BookCirculationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<BookCirculationFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: BookCirculationCountAggregateInputType | true
+    }
+
+  export interface BookCirculationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BookCirculation'], meta: { name: 'BookCirculation' } }
+    /**
+     * Find zero or one BookCirculation that matches the filter.
+     * @param {BookCirculationFindUniqueArgs} args - Arguments to find a BookCirculation
+     * @example
+     * // Get one BookCirculation
+     * const bookCirculation = await prisma.bookCirculation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BookCirculationFindUniqueArgs>(args: SelectSubset<T, BookCirculationFindUniqueArgs<ExtArgs>>): Prisma__BookCirculationClient<$Result.GetResult<Prisma.$BookCirculationPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one BookCirculation that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {BookCirculationFindUniqueOrThrowArgs} args - Arguments to find a BookCirculation
+     * @example
+     * // Get one BookCirculation
+     * const bookCirculation = await prisma.bookCirculation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BookCirculationFindUniqueOrThrowArgs>(args: SelectSubset<T, BookCirculationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BookCirculationClient<$Result.GetResult<Prisma.$BookCirculationPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first BookCirculation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookCirculationFindFirstArgs} args - Arguments to find a BookCirculation
+     * @example
+     * // Get one BookCirculation
+     * const bookCirculation = await prisma.bookCirculation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BookCirculationFindFirstArgs>(args?: SelectSubset<T, BookCirculationFindFirstArgs<ExtArgs>>): Prisma__BookCirculationClient<$Result.GetResult<Prisma.$BookCirculationPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first BookCirculation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookCirculationFindFirstOrThrowArgs} args - Arguments to find a BookCirculation
+     * @example
+     * // Get one BookCirculation
+     * const bookCirculation = await prisma.bookCirculation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BookCirculationFindFirstOrThrowArgs>(args?: SelectSubset<T, BookCirculationFindFirstOrThrowArgs<ExtArgs>>): Prisma__BookCirculationClient<$Result.GetResult<Prisma.$BookCirculationPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more BookCirculations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookCirculationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BookCirculations
+     * const bookCirculations = await prisma.bookCirculation.findMany()
+     * 
+     * // Get first 10 BookCirculations
+     * const bookCirculations = await prisma.bookCirculation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bookCirculationWithIdOnly = await prisma.bookCirculation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BookCirculationFindManyArgs>(args?: SelectSubset<T, BookCirculationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookCirculationPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a BookCirculation.
+     * @param {BookCirculationCreateArgs} args - Arguments to create a BookCirculation.
+     * @example
+     * // Create one BookCirculation
+     * const BookCirculation = await prisma.bookCirculation.create({
+     *   data: {
+     *     // ... data to create a BookCirculation
+     *   }
+     * })
+     * 
+     */
+    create<T extends BookCirculationCreateArgs>(args: SelectSubset<T, BookCirculationCreateArgs<ExtArgs>>): Prisma__BookCirculationClient<$Result.GetResult<Prisma.$BookCirculationPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many BookCirculations.
+     * @param {BookCirculationCreateManyArgs} args - Arguments to create many BookCirculations.
+     * @example
+     * // Create many BookCirculations
+     * const bookCirculation = await prisma.bookCirculation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BookCirculationCreateManyArgs>(args?: SelectSubset<T, BookCirculationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BookCirculations and returns the data saved in the database.
+     * @param {BookCirculationCreateManyAndReturnArgs} args - Arguments to create many BookCirculations.
+     * @example
+     * // Create many BookCirculations
+     * const bookCirculation = await prisma.bookCirculation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BookCirculations and only return the `id`
+     * const bookCirculationWithIdOnly = await prisma.bookCirculation.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BookCirculationCreateManyAndReturnArgs>(args?: SelectSubset<T, BookCirculationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookCirculationPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a BookCirculation.
+     * @param {BookCirculationDeleteArgs} args - Arguments to delete one BookCirculation.
+     * @example
+     * // Delete one BookCirculation
+     * const BookCirculation = await prisma.bookCirculation.delete({
+     *   where: {
+     *     // ... filter to delete one BookCirculation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BookCirculationDeleteArgs>(args: SelectSubset<T, BookCirculationDeleteArgs<ExtArgs>>): Prisma__BookCirculationClient<$Result.GetResult<Prisma.$BookCirculationPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one BookCirculation.
+     * @param {BookCirculationUpdateArgs} args - Arguments to update one BookCirculation.
+     * @example
+     * // Update one BookCirculation
+     * const bookCirculation = await prisma.bookCirculation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BookCirculationUpdateArgs>(args: SelectSubset<T, BookCirculationUpdateArgs<ExtArgs>>): Prisma__BookCirculationClient<$Result.GetResult<Prisma.$BookCirculationPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more BookCirculations.
+     * @param {BookCirculationDeleteManyArgs} args - Arguments to filter BookCirculations to delete.
+     * @example
+     * // Delete a few BookCirculations
+     * const { count } = await prisma.bookCirculation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BookCirculationDeleteManyArgs>(args?: SelectSubset<T, BookCirculationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BookCirculations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookCirculationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BookCirculations
+     * const bookCirculation = await prisma.bookCirculation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BookCirculationUpdateManyArgs>(args: SelectSubset<T, BookCirculationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one BookCirculation.
+     * @param {BookCirculationUpsertArgs} args - Arguments to update or create a BookCirculation.
+     * @example
+     * // Update or create a BookCirculation
+     * const bookCirculation = await prisma.bookCirculation.upsert({
+     *   create: {
+     *     // ... data to create a BookCirculation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BookCirculation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BookCirculationUpsertArgs>(args: SelectSubset<T, BookCirculationUpsertArgs<ExtArgs>>): Prisma__BookCirculationClient<$Result.GetResult<Prisma.$BookCirculationPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of BookCirculations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookCirculationCountArgs} args - Arguments to filter BookCirculations to count.
+     * @example
+     * // Count the number of BookCirculations
+     * const count = await prisma.bookCirculation.count({
+     *   where: {
+     *     // ... the filter for the BookCirculations we want to count
+     *   }
+     * })
+    **/
+    count<T extends BookCirculationCountArgs>(
+      args?: Subset<T, BookCirculationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BookCirculationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BookCirculation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookCirculationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BookCirculationAggregateArgs>(args: Subset<T, BookCirculationAggregateArgs>): Prisma.PrismaPromise<GetBookCirculationAggregateType<T>>
+
+    /**
+     * Group by BookCirculation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BookCirculationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BookCirculationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BookCirculationGroupByArgs['orderBy'] }
+        : { orderBy?: BookCirculationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BookCirculationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookCirculationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BookCirculation model
+   */
+  readonly fields: BookCirculationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BookCirculation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BookCirculationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    book<T extends BookDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BookDefaultArgs<ExtArgs>>): Prisma__BookClient<$Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    student<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BookCirculation model
+   */ 
+  interface BookCirculationFieldRefs {
+    readonly id: FieldRef<"BookCirculation", 'String'>
+    readonly bookId: FieldRef<"BookCirculation", 'String'>
+    readonly studentId: FieldRef<"BookCirculation", 'String'>
+    readonly borrowDate: FieldRef<"BookCirculation", 'DateTime'>
+    readonly dueDate: FieldRef<"BookCirculation", 'DateTime'>
+    readonly returnDate: FieldRef<"BookCirculation", 'DateTime'>
+    readonly status: FieldRef<"BookCirculation", 'CirculationStatus'>
+    readonly penalty: FieldRef<"BookCirculation", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BookCirculation findUnique
+   */
+  export type BookCirculationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCirculation
+     */
+    select?: BookCirculationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookCirculationInclude<ExtArgs> | null
+    /**
+     * Filter, which BookCirculation to fetch.
+     */
+    where: BookCirculationWhereUniqueInput
+  }
+
+  /**
+   * BookCirculation findUniqueOrThrow
+   */
+  export type BookCirculationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCirculation
+     */
+    select?: BookCirculationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookCirculationInclude<ExtArgs> | null
+    /**
+     * Filter, which BookCirculation to fetch.
+     */
+    where: BookCirculationWhereUniqueInput
+  }
+
+  /**
+   * BookCirculation findFirst
+   */
+  export type BookCirculationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCirculation
+     */
+    select?: BookCirculationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookCirculationInclude<ExtArgs> | null
+    /**
+     * Filter, which BookCirculation to fetch.
+     */
+    where?: BookCirculationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookCirculations to fetch.
+     */
+    orderBy?: BookCirculationOrderByWithRelationInput | BookCirculationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookCirculations.
+     */
+    cursor?: BookCirculationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookCirculations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookCirculations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookCirculations.
+     */
+    distinct?: BookCirculationScalarFieldEnum | BookCirculationScalarFieldEnum[]
+  }
+
+  /**
+   * BookCirculation findFirstOrThrow
+   */
+  export type BookCirculationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCirculation
+     */
+    select?: BookCirculationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookCirculationInclude<ExtArgs> | null
+    /**
+     * Filter, which BookCirculation to fetch.
+     */
+    where?: BookCirculationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookCirculations to fetch.
+     */
+    orderBy?: BookCirculationOrderByWithRelationInput | BookCirculationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BookCirculations.
+     */
+    cursor?: BookCirculationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookCirculations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookCirculations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BookCirculations.
+     */
+    distinct?: BookCirculationScalarFieldEnum | BookCirculationScalarFieldEnum[]
+  }
+
+  /**
+   * BookCirculation findMany
+   */
+  export type BookCirculationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCirculation
+     */
+    select?: BookCirculationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookCirculationInclude<ExtArgs> | null
+    /**
+     * Filter, which BookCirculations to fetch.
+     */
+    where?: BookCirculationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BookCirculations to fetch.
+     */
+    orderBy?: BookCirculationOrderByWithRelationInput | BookCirculationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BookCirculations.
+     */
+    cursor?: BookCirculationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BookCirculations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BookCirculations.
+     */
+    skip?: number
+    distinct?: BookCirculationScalarFieldEnum | BookCirculationScalarFieldEnum[]
+  }
+
+  /**
+   * BookCirculation create
+   */
+  export type BookCirculationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCirculation
+     */
+    select?: BookCirculationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookCirculationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BookCirculation.
+     */
+    data: XOR<BookCirculationCreateInput, BookCirculationUncheckedCreateInput>
+  }
+
+  /**
+   * BookCirculation createMany
+   */
+  export type BookCirculationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BookCirculations.
+     */
+    data: BookCirculationCreateManyInput | BookCirculationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BookCirculation createManyAndReturn
+   */
+  export type BookCirculationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCirculation
+     */
+    select?: BookCirculationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many BookCirculations.
+     */
+    data: BookCirculationCreateManyInput | BookCirculationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookCirculationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BookCirculation update
+   */
+  export type BookCirculationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCirculation
+     */
+    select?: BookCirculationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookCirculationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BookCirculation.
+     */
+    data: XOR<BookCirculationUpdateInput, BookCirculationUncheckedUpdateInput>
+    /**
+     * Choose, which BookCirculation to update.
+     */
+    where: BookCirculationWhereUniqueInput
+  }
+
+  /**
+   * BookCirculation updateMany
+   */
+  export type BookCirculationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BookCirculations.
+     */
+    data: XOR<BookCirculationUpdateManyMutationInput, BookCirculationUncheckedUpdateManyInput>
+    /**
+     * Filter which BookCirculations to update
+     */
+    where?: BookCirculationWhereInput
+  }
+
+  /**
+   * BookCirculation upsert
+   */
+  export type BookCirculationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCirculation
+     */
+    select?: BookCirculationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookCirculationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BookCirculation to update in case it exists.
+     */
+    where: BookCirculationWhereUniqueInput
+    /**
+     * In case the BookCirculation found by the `where` argument doesn't exist, create a new BookCirculation with this data.
+     */
+    create: XOR<BookCirculationCreateInput, BookCirculationUncheckedCreateInput>
+    /**
+     * In case the BookCirculation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BookCirculationUpdateInput, BookCirculationUncheckedUpdateInput>
+  }
+
+  /**
+   * BookCirculation delete
+   */
+  export type BookCirculationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCirculation
+     */
+    select?: BookCirculationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookCirculationInclude<ExtArgs> | null
+    /**
+     * Filter which BookCirculation to delete.
+     */
+    where: BookCirculationWhereUniqueInput
+  }
+
+  /**
+   * BookCirculation deleteMany
+   */
+  export type BookCirculationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BookCirculations to delete
+     */
+    where?: BookCirculationWhereInput
+  }
+
+  /**
+   * BookCirculation without action
+   */
+  export type BookCirculationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BookCirculation
+     */
+    select?: BookCirculationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookCirculationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MedicalInventory
+   */
+
+  export type AggregateMedicalInventory = {
+    _count: MedicalInventoryCountAggregateOutputType | null
+    _avg: MedicalInventoryAvgAggregateOutputType | null
+    _sum: MedicalInventorySumAggregateOutputType | null
+    _min: MedicalInventoryMinAggregateOutputType | null
+    _max: MedicalInventoryMaxAggregateOutputType | null
+  }
+
+  export type MedicalInventoryAvgAggregateOutputType = {
+    stock: number | null
+  }
+
+  export type MedicalInventorySumAggregateOutputType = {
+    stock: number | null
+  }
+
+  export type MedicalInventoryMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    stock: number | null
+    unit: string | null
+  }
+
+  export type MedicalInventoryMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    stock: number | null
+    unit: string | null
+  }
+
+  export type MedicalInventoryCountAggregateOutputType = {
+    id: number
+    name: number
+    stock: number
+    unit: number
+    _all: number
+  }
+
+
+  export type MedicalInventoryAvgAggregateInputType = {
+    stock?: true
+  }
+
+  export type MedicalInventorySumAggregateInputType = {
+    stock?: true
+  }
+
+  export type MedicalInventoryMinAggregateInputType = {
+    id?: true
+    name?: true
+    stock?: true
+    unit?: true
+  }
+
+  export type MedicalInventoryMaxAggregateInputType = {
+    id?: true
+    name?: true
+    stock?: true
+    unit?: true
+  }
+
+  export type MedicalInventoryCountAggregateInputType = {
+    id?: true
+    name?: true
+    stock?: true
+    unit?: true
+    _all?: true
+  }
+
+  export type MedicalInventoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MedicalInventory to aggregate.
+     */
+    where?: MedicalInventoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MedicalInventories to fetch.
+     */
+    orderBy?: MedicalInventoryOrderByWithRelationInput | MedicalInventoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MedicalInventoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MedicalInventories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MedicalInventories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MedicalInventories
+    **/
+    _count?: true | MedicalInventoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MedicalInventoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MedicalInventorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MedicalInventoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MedicalInventoryMaxAggregateInputType
+  }
+
+  export type GetMedicalInventoryAggregateType<T extends MedicalInventoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateMedicalInventory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMedicalInventory[P]>
+      : GetScalarType<T[P], AggregateMedicalInventory[P]>
+  }
+
+
+
+
+  export type MedicalInventoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MedicalInventoryWhereInput
+    orderBy?: MedicalInventoryOrderByWithAggregationInput | MedicalInventoryOrderByWithAggregationInput[]
+    by: MedicalInventoryScalarFieldEnum[] | MedicalInventoryScalarFieldEnum
+    having?: MedicalInventoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MedicalInventoryCountAggregateInputType | true
+    _avg?: MedicalInventoryAvgAggregateInputType
+    _sum?: MedicalInventorySumAggregateInputType
+    _min?: MedicalInventoryMinAggregateInputType
+    _max?: MedicalInventoryMaxAggregateInputType
+  }
+
+  export type MedicalInventoryGroupByOutputType = {
+    id: string
+    name: string
+    stock: number
+    unit: string
+    _count: MedicalInventoryCountAggregateOutputType | null
+    _avg: MedicalInventoryAvgAggregateOutputType | null
+    _sum: MedicalInventorySumAggregateOutputType | null
+    _min: MedicalInventoryMinAggregateOutputType | null
+    _max: MedicalInventoryMaxAggregateOutputType | null
+  }
+
+  type GetMedicalInventoryGroupByPayload<T extends MedicalInventoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MedicalInventoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MedicalInventoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MedicalInventoryGroupByOutputType[P]>
+            : GetScalarType<T[P], MedicalInventoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MedicalInventorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    stock?: boolean
+    unit?: boolean
+    records?: boolean | MedicalInventory$recordsArgs<ExtArgs>
+    _count?: boolean | MedicalInventoryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["medicalInventory"]>
+
+  export type MedicalInventorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    stock?: boolean
+    unit?: boolean
+  }, ExtArgs["result"]["medicalInventory"]>
+
+  export type MedicalInventorySelectScalar = {
+    id?: boolean
+    name?: boolean
+    stock?: boolean
+    unit?: boolean
+  }
+
+  export type MedicalInventoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    records?: boolean | MedicalInventory$recordsArgs<ExtArgs>
+    _count?: boolean | MedicalInventoryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type MedicalInventoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $MedicalInventoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MedicalInventory"
+    objects: {
+      records: Prisma.$MedicalRecordPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      stock: number
+      unit: string
+    }, ExtArgs["result"]["medicalInventory"]>
+    composites: {}
+  }
+
+  type MedicalInventoryGetPayload<S extends boolean | null | undefined | MedicalInventoryDefaultArgs> = $Result.GetResult<Prisma.$MedicalInventoryPayload, S>
+
+  type MedicalInventoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<MedicalInventoryFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: MedicalInventoryCountAggregateInputType | true
+    }
+
+  export interface MedicalInventoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MedicalInventory'], meta: { name: 'MedicalInventory' } }
+    /**
+     * Find zero or one MedicalInventory that matches the filter.
+     * @param {MedicalInventoryFindUniqueArgs} args - Arguments to find a MedicalInventory
+     * @example
+     * // Get one MedicalInventory
+     * const medicalInventory = await prisma.medicalInventory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MedicalInventoryFindUniqueArgs>(args: SelectSubset<T, MedicalInventoryFindUniqueArgs<ExtArgs>>): Prisma__MedicalInventoryClient<$Result.GetResult<Prisma.$MedicalInventoryPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one MedicalInventory that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {MedicalInventoryFindUniqueOrThrowArgs} args - Arguments to find a MedicalInventory
+     * @example
+     * // Get one MedicalInventory
+     * const medicalInventory = await prisma.medicalInventory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MedicalInventoryFindUniqueOrThrowArgs>(args: SelectSubset<T, MedicalInventoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MedicalInventoryClient<$Result.GetResult<Prisma.$MedicalInventoryPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first MedicalInventory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicalInventoryFindFirstArgs} args - Arguments to find a MedicalInventory
+     * @example
+     * // Get one MedicalInventory
+     * const medicalInventory = await prisma.medicalInventory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MedicalInventoryFindFirstArgs>(args?: SelectSubset<T, MedicalInventoryFindFirstArgs<ExtArgs>>): Prisma__MedicalInventoryClient<$Result.GetResult<Prisma.$MedicalInventoryPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first MedicalInventory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicalInventoryFindFirstOrThrowArgs} args - Arguments to find a MedicalInventory
+     * @example
+     * // Get one MedicalInventory
+     * const medicalInventory = await prisma.medicalInventory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MedicalInventoryFindFirstOrThrowArgs>(args?: SelectSubset<T, MedicalInventoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__MedicalInventoryClient<$Result.GetResult<Prisma.$MedicalInventoryPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more MedicalInventories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicalInventoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MedicalInventories
+     * const medicalInventories = await prisma.medicalInventory.findMany()
+     * 
+     * // Get first 10 MedicalInventories
+     * const medicalInventories = await prisma.medicalInventory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const medicalInventoryWithIdOnly = await prisma.medicalInventory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MedicalInventoryFindManyArgs>(args?: SelectSubset<T, MedicalInventoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicalInventoryPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a MedicalInventory.
+     * @param {MedicalInventoryCreateArgs} args - Arguments to create a MedicalInventory.
+     * @example
+     * // Create one MedicalInventory
+     * const MedicalInventory = await prisma.medicalInventory.create({
+     *   data: {
+     *     // ... data to create a MedicalInventory
+     *   }
+     * })
+     * 
+     */
+    create<T extends MedicalInventoryCreateArgs>(args: SelectSubset<T, MedicalInventoryCreateArgs<ExtArgs>>): Prisma__MedicalInventoryClient<$Result.GetResult<Prisma.$MedicalInventoryPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many MedicalInventories.
+     * @param {MedicalInventoryCreateManyArgs} args - Arguments to create many MedicalInventories.
+     * @example
+     * // Create many MedicalInventories
+     * const medicalInventory = await prisma.medicalInventory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MedicalInventoryCreateManyArgs>(args?: SelectSubset<T, MedicalInventoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MedicalInventories and returns the data saved in the database.
+     * @param {MedicalInventoryCreateManyAndReturnArgs} args - Arguments to create many MedicalInventories.
+     * @example
+     * // Create many MedicalInventories
+     * const medicalInventory = await prisma.medicalInventory.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MedicalInventories and only return the `id`
+     * const medicalInventoryWithIdOnly = await prisma.medicalInventory.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MedicalInventoryCreateManyAndReturnArgs>(args?: SelectSubset<T, MedicalInventoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicalInventoryPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a MedicalInventory.
+     * @param {MedicalInventoryDeleteArgs} args - Arguments to delete one MedicalInventory.
+     * @example
+     * // Delete one MedicalInventory
+     * const MedicalInventory = await prisma.medicalInventory.delete({
+     *   where: {
+     *     // ... filter to delete one MedicalInventory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MedicalInventoryDeleteArgs>(args: SelectSubset<T, MedicalInventoryDeleteArgs<ExtArgs>>): Prisma__MedicalInventoryClient<$Result.GetResult<Prisma.$MedicalInventoryPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one MedicalInventory.
+     * @param {MedicalInventoryUpdateArgs} args - Arguments to update one MedicalInventory.
+     * @example
+     * // Update one MedicalInventory
+     * const medicalInventory = await prisma.medicalInventory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MedicalInventoryUpdateArgs>(args: SelectSubset<T, MedicalInventoryUpdateArgs<ExtArgs>>): Prisma__MedicalInventoryClient<$Result.GetResult<Prisma.$MedicalInventoryPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more MedicalInventories.
+     * @param {MedicalInventoryDeleteManyArgs} args - Arguments to filter MedicalInventories to delete.
+     * @example
+     * // Delete a few MedicalInventories
+     * const { count } = await prisma.medicalInventory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MedicalInventoryDeleteManyArgs>(args?: SelectSubset<T, MedicalInventoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MedicalInventories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicalInventoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MedicalInventories
+     * const medicalInventory = await prisma.medicalInventory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MedicalInventoryUpdateManyArgs>(args: SelectSubset<T, MedicalInventoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MedicalInventory.
+     * @param {MedicalInventoryUpsertArgs} args - Arguments to update or create a MedicalInventory.
+     * @example
+     * // Update or create a MedicalInventory
+     * const medicalInventory = await prisma.medicalInventory.upsert({
+     *   create: {
+     *     // ... data to create a MedicalInventory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MedicalInventory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MedicalInventoryUpsertArgs>(args: SelectSubset<T, MedicalInventoryUpsertArgs<ExtArgs>>): Prisma__MedicalInventoryClient<$Result.GetResult<Prisma.$MedicalInventoryPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of MedicalInventories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicalInventoryCountArgs} args - Arguments to filter MedicalInventories to count.
+     * @example
+     * // Count the number of MedicalInventories
+     * const count = await prisma.medicalInventory.count({
+     *   where: {
+     *     // ... the filter for the MedicalInventories we want to count
+     *   }
+     * })
+    **/
+    count<T extends MedicalInventoryCountArgs>(
+      args?: Subset<T, MedicalInventoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MedicalInventoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MedicalInventory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicalInventoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MedicalInventoryAggregateArgs>(args: Subset<T, MedicalInventoryAggregateArgs>): Prisma.PrismaPromise<GetMedicalInventoryAggregateType<T>>
+
+    /**
+     * Group by MedicalInventory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicalInventoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MedicalInventoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MedicalInventoryGroupByArgs['orderBy'] }
+        : { orderBy?: MedicalInventoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MedicalInventoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMedicalInventoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MedicalInventory model
+   */
+  readonly fields: MedicalInventoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MedicalInventory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MedicalInventoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    records<T extends MedicalInventory$recordsArgs<ExtArgs> = {}>(args?: Subset<T, MedicalInventory$recordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicalRecordPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MedicalInventory model
+   */ 
+  interface MedicalInventoryFieldRefs {
+    readonly id: FieldRef<"MedicalInventory", 'String'>
+    readonly name: FieldRef<"MedicalInventory", 'String'>
+    readonly stock: FieldRef<"MedicalInventory", 'Int'>
+    readonly unit: FieldRef<"MedicalInventory", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MedicalInventory findUnique
+   */
+  export type MedicalInventoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalInventory
+     */
+    select?: MedicalInventorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalInventoryInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicalInventory to fetch.
+     */
+    where: MedicalInventoryWhereUniqueInput
+  }
+
+  /**
+   * MedicalInventory findUniqueOrThrow
+   */
+  export type MedicalInventoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalInventory
+     */
+    select?: MedicalInventorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalInventoryInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicalInventory to fetch.
+     */
+    where: MedicalInventoryWhereUniqueInput
+  }
+
+  /**
+   * MedicalInventory findFirst
+   */
+  export type MedicalInventoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalInventory
+     */
+    select?: MedicalInventorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalInventoryInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicalInventory to fetch.
+     */
+    where?: MedicalInventoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MedicalInventories to fetch.
+     */
+    orderBy?: MedicalInventoryOrderByWithRelationInput | MedicalInventoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MedicalInventories.
+     */
+    cursor?: MedicalInventoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MedicalInventories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MedicalInventories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MedicalInventories.
+     */
+    distinct?: MedicalInventoryScalarFieldEnum | MedicalInventoryScalarFieldEnum[]
+  }
+
+  /**
+   * MedicalInventory findFirstOrThrow
+   */
+  export type MedicalInventoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalInventory
+     */
+    select?: MedicalInventorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalInventoryInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicalInventory to fetch.
+     */
+    where?: MedicalInventoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MedicalInventories to fetch.
+     */
+    orderBy?: MedicalInventoryOrderByWithRelationInput | MedicalInventoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MedicalInventories.
+     */
+    cursor?: MedicalInventoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MedicalInventories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MedicalInventories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MedicalInventories.
+     */
+    distinct?: MedicalInventoryScalarFieldEnum | MedicalInventoryScalarFieldEnum[]
+  }
+
+  /**
+   * MedicalInventory findMany
+   */
+  export type MedicalInventoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalInventory
+     */
+    select?: MedicalInventorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalInventoryInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicalInventories to fetch.
+     */
+    where?: MedicalInventoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MedicalInventories to fetch.
+     */
+    orderBy?: MedicalInventoryOrderByWithRelationInput | MedicalInventoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MedicalInventories.
+     */
+    cursor?: MedicalInventoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MedicalInventories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MedicalInventories.
+     */
+    skip?: number
+    distinct?: MedicalInventoryScalarFieldEnum | MedicalInventoryScalarFieldEnum[]
+  }
+
+  /**
+   * MedicalInventory create
+   */
+  export type MedicalInventoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalInventory
+     */
+    select?: MedicalInventorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalInventoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MedicalInventory.
+     */
+    data: XOR<MedicalInventoryCreateInput, MedicalInventoryUncheckedCreateInput>
+  }
+
+  /**
+   * MedicalInventory createMany
+   */
+  export type MedicalInventoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MedicalInventories.
+     */
+    data: MedicalInventoryCreateManyInput | MedicalInventoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MedicalInventory createManyAndReturn
+   */
+  export type MedicalInventoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalInventory
+     */
+    select?: MedicalInventorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many MedicalInventories.
+     */
+    data: MedicalInventoryCreateManyInput | MedicalInventoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MedicalInventory update
+   */
+  export type MedicalInventoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalInventory
+     */
+    select?: MedicalInventorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalInventoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MedicalInventory.
+     */
+    data: XOR<MedicalInventoryUpdateInput, MedicalInventoryUncheckedUpdateInput>
+    /**
+     * Choose, which MedicalInventory to update.
+     */
+    where: MedicalInventoryWhereUniqueInput
+  }
+
+  /**
+   * MedicalInventory updateMany
+   */
+  export type MedicalInventoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MedicalInventories.
+     */
+    data: XOR<MedicalInventoryUpdateManyMutationInput, MedicalInventoryUncheckedUpdateManyInput>
+    /**
+     * Filter which MedicalInventories to update
+     */
+    where?: MedicalInventoryWhereInput
+  }
+
+  /**
+   * MedicalInventory upsert
+   */
+  export type MedicalInventoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalInventory
+     */
+    select?: MedicalInventorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalInventoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MedicalInventory to update in case it exists.
+     */
+    where: MedicalInventoryWhereUniqueInput
+    /**
+     * In case the MedicalInventory found by the `where` argument doesn't exist, create a new MedicalInventory with this data.
+     */
+    create: XOR<MedicalInventoryCreateInput, MedicalInventoryUncheckedCreateInput>
+    /**
+     * In case the MedicalInventory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MedicalInventoryUpdateInput, MedicalInventoryUncheckedUpdateInput>
+  }
+
+  /**
+   * MedicalInventory delete
+   */
+  export type MedicalInventoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalInventory
+     */
+    select?: MedicalInventorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalInventoryInclude<ExtArgs> | null
+    /**
+     * Filter which MedicalInventory to delete.
+     */
+    where: MedicalInventoryWhereUniqueInput
+  }
+
+  /**
+   * MedicalInventory deleteMany
+   */
+  export type MedicalInventoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MedicalInventories to delete
+     */
+    where?: MedicalInventoryWhereInput
+  }
+
+  /**
+   * MedicalInventory.records
+   */
+  export type MedicalInventory$recordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalRecord
+     */
+    select?: MedicalRecordSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalRecordInclude<ExtArgs> | null
+    where?: MedicalRecordWhereInput
+    orderBy?: MedicalRecordOrderByWithRelationInput | MedicalRecordOrderByWithRelationInput[]
+    cursor?: MedicalRecordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MedicalRecordScalarFieldEnum | MedicalRecordScalarFieldEnum[]
+  }
+
+  /**
+   * MedicalInventory without action
+   */
+  export type MedicalInventoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalInventory
+     */
+    select?: MedicalInventorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalInventoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MedicalRecord
+   */
+
+  export type AggregateMedicalRecord = {
+    _count: MedicalRecordCountAggregateOutputType | null
+    _min: MedicalRecordMinAggregateOutputType | null
+    _max: MedicalRecordMaxAggregateOutputType | null
+  }
+
+  export type MedicalRecordMinAggregateOutputType = {
+    id: string | null
+    studentId: string | null
+    medicineId: string | null
+    complaint: string | null
+    actionTaken: string | null
+    handledById: string | null
+    createdAt: Date | null
+  }
+
+  export type MedicalRecordMaxAggregateOutputType = {
+    id: string | null
+    studentId: string | null
+    medicineId: string | null
+    complaint: string | null
+    actionTaken: string | null
+    handledById: string | null
+    createdAt: Date | null
+  }
+
+  export type MedicalRecordCountAggregateOutputType = {
+    id: number
+    studentId: number
+    medicineId: number
+    complaint: number
+    actionTaken: number
+    handledById: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type MedicalRecordMinAggregateInputType = {
+    id?: true
+    studentId?: true
+    medicineId?: true
+    complaint?: true
+    actionTaken?: true
+    handledById?: true
+    createdAt?: true
+  }
+
+  export type MedicalRecordMaxAggregateInputType = {
+    id?: true
+    studentId?: true
+    medicineId?: true
+    complaint?: true
+    actionTaken?: true
+    handledById?: true
+    createdAt?: true
+  }
+
+  export type MedicalRecordCountAggregateInputType = {
+    id?: true
+    studentId?: true
+    medicineId?: true
+    complaint?: true
+    actionTaken?: true
+    handledById?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type MedicalRecordAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MedicalRecord to aggregate.
+     */
+    where?: MedicalRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MedicalRecords to fetch.
+     */
+    orderBy?: MedicalRecordOrderByWithRelationInput | MedicalRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MedicalRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MedicalRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MedicalRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MedicalRecords
+    **/
+    _count?: true | MedicalRecordCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MedicalRecordMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MedicalRecordMaxAggregateInputType
+  }
+
+  export type GetMedicalRecordAggregateType<T extends MedicalRecordAggregateArgs> = {
+        [P in keyof T & keyof AggregateMedicalRecord]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMedicalRecord[P]>
+      : GetScalarType<T[P], AggregateMedicalRecord[P]>
+  }
+
+
+
+
+  export type MedicalRecordGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MedicalRecordWhereInput
+    orderBy?: MedicalRecordOrderByWithAggregationInput | MedicalRecordOrderByWithAggregationInput[]
+    by: MedicalRecordScalarFieldEnum[] | MedicalRecordScalarFieldEnum
+    having?: MedicalRecordScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MedicalRecordCountAggregateInputType | true
+    _min?: MedicalRecordMinAggregateInputType
+    _max?: MedicalRecordMaxAggregateInputType
+  }
+
+  export type MedicalRecordGroupByOutputType = {
+    id: string
+    studentId: string
+    medicineId: string | null
+    complaint: string
+    actionTaken: string
+    handledById: string
+    createdAt: Date
+    _count: MedicalRecordCountAggregateOutputType | null
+    _min: MedicalRecordMinAggregateOutputType | null
+    _max: MedicalRecordMaxAggregateOutputType | null
+  }
+
+  type GetMedicalRecordGroupByPayload<T extends MedicalRecordGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MedicalRecordGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MedicalRecordGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MedicalRecordGroupByOutputType[P]>
+            : GetScalarType<T[P], MedicalRecordGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MedicalRecordSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentId?: boolean
+    medicineId?: boolean
+    complaint?: boolean
+    actionTaken?: boolean
+    handledById?: boolean
+    createdAt?: boolean
+    student?: boolean | UserDefaultArgs<ExtArgs>
+    handledBy?: boolean | UserDefaultArgs<ExtArgs>
+    medicine?: boolean | MedicalRecord$medicineArgs<ExtArgs>
+  }, ExtArgs["result"]["medicalRecord"]>
+
+  export type MedicalRecordSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentId?: boolean
+    medicineId?: boolean
+    complaint?: boolean
+    actionTaken?: boolean
+    handledById?: boolean
+    createdAt?: boolean
+    student?: boolean | UserDefaultArgs<ExtArgs>
+    handledBy?: boolean | UserDefaultArgs<ExtArgs>
+    medicine?: boolean | MedicalRecord$medicineArgs<ExtArgs>
+  }, ExtArgs["result"]["medicalRecord"]>
+
+  export type MedicalRecordSelectScalar = {
+    id?: boolean
+    studentId?: boolean
+    medicineId?: boolean
+    complaint?: boolean
+    actionTaken?: boolean
+    handledById?: boolean
+    createdAt?: boolean
+  }
+
+  export type MedicalRecordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    student?: boolean | UserDefaultArgs<ExtArgs>
+    handledBy?: boolean | UserDefaultArgs<ExtArgs>
+    medicine?: boolean | MedicalRecord$medicineArgs<ExtArgs>
+  }
+  export type MedicalRecordIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    student?: boolean | UserDefaultArgs<ExtArgs>
+    handledBy?: boolean | UserDefaultArgs<ExtArgs>
+    medicine?: boolean | MedicalRecord$medicineArgs<ExtArgs>
+  }
+
+  export type $MedicalRecordPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MedicalRecord"
+    objects: {
+      student: Prisma.$UserPayload<ExtArgs>
+      handledBy: Prisma.$UserPayload<ExtArgs>
+      medicine: Prisma.$MedicalInventoryPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      studentId: string
+      medicineId: string | null
+      complaint: string
+      actionTaken: string
+      handledById: string
+      createdAt: Date
+    }, ExtArgs["result"]["medicalRecord"]>
+    composites: {}
+  }
+
+  type MedicalRecordGetPayload<S extends boolean | null | undefined | MedicalRecordDefaultArgs> = $Result.GetResult<Prisma.$MedicalRecordPayload, S>
+
+  type MedicalRecordCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<MedicalRecordFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: MedicalRecordCountAggregateInputType | true
+    }
+
+  export interface MedicalRecordDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MedicalRecord'], meta: { name: 'MedicalRecord' } }
+    /**
+     * Find zero or one MedicalRecord that matches the filter.
+     * @param {MedicalRecordFindUniqueArgs} args - Arguments to find a MedicalRecord
+     * @example
+     * // Get one MedicalRecord
+     * const medicalRecord = await prisma.medicalRecord.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MedicalRecordFindUniqueArgs>(args: SelectSubset<T, MedicalRecordFindUniqueArgs<ExtArgs>>): Prisma__MedicalRecordClient<$Result.GetResult<Prisma.$MedicalRecordPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one MedicalRecord that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {MedicalRecordFindUniqueOrThrowArgs} args - Arguments to find a MedicalRecord
+     * @example
+     * // Get one MedicalRecord
+     * const medicalRecord = await prisma.medicalRecord.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MedicalRecordFindUniqueOrThrowArgs>(args: SelectSubset<T, MedicalRecordFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MedicalRecordClient<$Result.GetResult<Prisma.$MedicalRecordPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first MedicalRecord that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicalRecordFindFirstArgs} args - Arguments to find a MedicalRecord
+     * @example
+     * // Get one MedicalRecord
+     * const medicalRecord = await prisma.medicalRecord.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MedicalRecordFindFirstArgs>(args?: SelectSubset<T, MedicalRecordFindFirstArgs<ExtArgs>>): Prisma__MedicalRecordClient<$Result.GetResult<Prisma.$MedicalRecordPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first MedicalRecord that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicalRecordFindFirstOrThrowArgs} args - Arguments to find a MedicalRecord
+     * @example
+     * // Get one MedicalRecord
+     * const medicalRecord = await prisma.medicalRecord.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MedicalRecordFindFirstOrThrowArgs>(args?: SelectSubset<T, MedicalRecordFindFirstOrThrowArgs<ExtArgs>>): Prisma__MedicalRecordClient<$Result.GetResult<Prisma.$MedicalRecordPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more MedicalRecords that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicalRecordFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MedicalRecords
+     * const medicalRecords = await prisma.medicalRecord.findMany()
+     * 
+     * // Get first 10 MedicalRecords
+     * const medicalRecords = await prisma.medicalRecord.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const medicalRecordWithIdOnly = await prisma.medicalRecord.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MedicalRecordFindManyArgs>(args?: SelectSubset<T, MedicalRecordFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicalRecordPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a MedicalRecord.
+     * @param {MedicalRecordCreateArgs} args - Arguments to create a MedicalRecord.
+     * @example
+     * // Create one MedicalRecord
+     * const MedicalRecord = await prisma.medicalRecord.create({
+     *   data: {
+     *     // ... data to create a MedicalRecord
+     *   }
+     * })
+     * 
+     */
+    create<T extends MedicalRecordCreateArgs>(args: SelectSubset<T, MedicalRecordCreateArgs<ExtArgs>>): Prisma__MedicalRecordClient<$Result.GetResult<Prisma.$MedicalRecordPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many MedicalRecords.
+     * @param {MedicalRecordCreateManyArgs} args - Arguments to create many MedicalRecords.
+     * @example
+     * // Create many MedicalRecords
+     * const medicalRecord = await prisma.medicalRecord.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MedicalRecordCreateManyArgs>(args?: SelectSubset<T, MedicalRecordCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MedicalRecords and returns the data saved in the database.
+     * @param {MedicalRecordCreateManyAndReturnArgs} args - Arguments to create many MedicalRecords.
+     * @example
+     * // Create many MedicalRecords
+     * const medicalRecord = await prisma.medicalRecord.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MedicalRecords and only return the `id`
+     * const medicalRecordWithIdOnly = await prisma.medicalRecord.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MedicalRecordCreateManyAndReturnArgs>(args?: SelectSubset<T, MedicalRecordCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MedicalRecordPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a MedicalRecord.
+     * @param {MedicalRecordDeleteArgs} args - Arguments to delete one MedicalRecord.
+     * @example
+     * // Delete one MedicalRecord
+     * const MedicalRecord = await prisma.medicalRecord.delete({
+     *   where: {
+     *     // ... filter to delete one MedicalRecord
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MedicalRecordDeleteArgs>(args: SelectSubset<T, MedicalRecordDeleteArgs<ExtArgs>>): Prisma__MedicalRecordClient<$Result.GetResult<Prisma.$MedicalRecordPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one MedicalRecord.
+     * @param {MedicalRecordUpdateArgs} args - Arguments to update one MedicalRecord.
+     * @example
+     * // Update one MedicalRecord
+     * const medicalRecord = await prisma.medicalRecord.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MedicalRecordUpdateArgs>(args: SelectSubset<T, MedicalRecordUpdateArgs<ExtArgs>>): Prisma__MedicalRecordClient<$Result.GetResult<Prisma.$MedicalRecordPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more MedicalRecords.
+     * @param {MedicalRecordDeleteManyArgs} args - Arguments to filter MedicalRecords to delete.
+     * @example
+     * // Delete a few MedicalRecords
+     * const { count } = await prisma.medicalRecord.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MedicalRecordDeleteManyArgs>(args?: SelectSubset<T, MedicalRecordDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MedicalRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicalRecordUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MedicalRecords
+     * const medicalRecord = await prisma.medicalRecord.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MedicalRecordUpdateManyArgs>(args: SelectSubset<T, MedicalRecordUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MedicalRecord.
+     * @param {MedicalRecordUpsertArgs} args - Arguments to update or create a MedicalRecord.
+     * @example
+     * // Update or create a MedicalRecord
+     * const medicalRecord = await prisma.medicalRecord.upsert({
+     *   create: {
+     *     // ... data to create a MedicalRecord
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MedicalRecord we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MedicalRecordUpsertArgs>(args: SelectSubset<T, MedicalRecordUpsertArgs<ExtArgs>>): Prisma__MedicalRecordClient<$Result.GetResult<Prisma.$MedicalRecordPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of MedicalRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicalRecordCountArgs} args - Arguments to filter MedicalRecords to count.
+     * @example
+     * // Count the number of MedicalRecords
+     * const count = await prisma.medicalRecord.count({
+     *   where: {
+     *     // ... the filter for the MedicalRecords we want to count
+     *   }
+     * })
+    **/
+    count<T extends MedicalRecordCountArgs>(
+      args?: Subset<T, MedicalRecordCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MedicalRecordCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MedicalRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicalRecordAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MedicalRecordAggregateArgs>(args: Subset<T, MedicalRecordAggregateArgs>): Prisma.PrismaPromise<GetMedicalRecordAggregateType<T>>
+
+    /**
+     * Group by MedicalRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MedicalRecordGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MedicalRecordGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MedicalRecordGroupByArgs['orderBy'] }
+        : { orderBy?: MedicalRecordGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MedicalRecordGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMedicalRecordGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MedicalRecord model
+   */
+  readonly fields: MedicalRecordFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MedicalRecord.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MedicalRecordClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    student<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    handledBy<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    medicine<T extends MedicalRecord$medicineArgs<ExtArgs> = {}>(args?: Subset<T, MedicalRecord$medicineArgs<ExtArgs>>): Prisma__MedicalInventoryClient<$Result.GetResult<Prisma.$MedicalInventoryPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MedicalRecord model
+   */ 
+  interface MedicalRecordFieldRefs {
+    readonly id: FieldRef<"MedicalRecord", 'String'>
+    readonly studentId: FieldRef<"MedicalRecord", 'String'>
+    readonly medicineId: FieldRef<"MedicalRecord", 'String'>
+    readonly complaint: FieldRef<"MedicalRecord", 'String'>
+    readonly actionTaken: FieldRef<"MedicalRecord", 'String'>
+    readonly handledById: FieldRef<"MedicalRecord", 'String'>
+    readonly createdAt: FieldRef<"MedicalRecord", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MedicalRecord findUnique
+   */
+  export type MedicalRecordFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalRecord
+     */
+    select?: MedicalRecordSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicalRecord to fetch.
+     */
+    where: MedicalRecordWhereUniqueInput
+  }
+
+  /**
+   * MedicalRecord findUniqueOrThrow
+   */
+  export type MedicalRecordFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalRecord
+     */
+    select?: MedicalRecordSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicalRecord to fetch.
+     */
+    where: MedicalRecordWhereUniqueInput
+  }
+
+  /**
+   * MedicalRecord findFirst
+   */
+  export type MedicalRecordFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalRecord
+     */
+    select?: MedicalRecordSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicalRecord to fetch.
+     */
+    where?: MedicalRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MedicalRecords to fetch.
+     */
+    orderBy?: MedicalRecordOrderByWithRelationInput | MedicalRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MedicalRecords.
+     */
+    cursor?: MedicalRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MedicalRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MedicalRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MedicalRecords.
+     */
+    distinct?: MedicalRecordScalarFieldEnum | MedicalRecordScalarFieldEnum[]
+  }
+
+  /**
+   * MedicalRecord findFirstOrThrow
+   */
+  export type MedicalRecordFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalRecord
+     */
+    select?: MedicalRecordSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicalRecord to fetch.
+     */
+    where?: MedicalRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MedicalRecords to fetch.
+     */
+    orderBy?: MedicalRecordOrderByWithRelationInput | MedicalRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MedicalRecords.
+     */
+    cursor?: MedicalRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MedicalRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MedicalRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MedicalRecords.
+     */
+    distinct?: MedicalRecordScalarFieldEnum | MedicalRecordScalarFieldEnum[]
+  }
+
+  /**
+   * MedicalRecord findMany
+   */
+  export type MedicalRecordFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalRecord
+     */
+    select?: MedicalRecordSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which MedicalRecords to fetch.
+     */
+    where?: MedicalRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MedicalRecords to fetch.
+     */
+    orderBy?: MedicalRecordOrderByWithRelationInput | MedicalRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MedicalRecords.
+     */
+    cursor?: MedicalRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MedicalRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MedicalRecords.
+     */
+    skip?: number
+    distinct?: MedicalRecordScalarFieldEnum | MedicalRecordScalarFieldEnum[]
+  }
+
+  /**
+   * MedicalRecord create
+   */
+  export type MedicalRecordCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalRecord
+     */
+    select?: MedicalRecordSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalRecordInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MedicalRecord.
+     */
+    data: XOR<MedicalRecordCreateInput, MedicalRecordUncheckedCreateInput>
+  }
+
+  /**
+   * MedicalRecord createMany
+   */
+  export type MedicalRecordCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MedicalRecords.
+     */
+    data: MedicalRecordCreateManyInput | MedicalRecordCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MedicalRecord createManyAndReturn
+   */
+  export type MedicalRecordCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalRecord
+     */
+    select?: MedicalRecordSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many MedicalRecords.
+     */
+    data: MedicalRecordCreateManyInput | MedicalRecordCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalRecordIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MedicalRecord update
+   */
+  export type MedicalRecordUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalRecord
+     */
+    select?: MedicalRecordSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalRecordInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MedicalRecord.
+     */
+    data: XOR<MedicalRecordUpdateInput, MedicalRecordUncheckedUpdateInput>
+    /**
+     * Choose, which MedicalRecord to update.
+     */
+    where: MedicalRecordWhereUniqueInput
+  }
+
+  /**
+   * MedicalRecord updateMany
+   */
+  export type MedicalRecordUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MedicalRecords.
+     */
+    data: XOR<MedicalRecordUpdateManyMutationInput, MedicalRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which MedicalRecords to update
+     */
+    where?: MedicalRecordWhereInput
+  }
+
+  /**
+   * MedicalRecord upsert
+   */
+  export type MedicalRecordUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalRecord
+     */
+    select?: MedicalRecordSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalRecordInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MedicalRecord to update in case it exists.
+     */
+    where: MedicalRecordWhereUniqueInput
+    /**
+     * In case the MedicalRecord found by the `where` argument doesn't exist, create a new MedicalRecord with this data.
+     */
+    create: XOR<MedicalRecordCreateInput, MedicalRecordUncheckedCreateInput>
+    /**
+     * In case the MedicalRecord was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MedicalRecordUpdateInput, MedicalRecordUncheckedUpdateInput>
+  }
+
+  /**
+   * MedicalRecord delete
+   */
+  export type MedicalRecordDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalRecord
+     */
+    select?: MedicalRecordSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalRecordInclude<ExtArgs> | null
+    /**
+     * Filter which MedicalRecord to delete.
+     */
+    where: MedicalRecordWhereUniqueInput
+  }
+
+  /**
+   * MedicalRecord deleteMany
+   */
+  export type MedicalRecordDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MedicalRecords to delete
+     */
+    where?: MedicalRecordWhereInput
+  }
+
+  /**
+   * MedicalRecord.medicine
+   */
+  export type MedicalRecord$medicineArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalInventory
+     */
+    select?: MedicalInventorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalInventoryInclude<ExtArgs> | null
+    where?: MedicalInventoryWhereInput
+  }
+
+  /**
+   * MedicalRecord without action
+   */
+  export type MedicalRecordDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MedicalRecord
+     */
+    select?: MedicalRecordSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MedicalRecordInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AlumniProfile
+   */
+
+  export type AggregateAlumniProfile = {
+    _count: AlumniProfileCountAggregateOutputType | null
+    _avg: AlumniProfileAvgAggregateOutputType | null
+    _sum: AlumniProfileSumAggregateOutputType | null
+    _min: AlumniProfileMinAggregateOutputType | null
+    _max: AlumniProfileMaxAggregateOutputType | null
+  }
+
+  export type AlumniProfileAvgAggregateOutputType = {
+    graduationYear: number | null
+  }
+
+  export type AlumniProfileSumAggregateOutputType = {
+    graduationYear: number | null
+  }
+
+  export type AlumniProfileMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    graduationYear: number | null
+    currentStatus: $Enums.AlumniStatus | null
+    institution: string | null
+    position: string | null
+  }
+
+  export type AlumniProfileMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    graduationYear: number | null
+    currentStatus: $Enums.AlumniStatus | null
+    institution: string | null
+    position: string | null
+  }
+
+  export type AlumniProfileCountAggregateOutputType = {
+    id: number
+    userId: number
+    graduationYear: number
+    currentStatus: number
+    institution: number
+    position: number
+    _all: number
+  }
+
+
+  export type AlumniProfileAvgAggregateInputType = {
+    graduationYear?: true
+  }
+
+  export type AlumniProfileSumAggregateInputType = {
+    graduationYear?: true
+  }
+
+  export type AlumniProfileMinAggregateInputType = {
+    id?: true
+    userId?: true
+    graduationYear?: true
+    currentStatus?: true
+    institution?: true
+    position?: true
+  }
+
+  export type AlumniProfileMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    graduationYear?: true
+    currentStatus?: true
+    institution?: true
+    position?: true
+  }
+
+  export type AlumniProfileCountAggregateInputType = {
+    id?: true
+    userId?: true
+    graduationYear?: true
+    currentStatus?: true
+    institution?: true
+    position?: true
+    _all?: true
+  }
+
+  export type AlumniProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AlumniProfile to aggregate.
+     */
+    where?: AlumniProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AlumniProfiles to fetch.
+     */
+    orderBy?: AlumniProfileOrderByWithRelationInput | AlumniProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AlumniProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AlumniProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AlumniProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AlumniProfiles
+    **/
+    _count?: true | AlumniProfileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AlumniProfileAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AlumniProfileSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AlumniProfileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AlumniProfileMaxAggregateInputType
+  }
+
+  export type GetAlumniProfileAggregateType<T extends AlumniProfileAggregateArgs> = {
+        [P in keyof T & keyof AggregateAlumniProfile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAlumniProfile[P]>
+      : GetScalarType<T[P], AggregateAlumniProfile[P]>
+  }
+
+
+
+
+  export type AlumniProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AlumniProfileWhereInput
+    orderBy?: AlumniProfileOrderByWithAggregationInput | AlumniProfileOrderByWithAggregationInput[]
+    by: AlumniProfileScalarFieldEnum[] | AlumniProfileScalarFieldEnum
+    having?: AlumniProfileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AlumniProfileCountAggregateInputType | true
+    _avg?: AlumniProfileAvgAggregateInputType
+    _sum?: AlumniProfileSumAggregateInputType
+    _min?: AlumniProfileMinAggregateInputType
+    _max?: AlumniProfileMaxAggregateInputType
+  }
+
+  export type AlumniProfileGroupByOutputType = {
+    id: string
+    userId: string
+    graduationYear: number
+    currentStatus: $Enums.AlumniStatus
+    institution: string | null
+    position: string | null
+    _count: AlumniProfileCountAggregateOutputType | null
+    _avg: AlumniProfileAvgAggregateOutputType | null
+    _sum: AlumniProfileSumAggregateOutputType | null
+    _min: AlumniProfileMinAggregateOutputType | null
+    _max: AlumniProfileMaxAggregateOutputType | null
+  }
+
+  type GetAlumniProfileGroupByPayload<T extends AlumniProfileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AlumniProfileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AlumniProfileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AlumniProfileGroupByOutputType[P]>
+            : GetScalarType<T[P], AlumniProfileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AlumniProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    graduationYear?: boolean
+    currentStatus?: boolean
+    institution?: boolean
+    position?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["alumniProfile"]>
+
+  export type AlumniProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    graduationYear?: boolean
+    currentStatus?: boolean
+    institution?: boolean
+    position?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["alumniProfile"]>
+
+  export type AlumniProfileSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    graduationYear?: boolean
+    currentStatus?: boolean
+    institution?: boolean
+    position?: boolean
+  }
+
+  export type AlumniProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type AlumniProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $AlumniProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AlumniProfile"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      graduationYear: number
+      currentStatus: $Enums.AlumniStatus
+      institution: string | null
+      position: string | null
+    }, ExtArgs["result"]["alumniProfile"]>
+    composites: {}
+  }
+
+  type AlumniProfileGetPayload<S extends boolean | null | undefined | AlumniProfileDefaultArgs> = $Result.GetResult<Prisma.$AlumniProfilePayload, S>
+
+  type AlumniProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<AlumniProfileFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: AlumniProfileCountAggregateInputType | true
+    }
+
+  export interface AlumniProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AlumniProfile'], meta: { name: 'AlumniProfile' } }
+    /**
+     * Find zero or one AlumniProfile that matches the filter.
+     * @param {AlumniProfileFindUniqueArgs} args - Arguments to find a AlumniProfile
+     * @example
+     * // Get one AlumniProfile
+     * const alumniProfile = await prisma.alumniProfile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AlumniProfileFindUniqueArgs>(args: SelectSubset<T, AlumniProfileFindUniqueArgs<ExtArgs>>): Prisma__AlumniProfileClient<$Result.GetResult<Prisma.$AlumniProfilePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one AlumniProfile that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {AlumniProfileFindUniqueOrThrowArgs} args - Arguments to find a AlumniProfile
+     * @example
+     * // Get one AlumniProfile
+     * const alumniProfile = await prisma.alumniProfile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AlumniProfileFindUniqueOrThrowArgs>(args: SelectSubset<T, AlumniProfileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AlumniProfileClient<$Result.GetResult<Prisma.$AlumniProfilePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first AlumniProfile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlumniProfileFindFirstArgs} args - Arguments to find a AlumniProfile
+     * @example
+     * // Get one AlumniProfile
+     * const alumniProfile = await prisma.alumniProfile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AlumniProfileFindFirstArgs>(args?: SelectSubset<T, AlumniProfileFindFirstArgs<ExtArgs>>): Prisma__AlumniProfileClient<$Result.GetResult<Prisma.$AlumniProfilePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first AlumniProfile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlumniProfileFindFirstOrThrowArgs} args - Arguments to find a AlumniProfile
+     * @example
+     * // Get one AlumniProfile
+     * const alumniProfile = await prisma.alumniProfile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AlumniProfileFindFirstOrThrowArgs>(args?: SelectSubset<T, AlumniProfileFindFirstOrThrowArgs<ExtArgs>>): Prisma__AlumniProfileClient<$Result.GetResult<Prisma.$AlumniProfilePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more AlumniProfiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlumniProfileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AlumniProfiles
+     * const alumniProfiles = await prisma.alumniProfile.findMany()
+     * 
+     * // Get first 10 AlumniProfiles
+     * const alumniProfiles = await prisma.alumniProfile.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const alumniProfileWithIdOnly = await prisma.alumniProfile.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AlumniProfileFindManyArgs>(args?: SelectSubset<T, AlumniProfileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AlumniProfilePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a AlumniProfile.
+     * @param {AlumniProfileCreateArgs} args - Arguments to create a AlumniProfile.
+     * @example
+     * // Create one AlumniProfile
+     * const AlumniProfile = await prisma.alumniProfile.create({
+     *   data: {
+     *     // ... data to create a AlumniProfile
+     *   }
+     * })
+     * 
+     */
+    create<T extends AlumniProfileCreateArgs>(args: SelectSubset<T, AlumniProfileCreateArgs<ExtArgs>>): Prisma__AlumniProfileClient<$Result.GetResult<Prisma.$AlumniProfilePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many AlumniProfiles.
+     * @param {AlumniProfileCreateManyArgs} args - Arguments to create many AlumniProfiles.
+     * @example
+     * // Create many AlumniProfiles
+     * const alumniProfile = await prisma.alumniProfile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AlumniProfileCreateManyArgs>(args?: SelectSubset<T, AlumniProfileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AlumniProfiles and returns the data saved in the database.
+     * @param {AlumniProfileCreateManyAndReturnArgs} args - Arguments to create many AlumniProfiles.
+     * @example
+     * // Create many AlumniProfiles
+     * const alumniProfile = await prisma.alumniProfile.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AlumniProfiles and only return the `id`
+     * const alumniProfileWithIdOnly = await prisma.alumniProfile.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AlumniProfileCreateManyAndReturnArgs>(args?: SelectSubset<T, AlumniProfileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AlumniProfilePayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a AlumniProfile.
+     * @param {AlumniProfileDeleteArgs} args - Arguments to delete one AlumniProfile.
+     * @example
+     * // Delete one AlumniProfile
+     * const AlumniProfile = await prisma.alumniProfile.delete({
+     *   where: {
+     *     // ... filter to delete one AlumniProfile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AlumniProfileDeleteArgs>(args: SelectSubset<T, AlumniProfileDeleteArgs<ExtArgs>>): Prisma__AlumniProfileClient<$Result.GetResult<Prisma.$AlumniProfilePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one AlumniProfile.
+     * @param {AlumniProfileUpdateArgs} args - Arguments to update one AlumniProfile.
+     * @example
+     * // Update one AlumniProfile
+     * const alumniProfile = await prisma.alumniProfile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AlumniProfileUpdateArgs>(args: SelectSubset<T, AlumniProfileUpdateArgs<ExtArgs>>): Prisma__AlumniProfileClient<$Result.GetResult<Prisma.$AlumniProfilePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more AlumniProfiles.
+     * @param {AlumniProfileDeleteManyArgs} args - Arguments to filter AlumniProfiles to delete.
+     * @example
+     * // Delete a few AlumniProfiles
+     * const { count } = await prisma.alumniProfile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AlumniProfileDeleteManyArgs>(args?: SelectSubset<T, AlumniProfileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AlumniProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlumniProfileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AlumniProfiles
+     * const alumniProfile = await prisma.alumniProfile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AlumniProfileUpdateManyArgs>(args: SelectSubset<T, AlumniProfileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AlumniProfile.
+     * @param {AlumniProfileUpsertArgs} args - Arguments to update or create a AlumniProfile.
+     * @example
+     * // Update or create a AlumniProfile
+     * const alumniProfile = await prisma.alumniProfile.upsert({
+     *   create: {
+     *     // ... data to create a AlumniProfile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AlumniProfile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AlumniProfileUpsertArgs>(args: SelectSubset<T, AlumniProfileUpsertArgs<ExtArgs>>): Prisma__AlumniProfileClient<$Result.GetResult<Prisma.$AlumniProfilePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of AlumniProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlumniProfileCountArgs} args - Arguments to filter AlumniProfiles to count.
+     * @example
+     * // Count the number of AlumniProfiles
+     * const count = await prisma.alumniProfile.count({
+     *   where: {
+     *     // ... the filter for the AlumniProfiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends AlumniProfileCountArgs>(
+      args?: Subset<T, AlumniProfileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AlumniProfileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AlumniProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlumniProfileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AlumniProfileAggregateArgs>(args: Subset<T, AlumniProfileAggregateArgs>): Prisma.PrismaPromise<GetAlumniProfileAggregateType<T>>
+
+    /**
+     * Group by AlumniProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlumniProfileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AlumniProfileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AlumniProfileGroupByArgs['orderBy'] }
+        : { orderBy?: AlumniProfileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AlumniProfileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAlumniProfileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AlumniProfile model
+   */
+  readonly fields: AlumniProfileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AlumniProfile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AlumniProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AlumniProfile model
+   */ 
+  interface AlumniProfileFieldRefs {
+    readonly id: FieldRef<"AlumniProfile", 'String'>
+    readonly userId: FieldRef<"AlumniProfile", 'String'>
+    readonly graduationYear: FieldRef<"AlumniProfile", 'Int'>
+    readonly currentStatus: FieldRef<"AlumniProfile", 'AlumniStatus'>
+    readonly institution: FieldRef<"AlumniProfile", 'String'>
+    readonly position: FieldRef<"AlumniProfile", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AlumniProfile findUnique
+   */
+  export type AlumniProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AlumniProfile
+     */
+    select?: AlumniProfileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlumniProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which AlumniProfile to fetch.
+     */
+    where: AlumniProfileWhereUniqueInput
+  }
+
+  /**
+   * AlumniProfile findUniqueOrThrow
+   */
+  export type AlumniProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AlumniProfile
+     */
+    select?: AlumniProfileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlumniProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which AlumniProfile to fetch.
+     */
+    where: AlumniProfileWhereUniqueInput
+  }
+
+  /**
+   * AlumniProfile findFirst
+   */
+  export type AlumniProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AlumniProfile
+     */
+    select?: AlumniProfileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlumniProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which AlumniProfile to fetch.
+     */
+    where?: AlumniProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AlumniProfiles to fetch.
+     */
+    orderBy?: AlumniProfileOrderByWithRelationInput | AlumniProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AlumniProfiles.
+     */
+    cursor?: AlumniProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AlumniProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AlumniProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AlumniProfiles.
+     */
+    distinct?: AlumniProfileScalarFieldEnum | AlumniProfileScalarFieldEnum[]
+  }
+
+  /**
+   * AlumniProfile findFirstOrThrow
+   */
+  export type AlumniProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AlumniProfile
+     */
+    select?: AlumniProfileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlumniProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which AlumniProfile to fetch.
+     */
+    where?: AlumniProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AlumniProfiles to fetch.
+     */
+    orderBy?: AlumniProfileOrderByWithRelationInput | AlumniProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AlumniProfiles.
+     */
+    cursor?: AlumniProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AlumniProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AlumniProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AlumniProfiles.
+     */
+    distinct?: AlumniProfileScalarFieldEnum | AlumniProfileScalarFieldEnum[]
+  }
+
+  /**
+   * AlumniProfile findMany
+   */
+  export type AlumniProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AlumniProfile
+     */
+    select?: AlumniProfileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlumniProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which AlumniProfiles to fetch.
+     */
+    where?: AlumniProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AlumniProfiles to fetch.
+     */
+    orderBy?: AlumniProfileOrderByWithRelationInput | AlumniProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AlumniProfiles.
+     */
+    cursor?: AlumniProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AlumniProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AlumniProfiles.
+     */
+    skip?: number
+    distinct?: AlumniProfileScalarFieldEnum | AlumniProfileScalarFieldEnum[]
+  }
+
+  /**
+   * AlumniProfile create
+   */
+  export type AlumniProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AlumniProfile
+     */
+    select?: AlumniProfileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlumniProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AlumniProfile.
+     */
+    data: XOR<AlumniProfileCreateInput, AlumniProfileUncheckedCreateInput>
+  }
+
+  /**
+   * AlumniProfile createMany
+   */
+  export type AlumniProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AlumniProfiles.
+     */
+    data: AlumniProfileCreateManyInput | AlumniProfileCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AlumniProfile createManyAndReturn
+   */
+  export type AlumniProfileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AlumniProfile
+     */
+    select?: AlumniProfileSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many AlumniProfiles.
+     */
+    data: AlumniProfileCreateManyInput | AlumniProfileCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlumniProfileIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AlumniProfile update
+   */
+  export type AlumniProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AlumniProfile
+     */
+    select?: AlumniProfileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlumniProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AlumniProfile.
+     */
+    data: XOR<AlumniProfileUpdateInput, AlumniProfileUncheckedUpdateInput>
+    /**
+     * Choose, which AlumniProfile to update.
+     */
+    where: AlumniProfileWhereUniqueInput
+  }
+
+  /**
+   * AlumniProfile updateMany
+   */
+  export type AlumniProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AlumniProfiles.
+     */
+    data: XOR<AlumniProfileUpdateManyMutationInput, AlumniProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which AlumniProfiles to update
+     */
+    where?: AlumniProfileWhereInput
+  }
+
+  /**
+   * AlumniProfile upsert
+   */
+  export type AlumniProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AlumniProfile
+     */
+    select?: AlumniProfileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlumniProfileInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AlumniProfile to update in case it exists.
+     */
+    where: AlumniProfileWhereUniqueInput
+    /**
+     * In case the AlumniProfile found by the `where` argument doesn't exist, create a new AlumniProfile with this data.
+     */
+    create: XOR<AlumniProfileCreateInput, AlumniProfileUncheckedCreateInput>
+    /**
+     * In case the AlumniProfile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AlumniProfileUpdateInput, AlumniProfileUncheckedUpdateInput>
+  }
+
+  /**
+   * AlumniProfile delete
+   */
+  export type AlumniProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AlumniProfile
+     */
+    select?: AlumniProfileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlumniProfileInclude<ExtArgs> | null
+    /**
+     * Filter which AlumniProfile to delete.
+     */
+    where: AlumniProfileWhereUniqueInput
+  }
+
+  /**
+   * AlumniProfile deleteMany
+   */
+  export type AlumniProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AlumniProfiles to delete
+     */
+    where?: AlumniProfileWhereInput
+  }
+
+  /**
+   * AlumniProfile without action
+   */
+  export type AlumniProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AlumniProfile
+     */
+    select?: AlumniProfileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AlumniProfileInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model JobPosting
+   */
+
+  export type AggregateJobPosting = {
+    _count: JobPostingCountAggregateOutputType | null
+    _min: JobPostingMinAggregateOutputType | null
+    _max: JobPostingMaxAggregateOutputType | null
+  }
+
+  export type JobPostingMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    company: string | null
+    description: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+  }
+
+  export type JobPostingMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    company: string | null
+    description: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+  }
+
+  export type JobPostingCountAggregateOutputType = {
+    id: number
+    title: number
+    company: number
+    description: number
+    isActive: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type JobPostingMinAggregateInputType = {
+    id?: true
+    title?: true
+    company?: true
+    description?: true
+    isActive?: true
+    createdAt?: true
+  }
+
+  export type JobPostingMaxAggregateInputType = {
+    id?: true
+    title?: true
+    company?: true
+    description?: true
+    isActive?: true
+    createdAt?: true
+  }
+
+  export type JobPostingCountAggregateInputType = {
+    id?: true
+    title?: true
+    company?: true
+    description?: true
+    isActive?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type JobPostingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JobPosting to aggregate.
+     */
+    where?: JobPostingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobPostings to fetch.
+     */
+    orderBy?: JobPostingOrderByWithRelationInput | JobPostingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: JobPostingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobPostings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobPostings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned JobPostings
+    **/
+    _count?: true | JobPostingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: JobPostingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: JobPostingMaxAggregateInputType
+  }
+
+  export type GetJobPostingAggregateType<T extends JobPostingAggregateArgs> = {
+        [P in keyof T & keyof AggregateJobPosting]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateJobPosting[P]>
+      : GetScalarType<T[P], AggregateJobPosting[P]>
+  }
+
+
+
+
+  export type JobPostingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JobPostingWhereInput
+    orderBy?: JobPostingOrderByWithAggregationInput | JobPostingOrderByWithAggregationInput[]
+    by: JobPostingScalarFieldEnum[] | JobPostingScalarFieldEnum
+    having?: JobPostingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: JobPostingCountAggregateInputType | true
+    _min?: JobPostingMinAggregateInputType
+    _max?: JobPostingMaxAggregateInputType
+  }
+
+  export type JobPostingGroupByOutputType = {
+    id: string
+    title: string
+    company: string
+    description: string
+    isActive: boolean
+    createdAt: Date
+    _count: JobPostingCountAggregateOutputType | null
+    _min: JobPostingMinAggregateOutputType | null
+    _max: JobPostingMaxAggregateOutputType | null
+  }
+
+  type GetJobPostingGroupByPayload<T extends JobPostingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<JobPostingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof JobPostingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], JobPostingGroupByOutputType[P]>
+            : GetScalarType<T[P], JobPostingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type JobPostingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    company?: boolean
+    description?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["jobPosting"]>
+
+  export type JobPostingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    company?: boolean
+    description?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["jobPosting"]>
+
+  export type JobPostingSelectScalar = {
+    id?: boolean
+    title?: boolean
+    company?: boolean
+    description?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+  }
+
+
+  export type $JobPostingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "JobPosting"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      company: string
+      description: string
+      isActive: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["jobPosting"]>
+    composites: {}
+  }
+
+  type JobPostingGetPayload<S extends boolean | null | undefined | JobPostingDefaultArgs> = $Result.GetResult<Prisma.$JobPostingPayload, S>
+
+  type JobPostingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<JobPostingFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: JobPostingCountAggregateInputType | true
+    }
+
+  export interface JobPostingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['JobPosting'], meta: { name: 'JobPosting' } }
+    /**
+     * Find zero or one JobPosting that matches the filter.
+     * @param {JobPostingFindUniqueArgs} args - Arguments to find a JobPosting
+     * @example
+     * // Get one JobPosting
+     * const jobPosting = await prisma.jobPosting.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends JobPostingFindUniqueArgs>(args: SelectSubset<T, JobPostingFindUniqueArgs<ExtArgs>>): Prisma__JobPostingClient<$Result.GetResult<Prisma.$JobPostingPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one JobPosting that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {JobPostingFindUniqueOrThrowArgs} args - Arguments to find a JobPosting
+     * @example
+     * // Get one JobPosting
+     * const jobPosting = await prisma.jobPosting.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends JobPostingFindUniqueOrThrowArgs>(args: SelectSubset<T, JobPostingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__JobPostingClient<$Result.GetResult<Prisma.$JobPostingPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first JobPosting that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobPostingFindFirstArgs} args - Arguments to find a JobPosting
+     * @example
+     * // Get one JobPosting
+     * const jobPosting = await prisma.jobPosting.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends JobPostingFindFirstArgs>(args?: SelectSubset<T, JobPostingFindFirstArgs<ExtArgs>>): Prisma__JobPostingClient<$Result.GetResult<Prisma.$JobPostingPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first JobPosting that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobPostingFindFirstOrThrowArgs} args - Arguments to find a JobPosting
+     * @example
+     * // Get one JobPosting
+     * const jobPosting = await prisma.jobPosting.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends JobPostingFindFirstOrThrowArgs>(args?: SelectSubset<T, JobPostingFindFirstOrThrowArgs<ExtArgs>>): Prisma__JobPostingClient<$Result.GetResult<Prisma.$JobPostingPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more JobPostings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobPostingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all JobPostings
+     * const jobPostings = await prisma.jobPosting.findMany()
+     * 
+     * // Get first 10 JobPostings
+     * const jobPostings = await prisma.jobPosting.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const jobPostingWithIdOnly = await prisma.jobPosting.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends JobPostingFindManyArgs>(args?: SelectSubset<T, JobPostingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobPostingPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a JobPosting.
+     * @param {JobPostingCreateArgs} args - Arguments to create a JobPosting.
+     * @example
+     * // Create one JobPosting
+     * const JobPosting = await prisma.jobPosting.create({
+     *   data: {
+     *     // ... data to create a JobPosting
+     *   }
+     * })
+     * 
+     */
+    create<T extends JobPostingCreateArgs>(args: SelectSubset<T, JobPostingCreateArgs<ExtArgs>>): Prisma__JobPostingClient<$Result.GetResult<Prisma.$JobPostingPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many JobPostings.
+     * @param {JobPostingCreateManyArgs} args - Arguments to create many JobPostings.
+     * @example
+     * // Create many JobPostings
+     * const jobPosting = await prisma.jobPosting.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends JobPostingCreateManyArgs>(args?: SelectSubset<T, JobPostingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many JobPostings and returns the data saved in the database.
+     * @param {JobPostingCreateManyAndReturnArgs} args - Arguments to create many JobPostings.
+     * @example
+     * // Create many JobPostings
+     * const jobPosting = await prisma.jobPosting.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many JobPostings and only return the `id`
+     * const jobPostingWithIdOnly = await prisma.jobPosting.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends JobPostingCreateManyAndReturnArgs>(args?: SelectSubset<T, JobPostingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobPostingPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a JobPosting.
+     * @param {JobPostingDeleteArgs} args - Arguments to delete one JobPosting.
+     * @example
+     * // Delete one JobPosting
+     * const JobPosting = await prisma.jobPosting.delete({
+     *   where: {
+     *     // ... filter to delete one JobPosting
+     *   }
+     * })
+     * 
+     */
+    delete<T extends JobPostingDeleteArgs>(args: SelectSubset<T, JobPostingDeleteArgs<ExtArgs>>): Prisma__JobPostingClient<$Result.GetResult<Prisma.$JobPostingPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one JobPosting.
+     * @param {JobPostingUpdateArgs} args - Arguments to update one JobPosting.
+     * @example
+     * // Update one JobPosting
+     * const jobPosting = await prisma.jobPosting.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends JobPostingUpdateArgs>(args: SelectSubset<T, JobPostingUpdateArgs<ExtArgs>>): Prisma__JobPostingClient<$Result.GetResult<Prisma.$JobPostingPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more JobPostings.
+     * @param {JobPostingDeleteManyArgs} args - Arguments to filter JobPostings to delete.
+     * @example
+     * // Delete a few JobPostings
+     * const { count } = await prisma.jobPosting.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends JobPostingDeleteManyArgs>(args?: SelectSubset<T, JobPostingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JobPostings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobPostingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many JobPostings
+     * const jobPosting = await prisma.jobPosting.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends JobPostingUpdateManyArgs>(args: SelectSubset<T, JobPostingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one JobPosting.
+     * @param {JobPostingUpsertArgs} args - Arguments to update or create a JobPosting.
+     * @example
+     * // Update or create a JobPosting
+     * const jobPosting = await prisma.jobPosting.upsert({
+     *   create: {
+     *     // ... data to create a JobPosting
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the JobPosting we want to update
+     *   }
+     * })
+     */
+    upsert<T extends JobPostingUpsertArgs>(args: SelectSubset<T, JobPostingUpsertArgs<ExtArgs>>): Prisma__JobPostingClient<$Result.GetResult<Prisma.$JobPostingPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of JobPostings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobPostingCountArgs} args - Arguments to filter JobPostings to count.
+     * @example
+     * // Count the number of JobPostings
+     * const count = await prisma.jobPosting.count({
+     *   where: {
+     *     // ... the filter for the JobPostings we want to count
+     *   }
+     * })
+    **/
+    count<T extends JobPostingCountArgs>(
+      args?: Subset<T, JobPostingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], JobPostingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a JobPosting.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobPostingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends JobPostingAggregateArgs>(args: Subset<T, JobPostingAggregateArgs>): Prisma.PrismaPromise<GetJobPostingAggregateType<T>>
+
+    /**
+     * Group by JobPosting.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobPostingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends JobPostingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: JobPostingGroupByArgs['orderBy'] }
+        : { orderBy?: JobPostingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, JobPostingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJobPostingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the JobPosting model
+   */
+  readonly fields: JobPostingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for JobPosting.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__JobPostingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the JobPosting model
+   */ 
+  interface JobPostingFieldRefs {
+    readonly id: FieldRef<"JobPosting", 'String'>
+    readonly title: FieldRef<"JobPosting", 'String'>
+    readonly company: FieldRef<"JobPosting", 'String'>
+    readonly description: FieldRef<"JobPosting", 'String'>
+    readonly isActive: FieldRef<"JobPosting", 'Boolean'>
+    readonly createdAt: FieldRef<"JobPosting", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * JobPosting findUnique
+   */
+  export type JobPostingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobPosting
+     */
+    select?: JobPostingSelect<ExtArgs> | null
+    /**
+     * Filter, which JobPosting to fetch.
+     */
+    where: JobPostingWhereUniqueInput
+  }
+
+  /**
+   * JobPosting findUniqueOrThrow
+   */
+  export type JobPostingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobPosting
+     */
+    select?: JobPostingSelect<ExtArgs> | null
+    /**
+     * Filter, which JobPosting to fetch.
+     */
+    where: JobPostingWhereUniqueInput
+  }
+
+  /**
+   * JobPosting findFirst
+   */
+  export type JobPostingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobPosting
+     */
+    select?: JobPostingSelect<ExtArgs> | null
+    /**
+     * Filter, which JobPosting to fetch.
+     */
+    where?: JobPostingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobPostings to fetch.
+     */
+    orderBy?: JobPostingOrderByWithRelationInput | JobPostingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JobPostings.
+     */
+    cursor?: JobPostingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobPostings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobPostings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JobPostings.
+     */
+    distinct?: JobPostingScalarFieldEnum | JobPostingScalarFieldEnum[]
+  }
+
+  /**
+   * JobPosting findFirstOrThrow
+   */
+  export type JobPostingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobPosting
+     */
+    select?: JobPostingSelect<ExtArgs> | null
+    /**
+     * Filter, which JobPosting to fetch.
+     */
+    where?: JobPostingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobPostings to fetch.
+     */
+    orderBy?: JobPostingOrderByWithRelationInput | JobPostingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JobPostings.
+     */
+    cursor?: JobPostingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobPostings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobPostings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JobPostings.
+     */
+    distinct?: JobPostingScalarFieldEnum | JobPostingScalarFieldEnum[]
+  }
+
+  /**
+   * JobPosting findMany
+   */
+  export type JobPostingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobPosting
+     */
+    select?: JobPostingSelect<ExtArgs> | null
+    /**
+     * Filter, which JobPostings to fetch.
+     */
+    where?: JobPostingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobPostings to fetch.
+     */
+    orderBy?: JobPostingOrderByWithRelationInput | JobPostingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing JobPostings.
+     */
+    cursor?: JobPostingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobPostings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobPostings.
+     */
+    skip?: number
+    distinct?: JobPostingScalarFieldEnum | JobPostingScalarFieldEnum[]
+  }
+
+  /**
+   * JobPosting create
+   */
+  export type JobPostingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobPosting
+     */
+    select?: JobPostingSelect<ExtArgs> | null
+    /**
+     * The data needed to create a JobPosting.
+     */
+    data: XOR<JobPostingCreateInput, JobPostingUncheckedCreateInput>
+  }
+
+  /**
+   * JobPosting createMany
+   */
+  export type JobPostingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many JobPostings.
+     */
+    data: JobPostingCreateManyInput | JobPostingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * JobPosting createManyAndReturn
+   */
+  export type JobPostingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobPosting
+     */
+    select?: JobPostingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many JobPostings.
+     */
+    data: JobPostingCreateManyInput | JobPostingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * JobPosting update
+   */
+  export type JobPostingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobPosting
+     */
+    select?: JobPostingSelect<ExtArgs> | null
+    /**
+     * The data needed to update a JobPosting.
+     */
+    data: XOR<JobPostingUpdateInput, JobPostingUncheckedUpdateInput>
+    /**
+     * Choose, which JobPosting to update.
+     */
+    where: JobPostingWhereUniqueInput
+  }
+
+  /**
+   * JobPosting updateMany
+   */
+  export type JobPostingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update JobPostings.
+     */
+    data: XOR<JobPostingUpdateManyMutationInput, JobPostingUncheckedUpdateManyInput>
+    /**
+     * Filter which JobPostings to update
+     */
+    where?: JobPostingWhereInput
+  }
+
+  /**
+   * JobPosting upsert
+   */
+  export type JobPostingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobPosting
+     */
+    select?: JobPostingSelect<ExtArgs> | null
+    /**
+     * The filter to search for the JobPosting to update in case it exists.
+     */
+    where: JobPostingWhereUniqueInput
+    /**
+     * In case the JobPosting found by the `where` argument doesn't exist, create a new JobPosting with this data.
+     */
+    create: XOR<JobPostingCreateInput, JobPostingUncheckedCreateInput>
+    /**
+     * In case the JobPosting was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<JobPostingUpdateInput, JobPostingUncheckedUpdateInput>
+  }
+
+  /**
+   * JobPosting delete
+   */
+  export type JobPostingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobPosting
+     */
+    select?: JobPostingSelect<ExtArgs> | null
+    /**
+     * Filter which JobPosting to delete.
+     */
+    where: JobPostingWhereUniqueInput
+  }
+
+  /**
+   * JobPosting deleteMany
+   */
+  export type JobPostingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JobPostings to delete
+     */
+    where?: JobPostingWhereInput
+  }
+
+  /**
+   * JobPosting without action
+   */
+  export type JobPostingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobPosting
+     */
+    select?: JobPostingSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Model AbsenceRequest
    */
 
@@ -41244,6 +47805,80 @@ export namespace Prisma {
   export type BillingScalarFieldEnum = (typeof BillingScalarFieldEnum)[keyof typeof BillingScalarFieldEnum]
 
 
+  export const BookScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    author: 'author',
+    isbn: 'isbn',
+    stock: 'stock',
+    coverImage: 'coverImage',
+    createdAt: 'createdAt'
+  };
+
+  export type BookScalarFieldEnum = (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]
+
+
+  export const BookCirculationScalarFieldEnum: {
+    id: 'id',
+    bookId: 'bookId',
+    studentId: 'studentId',
+    borrowDate: 'borrowDate',
+    dueDate: 'dueDate',
+    returnDate: 'returnDate',
+    status: 'status',
+    penalty: 'penalty'
+  };
+
+  export type BookCirculationScalarFieldEnum = (typeof BookCirculationScalarFieldEnum)[keyof typeof BookCirculationScalarFieldEnum]
+
+
+  export const MedicalInventoryScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    stock: 'stock',
+    unit: 'unit'
+  };
+
+  export type MedicalInventoryScalarFieldEnum = (typeof MedicalInventoryScalarFieldEnum)[keyof typeof MedicalInventoryScalarFieldEnum]
+
+
+  export const MedicalRecordScalarFieldEnum: {
+    id: 'id',
+    studentId: 'studentId',
+    medicineId: 'medicineId',
+    complaint: 'complaint',
+    actionTaken: 'actionTaken',
+    handledById: 'handledById',
+    createdAt: 'createdAt'
+  };
+
+  export type MedicalRecordScalarFieldEnum = (typeof MedicalRecordScalarFieldEnum)[keyof typeof MedicalRecordScalarFieldEnum]
+
+
+  export const AlumniProfileScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    graduationYear: 'graduationYear',
+    currentStatus: 'currentStatus',
+    institution: 'institution',
+    position: 'position'
+  };
+
+  export type AlumniProfileScalarFieldEnum = (typeof AlumniProfileScalarFieldEnum)[keyof typeof AlumniProfileScalarFieldEnum]
+
+
+  export const JobPostingScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    company: 'company',
+    description: 'description',
+    isActive: 'isActive',
+    createdAt: 'createdAt'
+  };
+
+  export type JobPostingScalarFieldEnum = (typeof JobPostingScalarFieldEnum)[keyof typeof JobPostingScalarFieldEnum]
+
+
   export const AbsenceRequestScalarFieldEnum: {
     id: 'id',
     studentId: 'studentId',
@@ -41469,6 +48104,34 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'CirculationStatus'
+   */
+  export type EnumCirculationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CirculationStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'CirculationStatus[]'
+   */
+  export type ListEnumCirculationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CirculationStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'AlumniStatus'
+   */
+  export type EnumAlumniStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AlumniStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'AlumniStatus[]'
+   */
+  export type ListEnumAlumniStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AlumniStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'RequestStatus'
    */
   export type EnumRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RequestStatus'>
@@ -41560,6 +48223,10 @@ export namespace Prisma {
     billings?: BillingListRelationFilter
     absenceRequests?: AbsenceRequestListRelationFilter
     reviewedRequests?: AbsenceRequestListRelationFilter
+    bookCirculations?: BookCirculationListRelationFilter
+    studentMedical?: MedicalRecordListRelationFilter
+    staffMedical?: MedicalRecordListRelationFilter
+    alumniProfile?: XOR<AlumniProfileNullableRelationFilter, AlumniProfileWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -41620,6 +48287,10 @@ export namespace Prisma {
     billings?: BillingOrderByRelationAggregateInput
     absenceRequests?: AbsenceRequestOrderByRelationAggregateInput
     reviewedRequests?: AbsenceRequestOrderByRelationAggregateInput
+    bookCirculations?: BookCirculationOrderByRelationAggregateInput
+    studentMedical?: MedicalRecordOrderByRelationAggregateInput
+    staffMedical?: MedicalRecordOrderByRelationAggregateInput
+    alumniProfile?: AlumniProfileOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -41683,6 +48354,10 @@ export namespace Prisma {
     billings?: BillingListRelationFilter
     absenceRequests?: AbsenceRequestListRelationFilter
     reviewedRequests?: AbsenceRequestListRelationFilter
+    bookCirculations?: BookCirculationListRelationFilter
+    studentMedical?: MedicalRecordListRelationFilter
+    staffMedical?: MedicalRecordListRelationFilter
+    alumniProfile?: XOR<AlumniProfileNullableRelationFilter, AlumniProfileWhereInput> | null
   }, "id" | "email" | "nis">
 
   export type UserOrderByWithAggregationInput = {
@@ -44163,6 +50838,390 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Billing"> | Date | string
   }
 
+  export type BookWhereInput = {
+    AND?: BookWhereInput | BookWhereInput[]
+    OR?: BookWhereInput[]
+    NOT?: BookWhereInput | BookWhereInput[]
+    id?: StringFilter<"Book"> | string
+    title?: StringFilter<"Book"> | string
+    author?: StringFilter<"Book"> | string
+    isbn?: StringNullableFilter<"Book"> | string | null
+    stock?: IntFilter<"Book"> | number
+    coverImage?: StringNullableFilter<"Book"> | string | null
+    createdAt?: DateTimeFilter<"Book"> | Date | string
+    circulations?: BookCirculationListRelationFilter
+  }
+
+  export type BookOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    author?: SortOrder
+    isbn?: SortOrderInput | SortOrder
+    stock?: SortOrder
+    coverImage?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    circulations?: BookCirculationOrderByRelationAggregateInput
+  }
+
+  export type BookWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BookWhereInput | BookWhereInput[]
+    OR?: BookWhereInput[]
+    NOT?: BookWhereInput | BookWhereInput[]
+    title?: StringFilter<"Book"> | string
+    author?: StringFilter<"Book"> | string
+    isbn?: StringNullableFilter<"Book"> | string | null
+    stock?: IntFilter<"Book"> | number
+    coverImage?: StringNullableFilter<"Book"> | string | null
+    createdAt?: DateTimeFilter<"Book"> | Date | string
+    circulations?: BookCirculationListRelationFilter
+  }, "id">
+
+  export type BookOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    author?: SortOrder
+    isbn?: SortOrderInput | SortOrder
+    stock?: SortOrder
+    coverImage?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: BookCountOrderByAggregateInput
+    _avg?: BookAvgOrderByAggregateInput
+    _max?: BookMaxOrderByAggregateInput
+    _min?: BookMinOrderByAggregateInput
+    _sum?: BookSumOrderByAggregateInput
+  }
+
+  export type BookScalarWhereWithAggregatesInput = {
+    AND?: BookScalarWhereWithAggregatesInput | BookScalarWhereWithAggregatesInput[]
+    OR?: BookScalarWhereWithAggregatesInput[]
+    NOT?: BookScalarWhereWithAggregatesInput | BookScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Book"> | string
+    title?: StringWithAggregatesFilter<"Book"> | string
+    author?: StringWithAggregatesFilter<"Book"> | string
+    isbn?: StringNullableWithAggregatesFilter<"Book"> | string | null
+    stock?: IntWithAggregatesFilter<"Book"> | number
+    coverImage?: StringNullableWithAggregatesFilter<"Book"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Book"> | Date | string
+  }
+
+  export type BookCirculationWhereInput = {
+    AND?: BookCirculationWhereInput | BookCirculationWhereInput[]
+    OR?: BookCirculationWhereInput[]
+    NOT?: BookCirculationWhereInput | BookCirculationWhereInput[]
+    id?: StringFilter<"BookCirculation"> | string
+    bookId?: StringFilter<"BookCirculation"> | string
+    studentId?: StringFilter<"BookCirculation"> | string
+    borrowDate?: DateTimeFilter<"BookCirculation"> | Date | string
+    dueDate?: DateTimeFilter<"BookCirculation"> | Date | string
+    returnDate?: DateTimeNullableFilter<"BookCirculation"> | Date | string | null
+    status?: EnumCirculationStatusFilter<"BookCirculation"> | $Enums.CirculationStatus
+    penalty?: IntFilter<"BookCirculation"> | number
+    book?: XOR<BookRelationFilter, BookWhereInput>
+    student?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type BookCirculationOrderByWithRelationInput = {
+    id?: SortOrder
+    bookId?: SortOrder
+    studentId?: SortOrder
+    borrowDate?: SortOrder
+    dueDate?: SortOrder
+    returnDate?: SortOrderInput | SortOrder
+    status?: SortOrder
+    penalty?: SortOrder
+    book?: BookOrderByWithRelationInput
+    student?: UserOrderByWithRelationInput
+  }
+
+  export type BookCirculationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BookCirculationWhereInput | BookCirculationWhereInput[]
+    OR?: BookCirculationWhereInput[]
+    NOT?: BookCirculationWhereInput | BookCirculationWhereInput[]
+    bookId?: StringFilter<"BookCirculation"> | string
+    studentId?: StringFilter<"BookCirculation"> | string
+    borrowDate?: DateTimeFilter<"BookCirculation"> | Date | string
+    dueDate?: DateTimeFilter<"BookCirculation"> | Date | string
+    returnDate?: DateTimeNullableFilter<"BookCirculation"> | Date | string | null
+    status?: EnumCirculationStatusFilter<"BookCirculation"> | $Enums.CirculationStatus
+    penalty?: IntFilter<"BookCirculation"> | number
+    book?: XOR<BookRelationFilter, BookWhereInput>
+    student?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type BookCirculationOrderByWithAggregationInput = {
+    id?: SortOrder
+    bookId?: SortOrder
+    studentId?: SortOrder
+    borrowDate?: SortOrder
+    dueDate?: SortOrder
+    returnDate?: SortOrderInput | SortOrder
+    status?: SortOrder
+    penalty?: SortOrder
+    _count?: BookCirculationCountOrderByAggregateInput
+    _avg?: BookCirculationAvgOrderByAggregateInput
+    _max?: BookCirculationMaxOrderByAggregateInput
+    _min?: BookCirculationMinOrderByAggregateInput
+    _sum?: BookCirculationSumOrderByAggregateInput
+  }
+
+  export type BookCirculationScalarWhereWithAggregatesInput = {
+    AND?: BookCirculationScalarWhereWithAggregatesInput | BookCirculationScalarWhereWithAggregatesInput[]
+    OR?: BookCirculationScalarWhereWithAggregatesInput[]
+    NOT?: BookCirculationScalarWhereWithAggregatesInput | BookCirculationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BookCirculation"> | string
+    bookId?: StringWithAggregatesFilter<"BookCirculation"> | string
+    studentId?: StringWithAggregatesFilter<"BookCirculation"> | string
+    borrowDate?: DateTimeWithAggregatesFilter<"BookCirculation"> | Date | string
+    dueDate?: DateTimeWithAggregatesFilter<"BookCirculation"> | Date | string
+    returnDate?: DateTimeNullableWithAggregatesFilter<"BookCirculation"> | Date | string | null
+    status?: EnumCirculationStatusWithAggregatesFilter<"BookCirculation"> | $Enums.CirculationStatus
+    penalty?: IntWithAggregatesFilter<"BookCirculation"> | number
+  }
+
+  export type MedicalInventoryWhereInput = {
+    AND?: MedicalInventoryWhereInput | MedicalInventoryWhereInput[]
+    OR?: MedicalInventoryWhereInput[]
+    NOT?: MedicalInventoryWhereInput | MedicalInventoryWhereInput[]
+    id?: StringFilter<"MedicalInventory"> | string
+    name?: StringFilter<"MedicalInventory"> | string
+    stock?: IntFilter<"MedicalInventory"> | number
+    unit?: StringFilter<"MedicalInventory"> | string
+    records?: MedicalRecordListRelationFilter
+  }
+
+  export type MedicalInventoryOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    stock?: SortOrder
+    unit?: SortOrder
+    records?: MedicalRecordOrderByRelationAggregateInput
+  }
+
+  export type MedicalInventoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MedicalInventoryWhereInput | MedicalInventoryWhereInput[]
+    OR?: MedicalInventoryWhereInput[]
+    NOT?: MedicalInventoryWhereInput | MedicalInventoryWhereInput[]
+    name?: StringFilter<"MedicalInventory"> | string
+    stock?: IntFilter<"MedicalInventory"> | number
+    unit?: StringFilter<"MedicalInventory"> | string
+    records?: MedicalRecordListRelationFilter
+  }, "id">
+
+  export type MedicalInventoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    stock?: SortOrder
+    unit?: SortOrder
+    _count?: MedicalInventoryCountOrderByAggregateInput
+    _avg?: MedicalInventoryAvgOrderByAggregateInput
+    _max?: MedicalInventoryMaxOrderByAggregateInput
+    _min?: MedicalInventoryMinOrderByAggregateInput
+    _sum?: MedicalInventorySumOrderByAggregateInput
+  }
+
+  export type MedicalInventoryScalarWhereWithAggregatesInput = {
+    AND?: MedicalInventoryScalarWhereWithAggregatesInput | MedicalInventoryScalarWhereWithAggregatesInput[]
+    OR?: MedicalInventoryScalarWhereWithAggregatesInput[]
+    NOT?: MedicalInventoryScalarWhereWithAggregatesInput | MedicalInventoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MedicalInventory"> | string
+    name?: StringWithAggregatesFilter<"MedicalInventory"> | string
+    stock?: IntWithAggregatesFilter<"MedicalInventory"> | number
+    unit?: StringWithAggregatesFilter<"MedicalInventory"> | string
+  }
+
+  export type MedicalRecordWhereInput = {
+    AND?: MedicalRecordWhereInput | MedicalRecordWhereInput[]
+    OR?: MedicalRecordWhereInput[]
+    NOT?: MedicalRecordWhereInput | MedicalRecordWhereInput[]
+    id?: StringFilter<"MedicalRecord"> | string
+    studentId?: StringFilter<"MedicalRecord"> | string
+    medicineId?: StringNullableFilter<"MedicalRecord"> | string | null
+    complaint?: StringFilter<"MedicalRecord"> | string
+    actionTaken?: StringFilter<"MedicalRecord"> | string
+    handledById?: StringFilter<"MedicalRecord"> | string
+    createdAt?: DateTimeFilter<"MedicalRecord"> | Date | string
+    student?: XOR<UserRelationFilter, UserWhereInput>
+    handledBy?: XOR<UserRelationFilter, UserWhereInput>
+    medicine?: XOR<MedicalInventoryNullableRelationFilter, MedicalInventoryWhereInput> | null
+  }
+
+  export type MedicalRecordOrderByWithRelationInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    medicineId?: SortOrderInput | SortOrder
+    complaint?: SortOrder
+    actionTaken?: SortOrder
+    handledById?: SortOrder
+    createdAt?: SortOrder
+    student?: UserOrderByWithRelationInput
+    handledBy?: UserOrderByWithRelationInput
+    medicine?: MedicalInventoryOrderByWithRelationInput
+  }
+
+  export type MedicalRecordWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MedicalRecordWhereInput | MedicalRecordWhereInput[]
+    OR?: MedicalRecordWhereInput[]
+    NOT?: MedicalRecordWhereInput | MedicalRecordWhereInput[]
+    studentId?: StringFilter<"MedicalRecord"> | string
+    medicineId?: StringNullableFilter<"MedicalRecord"> | string | null
+    complaint?: StringFilter<"MedicalRecord"> | string
+    actionTaken?: StringFilter<"MedicalRecord"> | string
+    handledById?: StringFilter<"MedicalRecord"> | string
+    createdAt?: DateTimeFilter<"MedicalRecord"> | Date | string
+    student?: XOR<UserRelationFilter, UserWhereInput>
+    handledBy?: XOR<UserRelationFilter, UserWhereInput>
+    medicine?: XOR<MedicalInventoryNullableRelationFilter, MedicalInventoryWhereInput> | null
+  }, "id">
+
+  export type MedicalRecordOrderByWithAggregationInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    medicineId?: SortOrderInput | SortOrder
+    complaint?: SortOrder
+    actionTaken?: SortOrder
+    handledById?: SortOrder
+    createdAt?: SortOrder
+    _count?: MedicalRecordCountOrderByAggregateInput
+    _max?: MedicalRecordMaxOrderByAggregateInput
+    _min?: MedicalRecordMinOrderByAggregateInput
+  }
+
+  export type MedicalRecordScalarWhereWithAggregatesInput = {
+    AND?: MedicalRecordScalarWhereWithAggregatesInput | MedicalRecordScalarWhereWithAggregatesInput[]
+    OR?: MedicalRecordScalarWhereWithAggregatesInput[]
+    NOT?: MedicalRecordScalarWhereWithAggregatesInput | MedicalRecordScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MedicalRecord"> | string
+    studentId?: StringWithAggregatesFilter<"MedicalRecord"> | string
+    medicineId?: StringNullableWithAggregatesFilter<"MedicalRecord"> | string | null
+    complaint?: StringWithAggregatesFilter<"MedicalRecord"> | string
+    actionTaken?: StringWithAggregatesFilter<"MedicalRecord"> | string
+    handledById?: StringWithAggregatesFilter<"MedicalRecord"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"MedicalRecord"> | Date | string
+  }
+
+  export type AlumniProfileWhereInput = {
+    AND?: AlumniProfileWhereInput | AlumniProfileWhereInput[]
+    OR?: AlumniProfileWhereInput[]
+    NOT?: AlumniProfileWhereInput | AlumniProfileWhereInput[]
+    id?: StringFilter<"AlumniProfile"> | string
+    userId?: StringFilter<"AlumniProfile"> | string
+    graduationYear?: IntFilter<"AlumniProfile"> | number
+    currentStatus?: EnumAlumniStatusFilter<"AlumniProfile"> | $Enums.AlumniStatus
+    institution?: StringNullableFilter<"AlumniProfile"> | string | null
+    position?: StringNullableFilter<"AlumniProfile"> | string | null
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type AlumniProfileOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    graduationYear?: SortOrder
+    currentStatus?: SortOrder
+    institution?: SortOrderInput | SortOrder
+    position?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type AlumniProfileWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: AlumniProfileWhereInput | AlumniProfileWhereInput[]
+    OR?: AlumniProfileWhereInput[]
+    NOT?: AlumniProfileWhereInput | AlumniProfileWhereInput[]
+    graduationYear?: IntFilter<"AlumniProfile"> | number
+    currentStatus?: EnumAlumniStatusFilter<"AlumniProfile"> | $Enums.AlumniStatus
+    institution?: StringNullableFilter<"AlumniProfile"> | string | null
+    position?: StringNullableFilter<"AlumniProfile"> | string | null
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type AlumniProfileOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    graduationYear?: SortOrder
+    currentStatus?: SortOrder
+    institution?: SortOrderInput | SortOrder
+    position?: SortOrderInput | SortOrder
+    _count?: AlumniProfileCountOrderByAggregateInput
+    _avg?: AlumniProfileAvgOrderByAggregateInput
+    _max?: AlumniProfileMaxOrderByAggregateInput
+    _min?: AlumniProfileMinOrderByAggregateInput
+    _sum?: AlumniProfileSumOrderByAggregateInput
+  }
+
+  export type AlumniProfileScalarWhereWithAggregatesInput = {
+    AND?: AlumniProfileScalarWhereWithAggregatesInput | AlumniProfileScalarWhereWithAggregatesInput[]
+    OR?: AlumniProfileScalarWhereWithAggregatesInput[]
+    NOT?: AlumniProfileScalarWhereWithAggregatesInput | AlumniProfileScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AlumniProfile"> | string
+    userId?: StringWithAggregatesFilter<"AlumniProfile"> | string
+    graduationYear?: IntWithAggregatesFilter<"AlumniProfile"> | number
+    currentStatus?: EnumAlumniStatusWithAggregatesFilter<"AlumniProfile"> | $Enums.AlumniStatus
+    institution?: StringNullableWithAggregatesFilter<"AlumniProfile"> | string | null
+    position?: StringNullableWithAggregatesFilter<"AlumniProfile"> | string | null
+  }
+
+  export type JobPostingWhereInput = {
+    AND?: JobPostingWhereInput | JobPostingWhereInput[]
+    OR?: JobPostingWhereInput[]
+    NOT?: JobPostingWhereInput | JobPostingWhereInput[]
+    id?: StringFilter<"JobPosting"> | string
+    title?: StringFilter<"JobPosting"> | string
+    company?: StringFilter<"JobPosting"> | string
+    description?: StringFilter<"JobPosting"> | string
+    isActive?: BoolFilter<"JobPosting"> | boolean
+    createdAt?: DateTimeFilter<"JobPosting"> | Date | string
+  }
+
+  export type JobPostingOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    company?: SortOrder
+    description?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type JobPostingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: JobPostingWhereInput | JobPostingWhereInput[]
+    OR?: JobPostingWhereInput[]
+    NOT?: JobPostingWhereInput | JobPostingWhereInput[]
+    title?: StringFilter<"JobPosting"> | string
+    company?: StringFilter<"JobPosting"> | string
+    description?: StringFilter<"JobPosting"> | string
+    isActive?: BoolFilter<"JobPosting"> | boolean
+    createdAt?: DateTimeFilter<"JobPosting"> | Date | string
+  }, "id">
+
+  export type JobPostingOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    company?: SortOrder
+    description?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    _count?: JobPostingCountOrderByAggregateInput
+    _max?: JobPostingMaxOrderByAggregateInput
+    _min?: JobPostingMinOrderByAggregateInput
+  }
+
+  export type JobPostingScalarWhereWithAggregatesInput = {
+    AND?: JobPostingScalarWhereWithAggregatesInput | JobPostingScalarWhereWithAggregatesInput[]
+    OR?: JobPostingScalarWhereWithAggregatesInput[]
+    NOT?: JobPostingScalarWhereWithAggregatesInput | JobPostingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"JobPosting"> | string
+    title?: StringWithAggregatesFilter<"JobPosting"> | string
+    company?: StringWithAggregatesFilter<"JobPosting"> | string
+    description?: StringWithAggregatesFilter<"JobPosting"> | string
+    isActive?: BoolWithAggregatesFilter<"JobPosting"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"JobPosting"> | Date | string
+  }
+
   export type AbsenceRequestWhereInput = {
     AND?: AbsenceRequestWhereInput | AbsenceRequestWhereInput[]
     OR?: AbsenceRequestWhereInput[]
@@ -44307,6 +51366,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -44365,6 +51428,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -44423,6 +51490,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -44481,6 +51552,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -47060,6 +54135,400 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type BookCreateInput = {
+    id?: string
+    title: string
+    author: string
+    isbn?: string | null
+    stock?: number
+    coverImage?: string | null
+    createdAt?: Date | string
+    circulations?: BookCirculationCreateNestedManyWithoutBookInput
+  }
+
+  export type BookUncheckedCreateInput = {
+    id?: string
+    title: string
+    author: string
+    isbn?: string | null
+    stock?: number
+    coverImage?: string | null
+    createdAt?: Date | string
+    circulations?: BookCirculationUncheckedCreateNestedManyWithoutBookInput
+  }
+
+  export type BookUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    stock?: IntFieldUpdateOperationsInput | number
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    circulations?: BookCirculationUpdateManyWithoutBookNestedInput
+  }
+
+  export type BookUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    stock?: IntFieldUpdateOperationsInput | number
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    circulations?: BookCirculationUncheckedUpdateManyWithoutBookNestedInput
+  }
+
+  export type BookCreateManyInput = {
+    id?: string
+    title: string
+    author: string
+    isbn?: string | null
+    stock?: number
+    coverImage?: string | null
+    createdAt?: Date | string
+  }
+
+  export type BookUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    stock?: IntFieldUpdateOperationsInput | number
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    stock?: IntFieldUpdateOperationsInput | number
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookCirculationCreateInput = {
+    id?: string
+    borrowDate?: Date | string
+    dueDate: Date | string
+    returnDate?: Date | string | null
+    status?: $Enums.CirculationStatus
+    penalty?: number
+    book: BookCreateNestedOneWithoutCirculationsInput
+    student: UserCreateNestedOneWithoutBookCirculationsInput
+  }
+
+  export type BookCirculationUncheckedCreateInput = {
+    id?: string
+    bookId: string
+    studentId: string
+    borrowDate?: Date | string
+    dueDate: Date | string
+    returnDate?: Date | string | null
+    status?: $Enums.CirculationStatus
+    penalty?: number
+  }
+
+  export type BookCirculationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCirculationStatusFieldUpdateOperationsInput | $Enums.CirculationStatus
+    penalty?: IntFieldUpdateOperationsInput | number
+    book?: BookUpdateOneRequiredWithoutCirculationsNestedInput
+    student?: UserUpdateOneRequiredWithoutBookCirculationsNestedInput
+  }
+
+  export type BookCirculationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bookId?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCirculationStatusFieldUpdateOperationsInput | $Enums.CirculationStatus
+    penalty?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BookCirculationCreateManyInput = {
+    id?: string
+    bookId: string
+    studentId: string
+    borrowDate?: Date | string
+    dueDate: Date | string
+    returnDate?: Date | string | null
+    status?: $Enums.CirculationStatus
+    penalty?: number
+  }
+
+  export type BookCirculationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCirculationStatusFieldUpdateOperationsInput | $Enums.CirculationStatus
+    penalty?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BookCirculationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bookId?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCirculationStatusFieldUpdateOperationsInput | $Enums.CirculationStatus
+    penalty?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MedicalInventoryCreateInput = {
+    id?: string
+    name: string
+    stock?: number
+    unit?: string
+    records?: MedicalRecordCreateNestedManyWithoutMedicineInput
+  }
+
+  export type MedicalInventoryUncheckedCreateInput = {
+    id?: string
+    name: string
+    stock?: number
+    unit?: string
+    records?: MedicalRecordUncheckedCreateNestedManyWithoutMedicineInput
+  }
+
+  export type MedicalInventoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    records?: MedicalRecordUpdateManyWithoutMedicineNestedInput
+  }
+
+  export type MedicalInventoryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    records?: MedicalRecordUncheckedUpdateManyWithoutMedicineNestedInput
+  }
+
+  export type MedicalInventoryCreateManyInput = {
+    id?: string
+    name: string
+    stock?: number
+    unit?: string
+  }
+
+  export type MedicalInventoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MedicalInventoryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MedicalRecordCreateInput = {
+    id?: string
+    complaint: string
+    actionTaken: string
+    createdAt?: Date | string
+    student: UserCreateNestedOneWithoutStudentMedicalInput
+    handledBy: UserCreateNestedOneWithoutStaffMedicalInput
+    medicine?: MedicalInventoryCreateNestedOneWithoutRecordsInput
+  }
+
+  export type MedicalRecordUncheckedCreateInput = {
+    id?: string
+    studentId: string
+    medicineId?: string | null
+    complaint: string
+    actionTaken: string
+    handledById: string
+    createdAt?: Date | string
+  }
+
+  export type MedicalRecordUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    complaint?: StringFieldUpdateOperationsInput | string
+    actionTaken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    student?: UserUpdateOneRequiredWithoutStudentMedicalNestedInput
+    handledBy?: UserUpdateOneRequiredWithoutStaffMedicalNestedInput
+    medicine?: MedicalInventoryUpdateOneWithoutRecordsNestedInput
+  }
+
+  export type MedicalRecordUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    medicineId?: NullableStringFieldUpdateOperationsInput | string | null
+    complaint?: StringFieldUpdateOperationsInput | string
+    actionTaken?: StringFieldUpdateOperationsInput | string
+    handledById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MedicalRecordCreateManyInput = {
+    id?: string
+    studentId: string
+    medicineId?: string | null
+    complaint: string
+    actionTaken: string
+    handledById: string
+    createdAt?: Date | string
+  }
+
+  export type MedicalRecordUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    complaint?: StringFieldUpdateOperationsInput | string
+    actionTaken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MedicalRecordUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    medicineId?: NullableStringFieldUpdateOperationsInput | string | null
+    complaint?: StringFieldUpdateOperationsInput | string
+    actionTaken?: StringFieldUpdateOperationsInput | string
+    handledById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AlumniProfileCreateInput = {
+    id?: string
+    graduationYear: number
+    currentStatus?: $Enums.AlumniStatus
+    institution?: string | null
+    position?: string | null
+    user: UserCreateNestedOneWithoutAlumniProfileInput
+  }
+
+  export type AlumniProfileUncheckedCreateInput = {
+    id?: string
+    userId: string
+    graduationYear: number
+    currentStatus?: $Enums.AlumniStatus
+    institution?: string | null
+    position?: string | null
+  }
+
+  export type AlumniProfileUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    graduationYear?: IntFieldUpdateOperationsInput | number
+    currentStatus?: EnumAlumniStatusFieldUpdateOperationsInput | $Enums.AlumniStatus
+    institution?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutAlumniProfileNestedInput
+  }
+
+  export type AlumniProfileUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    graduationYear?: IntFieldUpdateOperationsInput | number
+    currentStatus?: EnumAlumniStatusFieldUpdateOperationsInput | $Enums.AlumniStatus
+    institution?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AlumniProfileCreateManyInput = {
+    id?: string
+    userId: string
+    graduationYear: number
+    currentStatus?: $Enums.AlumniStatus
+    institution?: string | null
+    position?: string | null
+  }
+
+  export type AlumniProfileUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    graduationYear?: IntFieldUpdateOperationsInput | number
+    currentStatus?: EnumAlumniStatusFieldUpdateOperationsInput | $Enums.AlumniStatus
+    institution?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AlumniProfileUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    graduationYear?: IntFieldUpdateOperationsInput | number
+    currentStatus?: EnumAlumniStatusFieldUpdateOperationsInput | $Enums.AlumniStatus
+    institution?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type JobPostingCreateInput = {
+    id?: string
+    title: string
+    company: string
+    description: string
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type JobPostingUncheckedCreateInput = {
+    id?: string
+    title: string
+    company: string
+    description: string
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type JobPostingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobPostingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobPostingCreateManyInput = {
+    id?: string
+    title: string
+    company: string
+    description: string
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type JobPostingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobPostingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type AbsenceRequestCreateInput = {
     id?: string
     startDate: Date | string
@@ -47426,6 +54895,23 @@ export namespace Prisma {
     none?: AbsenceRequestWhereInput
   }
 
+  export type BookCirculationListRelationFilter = {
+    every?: BookCirculationWhereInput
+    some?: BookCirculationWhereInput
+    none?: BookCirculationWhereInput
+  }
+
+  export type MedicalRecordListRelationFilter = {
+    every?: MedicalRecordWhereInput
+    some?: MedicalRecordWhereInput
+    none?: MedicalRecordWhereInput
+  }
+
+  export type AlumniProfileNullableRelationFilter = {
+    is?: AlumniProfileWhereInput | null
+    isNot?: AlumniProfileWhereInput | null
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -47528,6 +55014,14 @@ export namespace Prisma {
   }
 
   export type AbsenceRequestOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BookCirculationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MedicalRecordOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -49250,6 +56744,250 @@ export namespace Prisma {
     _max?: NestedEnumBillingStatusFilter<$PrismaModel>
   }
 
+  export type BookCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    author?: SortOrder
+    isbn?: SortOrder
+    stock?: SortOrder
+    coverImage?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BookAvgOrderByAggregateInput = {
+    stock?: SortOrder
+  }
+
+  export type BookMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    author?: SortOrder
+    isbn?: SortOrder
+    stock?: SortOrder
+    coverImage?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BookMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    author?: SortOrder
+    isbn?: SortOrder
+    stock?: SortOrder
+    coverImage?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BookSumOrderByAggregateInput = {
+    stock?: SortOrder
+  }
+
+  export type EnumCirculationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.CirculationStatus | EnumCirculationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CirculationStatus[] | ListEnumCirculationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CirculationStatus[] | ListEnumCirculationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCirculationStatusFilter<$PrismaModel> | $Enums.CirculationStatus
+  }
+
+  export type BookRelationFilter = {
+    is?: BookWhereInput
+    isNot?: BookWhereInput
+  }
+
+  export type BookCirculationCountOrderByAggregateInput = {
+    id?: SortOrder
+    bookId?: SortOrder
+    studentId?: SortOrder
+    borrowDate?: SortOrder
+    dueDate?: SortOrder
+    returnDate?: SortOrder
+    status?: SortOrder
+    penalty?: SortOrder
+  }
+
+  export type BookCirculationAvgOrderByAggregateInput = {
+    penalty?: SortOrder
+  }
+
+  export type BookCirculationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    bookId?: SortOrder
+    studentId?: SortOrder
+    borrowDate?: SortOrder
+    dueDate?: SortOrder
+    returnDate?: SortOrder
+    status?: SortOrder
+    penalty?: SortOrder
+  }
+
+  export type BookCirculationMinOrderByAggregateInput = {
+    id?: SortOrder
+    bookId?: SortOrder
+    studentId?: SortOrder
+    borrowDate?: SortOrder
+    dueDate?: SortOrder
+    returnDate?: SortOrder
+    status?: SortOrder
+    penalty?: SortOrder
+  }
+
+  export type BookCirculationSumOrderByAggregateInput = {
+    penalty?: SortOrder
+  }
+
+  export type EnumCirculationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CirculationStatus | EnumCirculationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CirculationStatus[] | ListEnumCirculationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CirculationStatus[] | ListEnumCirculationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCirculationStatusWithAggregatesFilter<$PrismaModel> | $Enums.CirculationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCirculationStatusFilter<$PrismaModel>
+    _max?: NestedEnumCirculationStatusFilter<$PrismaModel>
+  }
+
+  export type MedicalInventoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    stock?: SortOrder
+    unit?: SortOrder
+  }
+
+  export type MedicalInventoryAvgOrderByAggregateInput = {
+    stock?: SortOrder
+  }
+
+  export type MedicalInventoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    stock?: SortOrder
+    unit?: SortOrder
+  }
+
+  export type MedicalInventoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    stock?: SortOrder
+    unit?: SortOrder
+  }
+
+  export type MedicalInventorySumOrderByAggregateInput = {
+    stock?: SortOrder
+  }
+
+  export type MedicalInventoryNullableRelationFilter = {
+    is?: MedicalInventoryWhereInput | null
+    isNot?: MedicalInventoryWhereInput | null
+  }
+
+  export type MedicalRecordCountOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    medicineId?: SortOrder
+    complaint?: SortOrder
+    actionTaken?: SortOrder
+    handledById?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MedicalRecordMaxOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    medicineId?: SortOrder
+    complaint?: SortOrder
+    actionTaken?: SortOrder
+    handledById?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type MedicalRecordMinOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    medicineId?: SortOrder
+    complaint?: SortOrder
+    actionTaken?: SortOrder
+    handledById?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EnumAlumniStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AlumniStatus | EnumAlumniStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AlumniStatus[] | ListEnumAlumniStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AlumniStatus[] | ListEnumAlumniStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAlumniStatusFilter<$PrismaModel> | $Enums.AlumniStatus
+  }
+
+  export type AlumniProfileCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    graduationYear?: SortOrder
+    currentStatus?: SortOrder
+    institution?: SortOrder
+    position?: SortOrder
+  }
+
+  export type AlumniProfileAvgOrderByAggregateInput = {
+    graduationYear?: SortOrder
+  }
+
+  export type AlumniProfileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    graduationYear?: SortOrder
+    currentStatus?: SortOrder
+    institution?: SortOrder
+    position?: SortOrder
+  }
+
+  export type AlumniProfileMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    graduationYear?: SortOrder
+    currentStatus?: SortOrder
+    institution?: SortOrder
+    position?: SortOrder
+  }
+
+  export type AlumniProfileSumOrderByAggregateInput = {
+    graduationYear?: SortOrder
+  }
+
+  export type EnumAlumniStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AlumniStatus | EnumAlumniStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AlumniStatus[] | ListEnumAlumniStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AlumniStatus[] | ListEnumAlumniStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAlumniStatusWithAggregatesFilter<$PrismaModel> | $Enums.AlumniStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAlumniStatusFilter<$PrismaModel>
+    _max?: NestedEnumAlumniStatusFilter<$PrismaModel>
+  }
+
+  export type JobPostingCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    company?: SortOrder
+    description?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type JobPostingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    company?: SortOrder
+    description?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type JobPostingMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    company?: SortOrder
+    description?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type EnumRequestStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.RequestStatus | EnumRequestStatusFieldRefInput<$PrismaModel>
     in?: $Enums.RequestStatus[] | ListEnumRequestStatusFieldRefInput<$PrismaModel>
@@ -49527,6 +57265,33 @@ export namespace Prisma {
     connect?: AbsenceRequestWhereUniqueInput | AbsenceRequestWhereUniqueInput[]
   }
 
+  export type BookCirculationCreateNestedManyWithoutStudentInput = {
+    create?: XOR<BookCirculationCreateWithoutStudentInput, BookCirculationUncheckedCreateWithoutStudentInput> | BookCirculationCreateWithoutStudentInput[] | BookCirculationUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: BookCirculationCreateOrConnectWithoutStudentInput | BookCirculationCreateOrConnectWithoutStudentInput[]
+    createMany?: BookCirculationCreateManyStudentInputEnvelope
+    connect?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+  }
+
+  export type MedicalRecordCreateNestedManyWithoutStudentInput = {
+    create?: XOR<MedicalRecordCreateWithoutStudentInput, MedicalRecordUncheckedCreateWithoutStudentInput> | MedicalRecordCreateWithoutStudentInput[] | MedicalRecordUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: MedicalRecordCreateOrConnectWithoutStudentInput | MedicalRecordCreateOrConnectWithoutStudentInput[]
+    createMany?: MedicalRecordCreateManyStudentInputEnvelope
+    connect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+  }
+
+  export type MedicalRecordCreateNestedManyWithoutHandledByInput = {
+    create?: XOR<MedicalRecordCreateWithoutHandledByInput, MedicalRecordUncheckedCreateWithoutHandledByInput> | MedicalRecordCreateWithoutHandledByInput[] | MedicalRecordUncheckedCreateWithoutHandledByInput[]
+    connectOrCreate?: MedicalRecordCreateOrConnectWithoutHandledByInput | MedicalRecordCreateOrConnectWithoutHandledByInput[]
+    createMany?: MedicalRecordCreateManyHandledByInputEnvelope
+    connect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+  }
+
+  export type AlumniProfileCreateNestedOneWithoutUserInput = {
+    create?: XOR<AlumniProfileCreateWithoutUserInput, AlumniProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: AlumniProfileCreateOrConnectWithoutUserInput
+    connect?: AlumniProfileWhereUniqueInput
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -49727,6 +57492,33 @@ export namespace Prisma {
     connectOrCreate?: AbsenceRequestCreateOrConnectWithoutReviewerInput | AbsenceRequestCreateOrConnectWithoutReviewerInput[]
     createMany?: AbsenceRequestCreateManyReviewerInputEnvelope
     connect?: AbsenceRequestWhereUniqueInput | AbsenceRequestWhereUniqueInput[]
+  }
+
+  export type BookCirculationUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<BookCirculationCreateWithoutStudentInput, BookCirculationUncheckedCreateWithoutStudentInput> | BookCirculationCreateWithoutStudentInput[] | BookCirculationUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: BookCirculationCreateOrConnectWithoutStudentInput | BookCirculationCreateOrConnectWithoutStudentInput[]
+    createMany?: BookCirculationCreateManyStudentInputEnvelope
+    connect?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+  }
+
+  export type MedicalRecordUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<MedicalRecordCreateWithoutStudentInput, MedicalRecordUncheckedCreateWithoutStudentInput> | MedicalRecordCreateWithoutStudentInput[] | MedicalRecordUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: MedicalRecordCreateOrConnectWithoutStudentInput | MedicalRecordCreateOrConnectWithoutStudentInput[]
+    createMany?: MedicalRecordCreateManyStudentInputEnvelope
+    connect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+  }
+
+  export type MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput = {
+    create?: XOR<MedicalRecordCreateWithoutHandledByInput, MedicalRecordUncheckedCreateWithoutHandledByInput> | MedicalRecordCreateWithoutHandledByInput[] | MedicalRecordUncheckedCreateWithoutHandledByInput[]
+    connectOrCreate?: MedicalRecordCreateOrConnectWithoutHandledByInput | MedicalRecordCreateOrConnectWithoutHandledByInput[]
+    createMany?: MedicalRecordCreateManyHandledByInputEnvelope
+    connect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+  }
+
+  export type AlumniProfileUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<AlumniProfileCreateWithoutUserInput, AlumniProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: AlumniProfileCreateOrConnectWithoutUserInput
+    connect?: AlumniProfileWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -50188,6 +57980,58 @@ export namespace Prisma {
     deleteMany?: AbsenceRequestScalarWhereInput | AbsenceRequestScalarWhereInput[]
   }
 
+  export type BookCirculationUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<BookCirculationCreateWithoutStudentInput, BookCirculationUncheckedCreateWithoutStudentInput> | BookCirculationCreateWithoutStudentInput[] | BookCirculationUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: BookCirculationCreateOrConnectWithoutStudentInput | BookCirculationCreateOrConnectWithoutStudentInput[]
+    upsert?: BookCirculationUpsertWithWhereUniqueWithoutStudentInput | BookCirculationUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: BookCirculationCreateManyStudentInputEnvelope
+    set?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    disconnect?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    delete?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    connect?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    update?: BookCirculationUpdateWithWhereUniqueWithoutStudentInput | BookCirculationUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: BookCirculationUpdateManyWithWhereWithoutStudentInput | BookCirculationUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: BookCirculationScalarWhereInput | BookCirculationScalarWhereInput[]
+  }
+
+  export type MedicalRecordUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<MedicalRecordCreateWithoutStudentInput, MedicalRecordUncheckedCreateWithoutStudentInput> | MedicalRecordCreateWithoutStudentInput[] | MedicalRecordUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: MedicalRecordCreateOrConnectWithoutStudentInput | MedicalRecordCreateOrConnectWithoutStudentInput[]
+    upsert?: MedicalRecordUpsertWithWhereUniqueWithoutStudentInput | MedicalRecordUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: MedicalRecordCreateManyStudentInputEnvelope
+    set?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    disconnect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    delete?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    connect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    update?: MedicalRecordUpdateWithWhereUniqueWithoutStudentInput | MedicalRecordUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: MedicalRecordUpdateManyWithWhereWithoutStudentInput | MedicalRecordUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: MedicalRecordScalarWhereInput | MedicalRecordScalarWhereInput[]
+  }
+
+  export type MedicalRecordUpdateManyWithoutHandledByNestedInput = {
+    create?: XOR<MedicalRecordCreateWithoutHandledByInput, MedicalRecordUncheckedCreateWithoutHandledByInput> | MedicalRecordCreateWithoutHandledByInput[] | MedicalRecordUncheckedCreateWithoutHandledByInput[]
+    connectOrCreate?: MedicalRecordCreateOrConnectWithoutHandledByInput | MedicalRecordCreateOrConnectWithoutHandledByInput[]
+    upsert?: MedicalRecordUpsertWithWhereUniqueWithoutHandledByInput | MedicalRecordUpsertWithWhereUniqueWithoutHandledByInput[]
+    createMany?: MedicalRecordCreateManyHandledByInputEnvelope
+    set?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    disconnect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    delete?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    connect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    update?: MedicalRecordUpdateWithWhereUniqueWithoutHandledByInput | MedicalRecordUpdateWithWhereUniqueWithoutHandledByInput[]
+    updateMany?: MedicalRecordUpdateManyWithWhereWithoutHandledByInput | MedicalRecordUpdateManyWithWhereWithoutHandledByInput[]
+    deleteMany?: MedicalRecordScalarWhereInput | MedicalRecordScalarWhereInput[]
+  }
+
+  export type AlumniProfileUpdateOneWithoutUserNestedInput = {
+    create?: XOR<AlumniProfileCreateWithoutUserInput, AlumniProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: AlumniProfileCreateOrConnectWithoutUserInput
+    upsert?: AlumniProfileUpsertWithoutUserInput
+    disconnect?: AlumniProfileWhereInput | boolean
+    delete?: AlumniProfileWhereInput | boolean
+    connect?: AlumniProfileWhereUniqueInput
+    update?: XOR<XOR<AlumniProfileUpdateToOneWithWhereWithoutUserInput, AlumniProfileUpdateWithoutUserInput>, AlumniProfileUncheckedUpdateWithoutUserInput>
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -50588,6 +58432,58 @@ export namespace Prisma {
     update?: AbsenceRequestUpdateWithWhereUniqueWithoutReviewerInput | AbsenceRequestUpdateWithWhereUniqueWithoutReviewerInput[]
     updateMany?: AbsenceRequestUpdateManyWithWhereWithoutReviewerInput | AbsenceRequestUpdateManyWithWhereWithoutReviewerInput[]
     deleteMany?: AbsenceRequestScalarWhereInput | AbsenceRequestScalarWhereInput[]
+  }
+
+  export type BookCirculationUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<BookCirculationCreateWithoutStudentInput, BookCirculationUncheckedCreateWithoutStudentInput> | BookCirculationCreateWithoutStudentInput[] | BookCirculationUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: BookCirculationCreateOrConnectWithoutStudentInput | BookCirculationCreateOrConnectWithoutStudentInput[]
+    upsert?: BookCirculationUpsertWithWhereUniqueWithoutStudentInput | BookCirculationUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: BookCirculationCreateManyStudentInputEnvelope
+    set?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    disconnect?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    delete?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    connect?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    update?: BookCirculationUpdateWithWhereUniqueWithoutStudentInput | BookCirculationUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: BookCirculationUpdateManyWithWhereWithoutStudentInput | BookCirculationUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: BookCirculationScalarWhereInput | BookCirculationScalarWhereInput[]
+  }
+
+  export type MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<MedicalRecordCreateWithoutStudentInput, MedicalRecordUncheckedCreateWithoutStudentInput> | MedicalRecordCreateWithoutStudentInput[] | MedicalRecordUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: MedicalRecordCreateOrConnectWithoutStudentInput | MedicalRecordCreateOrConnectWithoutStudentInput[]
+    upsert?: MedicalRecordUpsertWithWhereUniqueWithoutStudentInput | MedicalRecordUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: MedicalRecordCreateManyStudentInputEnvelope
+    set?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    disconnect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    delete?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    connect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    update?: MedicalRecordUpdateWithWhereUniqueWithoutStudentInput | MedicalRecordUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: MedicalRecordUpdateManyWithWhereWithoutStudentInput | MedicalRecordUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: MedicalRecordScalarWhereInput | MedicalRecordScalarWhereInput[]
+  }
+
+  export type MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput = {
+    create?: XOR<MedicalRecordCreateWithoutHandledByInput, MedicalRecordUncheckedCreateWithoutHandledByInput> | MedicalRecordCreateWithoutHandledByInput[] | MedicalRecordUncheckedCreateWithoutHandledByInput[]
+    connectOrCreate?: MedicalRecordCreateOrConnectWithoutHandledByInput | MedicalRecordCreateOrConnectWithoutHandledByInput[]
+    upsert?: MedicalRecordUpsertWithWhereUniqueWithoutHandledByInput | MedicalRecordUpsertWithWhereUniqueWithoutHandledByInput[]
+    createMany?: MedicalRecordCreateManyHandledByInputEnvelope
+    set?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    disconnect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    delete?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    connect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    update?: MedicalRecordUpdateWithWhereUniqueWithoutHandledByInput | MedicalRecordUpdateWithWhereUniqueWithoutHandledByInput[]
+    updateMany?: MedicalRecordUpdateManyWithWhereWithoutHandledByInput | MedicalRecordUpdateManyWithWhereWithoutHandledByInput[]
+    deleteMany?: MedicalRecordScalarWhereInput | MedicalRecordScalarWhereInput[]
+  }
+
+  export type AlumniProfileUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<AlumniProfileCreateWithoutUserInput, AlumniProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: AlumniProfileCreateOrConnectWithoutUserInput
+    upsert?: AlumniProfileUpsertWithoutUserInput
+    disconnect?: AlumniProfileWhereInput | boolean
+    delete?: AlumniProfileWhereInput | boolean
+    connect?: AlumniProfileWhereUniqueInput
+    update?: XOR<XOR<AlumniProfileUpdateToOneWithWhereWithoutUserInput, AlumniProfileUpdateWithoutUserInput>, AlumniProfileUncheckedUpdateWithoutUserInput>
   }
 
   export type UserCreateNestedOneWithoutUserNotesInput = {
@@ -52508,6 +60404,184 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBillingsInput, UserUpdateWithoutBillingsInput>, UserUncheckedUpdateWithoutBillingsInput>
   }
 
+  export type BookCirculationCreateNestedManyWithoutBookInput = {
+    create?: XOR<BookCirculationCreateWithoutBookInput, BookCirculationUncheckedCreateWithoutBookInput> | BookCirculationCreateWithoutBookInput[] | BookCirculationUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: BookCirculationCreateOrConnectWithoutBookInput | BookCirculationCreateOrConnectWithoutBookInput[]
+    createMany?: BookCirculationCreateManyBookInputEnvelope
+    connect?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+  }
+
+  export type BookCirculationUncheckedCreateNestedManyWithoutBookInput = {
+    create?: XOR<BookCirculationCreateWithoutBookInput, BookCirculationUncheckedCreateWithoutBookInput> | BookCirculationCreateWithoutBookInput[] | BookCirculationUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: BookCirculationCreateOrConnectWithoutBookInput | BookCirculationCreateOrConnectWithoutBookInput[]
+    createMany?: BookCirculationCreateManyBookInputEnvelope
+    connect?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+  }
+
+  export type BookCirculationUpdateManyWithoutBookNestedInput = {
+    create?: XOR<BookCirculationCreateWithoutBookInput, BookCirculationUncheckedCreateWithoutBookInput> | BookCirculationCreateWithoutBookInput[] | BookCirculationUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: BookCirculationCreateOrConnectWithoutBookInput | BookCirculationCreateOrConnectWithoutBookInput[]
+    upsert?: BookCirculationUpsertWithWhereUniqueWithoutBookInput | BookCirculationUpsertWithWhereUniqueWithoutBookInput[]
+    createMany?: BookCirculationCreateManyBookInputEnvelope
+    set?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    disconnect?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    delete?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    connect?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    update?: BookCirculationUpdateWithWhereUniqueWithoutBookInput | BookCirculationUpdateWithWhereUniqueWithoutBookInput[]
+    updateMany?: BookCirculationUpdateManyWithWhereWithoutBookInput | BookCirculationUpdateManyWithWhereWithoutBookInput[]
+    deleteMany?: BookCirculationScalarWhereInput | BookCirculationScalarWhereInput[]
+  }
+
+  export type BookCirculationUncheckedUpdateManyWithoutBookNestedInput = {
+    create?: XOR<BookCirculationCreateWithoutBookInput, BookCirculationUncheckedCreateWithoutBookInput> | BookCirculationCreateWithoutBookInput[] | BookCirculationUncheckedCreateWithoutBookInput[]
+    connectOrCreate?: BookCirculationCreateOrConnectWithoutBookInput | BookCirculationCreateOrConnectWithoutBookInput[]
+    upsert?: BookCirculationUpsertWithWhereUniqueWithoutBookInput | BookCirculationUpsertWithWhereUniqueWithoutBookInput[]
+    createMany?: BookCirculationCreateManyBookInputEnvelope
+    set?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    disconnect?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    delete?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    connect?: BookCirculationWhereUniqueInput | BookCirculationWhereUniqueInput[]
+    update?: BookCirculationUpdateWithWhereUniqueWithoutBookInput | BookCirculationUpdateWithWhereUniqueWithoutBookInput[]
+    updateMany?: BookCirculationUpdateManyWithWhereWithoutBookInput | BookCirculationUpdateManyWithWhereWithoutBookInput[]
+    deleteMany?: BookCirculationScalarWhereInput | BookCirculationScalarWhereInput[]
+  }
+
+  export type BookCreateNestedOneWithoutCirculationsInput = {
+    create?: XOR<BookCreateWithoutCirculationsInput, BookUncheckedCreateWithoutCirculationsInput>
+    connectOrCreate?: BookCreateOrConnectWithoutCirculationsInput
+    connect?: BookWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutBookCirculationsInput = {
+    create?: XOR<UserCreateWithoutBookCirculationsInput, UserUncheckedCreateWithoutBookCirculationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBookCirculationsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumCirculationStatusFieldUpdateOperationsInput = {
+    set?: $Enums.CirculationStatus
+  }
+
+  export type BookUpdateOneRequiredWithoutCirculationsNestedInput = {
+    create?: XOR<BookCreateWithoutCirculationsInput, BookUncheckedCreateWithoutCirculationsInput>
+    connectOrCreate?: BookCreateOrConnectWithoutCirculationsInput
+    upsert?: BookUpsertWithoutCirculationsInput
+    connect?: BookWhereUniqueInput
+    update?: XOR<XOR<BookUpdateToOneWithWhereWithoutCirculationsInput, BookUpdateWithoutCirculationsInput>, BookUncheckedUpdateWithoutCirculationsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutBookCirculationsNestedInput = {
+    create?: XOR<UserCreateWithoutBookCirculationsInput, UserUncheckedCreateWithoutBookCirculationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBookCirculationsInput
+    upsert?: UserUpsertWithoutBookCirculationsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBookCirculationsInput, UserUpdateWithoutBookCirculationsInput>, UserUncheckedUpdateWithoutBookCirculationsInput>
+  }
+
+  export type MedicalRecordCreateNestedManyWithoutMedicineInput = {
+    create?: XOR<MedicalRecordCreateWithoutMedicineInput, MedicalRecordUncheckedCreateWithoutMedicineInput> | MedicalRecordCreateWithoutMedicineInput[] | MedicalRecordUncheckedCreateWithoutMedicineInput[]
+    connectOrCreate?: MedicalRecordCreateOrConnectWithoutMedicineInput | MedicalRecordCreateOrConnectWithoutMedicineInput[]
+    createMany?: MedicalRecordCreateManyMedicineInputEnvelope
+    connect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+  }
+
+  export type MedicalRecordUncheckedCreateNestedManyWithoutMedicineInput = {
+    create?: XOR<MedicalRecordCreateWithoutMedicineInput, MedicalRecordUncheckedCreateWithoutMedicineInput> | MedicalRecordCreateWithoutMedicineInput[] | MedicalRecordUncheckedCreateWithoutMedicineInput[]
+    connectOrCreate?: MedicalRecordCreateOrConnectWithoutMedicineInput | MedicalRecordCreateOrConnectWithoutMedicineInput[]
+    createMany?: MedicalRecordCreateManyMedicineInputEnvelope
+    connect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+  }
+
+  export type MedicalRecordUpdateManyWithoutMedicineNestedInput = {
+    create?: XOR<MedicalRecordCreateWithoutMedicineInput, MedicalRecordUncheckedCreateWithoutMedicineInput> | MedicalRecordCreateWithoutMedicineInput[] | MedicalRecordUncheckedCreateWithoutMedicineInput[]
+    connectOrCreate?: MedicalRecordCreateOrConnectWithoutMedicineInput | MedicalRecordCreateOrConnectWithoutMedicineInput[]
+    upsert?: MedicalRecordUpsertWithWhereUniqueWithoutMedicineInput | MedicalRecordUpsertWithWhereUniqueWithoutMedicineInput[]
+    createMany?: MedicalRecordCreateManyMedicineInputEnvelope
+    set?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    disconnect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    delete?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    connect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    update?: MedicalRecordUpdateWithWhereUniqueWithoutMedicineInput | MedicalRecordUpdateWithWhereUniqueWithoutMedicineInput[]
+    updateMany?: MedicalRecordUpdateManyWithWhereWithoutMedicineInput | MedicalRecordUpdateManyWithWhereWithoutMedicineInput[]
+    deleteMany?: MedicalRecordScalarWhereInput | MedicalRecordScalarWhereInput[]
+  }
+
+  export type MedicalRecordUncheckedUpdateManyWithoutMedicineNestedInput = {
+    create?: XOR<MedicalRecordCreateWithoutMedicineInput, MedicalRecordUncheckedCreateWithoutMedicineInput> | MedicalRecordCreateWithoutMedicineInput[] | MedicalRecordUncheckedCreateWithoutMedicineInput[]
+    connectOrCreate?: MedicalRecordCreateOrConnectWithoutMedicineInput | MedicalRecordCreateOrConnectWithoutMedicineInput[]
+    upsert?: MedicalRecordUpsertWithWhereUniqueWithoutMedicineInput | MedicalRecordUpsertWithWhereUniqueWithoutMedicineInput[]
+    createMany?: MedicalRecordCreateManyMedicineInputEnvelope
+    set?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    disconnect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    delete?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    connect?: MedicalRecordWhereUniqueInput | MedicalRecordWhereUniqueInput[]
+    update?: MedicalRecordUpdateWithWhereUniqueWithoutMedicineInput | MedicalRecordUpdateWithWhereUniqueWithoutMedicineInput[]
+    updateMany?: MedicalRecordUpdateManyWithWhereWithoutMedicineInput | MedicalRecordUpdateManyWithWhereWithoutMedicineInput[]
+    deleteMany?: MedicalRecordScalarWhereInput | MedicalRecordScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutStudentMedicalInput = {
+    create?: XOR<UserCreateWithoutStudentMedicalInput, UserUncheckedCreateWithoutStudentMedicalInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStudentMedicalInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutStaffMedicalInput = {
+    create?: XOR<UserCreateWithoutStaffMedicalInput, UserUncheckedCreateWithoutStaffMedicalInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStaffMedicalInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type MedicalInventoryCreateNestedOneWithoutRecordsInput = {
+    create?: XOR<MedicalInventoryCreateWithoutRecordsInput, MedicalInventoryUncheckedCreateWithoutRecordsInput>
+    connectOrCreate?: MedicalInventoryCreateOrConnectWithoutRecordsInput
+    connect?: MedicalInventoryWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutStudentMedicalNestedInput = {
+    create?: XOR<UserCreateWithoutStudentMedicalInput, UserUncheckedCreateWithoutStudentMedicalInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStudentMedicalInput
+    upsert?: UserUpsertWithoutStudentMedicalInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStudentMedicalInput, UserUpdateWithoutStudentMedicalInput>, UserUncheckedUpdateWithoutStudentMedicalInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutStaffMedicalNestedInput = {
+    create?: XOR<UserCreateWithoutStaffMedicalInput, UserUncheckedCreateWithoutStaffMedicalInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStaffMedicalInput
+    upsert?: UserUpsertWithoutStaffMedicalInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStaffMedicalInput, UserUpdateWithoutStaffMedicalInput>, UserUncheckedUpdateWithoutStaffMedicalInput>
+  }
+
+  export type MedicalInventoryUpdateOneWithoutRecordsNestedInput = {
+    create?: XOR<MedicalInventoryCreateWithoutRecordsInput, MedicalInventoryUncheckedCreateWithoutRecordsInput>
+    connectOrCreate?: MedicalInventoryCreateOrConnectWithoutRecordsInput
+    upsert?: MedicalInventoryUpsertWithoutRecordsInput
+    disconnect?: MedicalInventoryWhereInput | boolean
+    delete?: MedicalInventoryWhereInput | boolean
+    connect?: MedicalInventoryWhereUniqueInput
+    update?: XOR<XOR<MedicalInventoryUpdateToOneWithWhereWithoutRecordsInput, MedicalInventoryUpdateWithoutRecordsInput>, MedicalInventoryUncheckedUpdateWithoutRecordsInput>
+  }
+
+  export type UserCreateNestedOneWithoutAlumniProfileInput = {
+    create?: XOR<UserCreateWithoutAlumniProfileInput, UserUncheckedCreateWithoutAlumniProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAlumniProfileInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumAlumniStatusFieldUpdateOperationsInput = {
+    set?: $Enums.AlumniStatus
+  }
+
+  export type UserUpdateOneRequiredWithoutAlumniProfileNestedInput = {
+    create?: XOR<UserCreateWithoutAlumniProfileInput, UserUncheckedCreateWithoutAlumniProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAlumniProfileInput
+    upsert?: UserUpsertWithoutAlumniProfileInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAlumniProfileInput, UserUpdateWithoutAlumniProfileInput>, UserUncheckedUpdateWithoutAlumniProfileInput>
+  }
+
   export type UserCreateNestedOneWithoutAbsenceRequestsInput = {
     create?: XOR<UserCreateWithoutAbsenceRequestsInput, UserUncheckedCreateWithoutAbsenceRequestsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAbsenceRequestsInput
@@ -52904,6 +60978,40 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumBillingStatusFilter<$PrismaModel>
     _max?: NestedEnumBillingStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumCirculationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.CirculationStatus | EnumCirculationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CirculationStatus[] | ListEnumCirculationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CirculationStatus[] | ListEnumCirculationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCirculationStatusFilter<$PrismaModel> | $Enums.CirculationStatus
+  }
+
+  export type NestedEnumCirculationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CirculationStatus | EnumCirculationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CirculationStatus[] | ListEnumCirculationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CirculationStatus[] | ListEnumCirculationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCirculationStatusWithAggregatesFilter<$PrismaModel> | $Enums.CirculationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCirculationStatusFilter<$PrismaModel>
+    _max?: NestedEnumCirculationStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumAlumniStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.AlumniStatus | EnumAlumniStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AlumniStatus[] | ListEnumAlumniStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AlumniStatus[] | ListEnumAlumniStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAlumniStatusFilter<$PrismaModel> | $Enums.AlumniStatus
+  }
+
+  export type NestedEnumAlumniStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AlumniStatus | EnumAlumniStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.AlumniStatus[] | ListEnumAlumniStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AlumniStatus[] | ListEnumAlumniStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumAlumniStatusWithAggregatesFilter<$PrismaModel> | $Enums.AlumniStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAlumniStatusFilter<$PrismaModel>
+    _max?: NestedEnumAlumniStatusFilter<$PrismaModel>
   }
 
   export type NestedEnumRequestStatusFilter<$PrismaModel = never> = {
@@ -53772,6 +61880,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutChildrenInput = {
@@ -53829,6 +61941,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutChildrenInput = {
@@ -53891,6 +62007,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutParentInput = {
@@ -53948,6 +62068,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutParentInput = {
@@ -54068,6 +62192,113 @@ export namespace Prisma {
   export type AbsenceRequestCreateManyReviewerInputEnvelope = {
     data: AbsenceRequestCreateManyReviewerInput | AbsenceRequestCreateManyReviewerInput[]
     skipDuplicates?: boolean
+  }
+
+  export type BookCirculationCreateWithoutStudentInput = {
+    id?: string
+    borrowDate?: Date | string
+    dueDate: Date | string
+    returnDate?: Date | string | null
+    status?: $Enums.CirculationStatus
+    penalty?: number
+    book: BookCreateNestedOneWithoutCirculationsInput
+  }
+
+  export type BookCirculationUncheckedCreateWithoutStudentInput = {
+    id?: string
+    bookId: string
+    borrowDate?: Date | string
+    dueDate: Date | string
+    returnDate?: Date | string | null
+    status?: $Enums.CirculationStatus
+    penalty?: number
+  }
+
+  export type BookCirculationCreateOrConnectWithoutStudentInput = {
+    where: BookCirculationWhereUniqueInput
+    create: XOR<BookCirculationCreateWithoutStudentInput, BookCirculationUncheckedCreateWithoutStudentInput>
+  }
+
+  export type BookCirculationCreateManyStudentInputEnvelope = {
+    data: BookCirculationCreateManyStudentInput | BookCirculationCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MedicalRecordCreateWithoutStudentInput = {
+    id?: string
+    complaint: string
+    actionTaken: string
+    createdAt?: Date | string
+    handledBy: UserCreateNestedOneWithoutStaffMedicalInput
+    medicine?: MedicalInventoryCreateNestedOneWithoutRecordsInput
+  }
+
+  export type MedicalRecordUncheckedCreateWithoutStudentInput = {
+    id?: string
+    medicineId?: string | null
+    complaint: string
+    actionTaken: string
+    handledById: string
+    createdAt?: Date | string
+  }
+
+  export type MedicalRecordCreateOrConnectWithoutStudentInput = {
+    where: MedicalRecordWhereUniqueInput
+    create: XOR<MedicalRecordCreateWithoutStudentInput, MedicalRecordUncheckedCreateWithoutStudentInput>
+  }
+
+  export type MedicalRecordCreateManyStudentInputEnvelope = {
+    data: MedicalRecordCreateManyStudentInput | MedicalRecordCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MedicalRecordCreateWithoutHandledByInput = {
+    id?: string
+    complaint: string
+    actionTaken: string
+    createdAt?: Date | string
+    student: UserCreateNestedOneWithoutStudentMedicalInput
+    medicine?: MedicalInventoryCreateNestedOneWithoutRecordsInput
+  }
+
+  export type MedicalRecordUncheckedCreateWithoutHandledByInput = {
+    id?: string
+    studentId: string
+    medicineId?: string | null
+    complaint: string
+    actionTaken: string
+    createdAt?: Date | string
+  }
+
+  export type MedicalRecordCreateOrConnectWithoutHandledByInput = {
+    where: MedicalRecordWhereUniqueInput
+    create: XOR<MedicalRecordCreateWithoutHandledByInput, MedicalRecordUncheckedCreateWithoutHandledByInput>
+  }
+
+  export type MedicalRecordCreateManyHandledByInputEnvelope = {
+    data: MedicalRecordCreateManyHandledByInput | MedicalRecordCreateManyHandledByInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AlumniProfileCreateWithoutUserInput = {
+    id?: string
+    graduationYear: number
+    currentStatus?: $Enums.AlumniStatus
+    institution?: string | null
+    position?: string | null
+  }
+
+  export type AlumniProfileUncheckedCreateWithoutUserInput = {
+    id?: string
+    graduationYear: number
+    currentStatus?: $Enums.AlumniStatus
+    institution?: string | null
+    position?: string | null
+  }
+
+  export type AlumniProfileCreateOrConnectWithoutUserInput = {
+    where: AlumniProfileWhereUniqueInput
+    create: XOR<AlumniProfileCreateWithoutUserInput, AlumniProfileUncheckedCreateWithoutUserInput>
   }
 
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -54886,6 +63117,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChildrenInput = {
@@ -54943,6 +63178,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserUpsertWithWhereUniqueWithoutParentInput = {
@@ -55076,6 +63315,108 @@ export namespace Prisma {
     data: XOR<AbsenceRequestUpdateManyMutationInput, AbsenceRequestUncheckedUpdateManyWithoutReviewerInput>
   }
 
+  export type BookCirculationUpsertWithWhereUniqueWithoutStudentInput = {
+    where: BookCirculationWhereUniqueInput
+    update: XOR<BookCirculationUpdateWithoutStudentInput, BookCirculationUncheckedUpdateWithoutStudentInput>
+    create: XOR<BookCirculationCreateWithoutStudentInput, BookCirculationUncheckedCreateWithoutStudentInput>
+  }
+
+  export type BookCirculationUpdateWithWhereUniqueWithoutStudentInput = {
+    where: BookCirculationWhereUniqueInput
+    data: XOR<BookCirculationUpdateWithoutStudentInput, BookCirculationUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type BookCirculationUpdateManyWithWhereWithoutStudentInput = {
+    where: BookCirculationScalarWhereInput
+    data: XOR<BookCirculationUpdateManyMutationInput, BookCirculationUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type BookCirculationScalarWhereInput = {
+    AND?: BookCirculationScalarWhereInput | BookCirculationScalarWhereInput[]
+    OR?: BookCirculationScalarWhereInput[]
+    NOT?: BookCirculationScalarWhereInput | BookCirculationScalarWhereInput[]
+    id?: StringFilter<"BookCirculation"> | string
+    bookId?: StringFilter<"BookCirculation"> | string
+    studentId?: StringFilter<"BookCirculation"> | string
+    borrowDate?: DateTimeFilter<"BookCirculation"> | Date | string
+    dueDate?: DateTimeFilter<"BookCirculation"> | Date | string
+    returnDate?: DateTimeNullableFilter<"BookCirculation"> | Date | string | null
+    status?: EnumCirculationStatusFilter<"BookCirculation"> | $Enums.CirculationStatus
+    penalty?: IntFilter<"BookCirculation"> | number
+  }
+
+  export type MedicalRecordUpsertWithWhereUniqueWithoutStudentInput = {
+    where: MedicalRecordWhereUniqueInput
+    update: XOR<MedicalRecordUpdateWithoutStudentInput, MedicalRecordUncheckedUpdateWithoutStudentInput>
+    create: XOR<MedicalRecordCreateWithoutStudentInput, MedicalRecordUncheckedCreateWithoutStudentInput>
+  }
+
+  export type MedicalRecordUpdateWithWhereUniqueWithoutStudentInput = {
+    where: MedicalRecordWhereUniqueInput
+    data: XOR<MedicalRecordUpdateWithoutStudentInput, MedicalRecordUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type MedicalRecordUpdateManyWithWhereWithoutStudentInput = {
+    where: MedicalRecordScalarWhereInput
+    data: XOR<MedicalRecordUpdateManyMutationInput, MedicalRecordUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type MedicalRecordScalarWhereInput = {
+    AND?: MedicalRecordScalarWhereInput | MedicalRecordScalarWhereInput[]
+    OR?: MedicalRecordScalarWhereInput[]
+    NOT?: MedicalRecordScalarWhereInput | MedicalRecordScalarWhereInput[]
+    id?: StringFilter<"MedicalRecord"> | string
+    studentId?: StringFilter<"MedicalRecord"> | string
+    medicineId?: StringNullableFilter<"MedicalRecord"> | string | null
+    complaint?: StringFilter<"MedicalRecord"> | string
+    actionTaken?: StringFilter<"MedicalRecord"> | string
+    handledById?: StringFilter<"MedicalRecord"> | string
+    createdAt?: DateTimeFilter<"MedicalRecord"> | Date | string
+  }
+
+  export type MedicalRecordUpsertWithWhereUniqueWithoutHandledByInput = {
+    where: MedicalRecordWhereUniqueInput
+    update: XOR<MedicalRecordUpdateWithoutHandledByInput, MedicalRecordUncheckedUpdateWithoutHandledByInput>
+    create: XOR<MedicalRecordCreateWithoutHandledByInput, MedicalRecordUncheckedCreateWithoutHandledByInput>
+  }
+
+  export type MedicalRecordUpdateWithWhereUniqueWithoutHandledByInput = {
+    where: MedicalRecordWhereUniqueInput
+    data: XOR<MedicalRecordUpdateWithoutHandledByInput, MedicalRecordUncheckedUpdateWithoutHandledByInput>
+  }
+
+  export type MedicalRecordUpdateManyWithWhereWithoutHandledByInput = {
+    where: MedicalRecordScalarWhereInput
+    data: XOR<MedicalRecordUpdateManyMutationInput, MedicalRecordUncheckedUpdateManyWithoutHandledByInput>
+  }
+
+  export type AlumniProfileUpsertWithoutUserInput = {
+    update: XOR<AlumniProfileUpdateWithoutUserInput, AlumniProfileUncheckedUpdateWithoutUserInput>
+    create: XOR<AlumniProfileCreateWithoutUserInput, AlumniProfileUncheckedCreateWithoutUserInput>
+    where?: AlumniProfileWhereInput
+  }
+
+  export type AlumniProfileUpdateToOneWithWhereWithoutUserInput = {
+    where?: AlumniProfileWhereInput
+    data: XOR<AlumniProfileUpdateWithoutUserInput, AlumniProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AlumniProfileUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    graduationYear?: IntFieldUpdateOperationsInput | number
+    currentStatus?: EnumAlumniStatusFieldUpdateOperationsInput | $Enums.AlumniStatus
+    institution?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AlumniProfileUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    graduationYear?: IntFieldUpdateOperationsInput | number
+    currentStatus?: EnumAlumniStatusFieldUpdateOperationsInput | $Enums.AlumniStatus
+    institution?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type UserCreateWithoutUserNotesInput = {
     id?: string
     name: string
@@ -55131,6 +63472,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUserNotesInput = {
@@ -55188,6 +63533,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUserNotesInput = {
@@ -55250,6 +63599,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAuthoredNotesInput = {
@@ -55307,6 +63660,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAuthoredNotesInput = {
@@ -55380,6 +63737,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserNotesInput = {
@@ -55437,6 +63798,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutAuthoredNotesInput = {
@@ -55505,6 +63870,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuthoredNotesInput = {
@@ -55562,6 +63931,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAttendancesInput = {
@@ -55619,6 +63992,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAttendancesInput = {
@@ -55676,6 +64053,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAttendancesInput = {
@@ -55749,6 +64130,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAttendancesInput = {
@@ -55806,6 +64191,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type AssignmentCreateWithoutClassInput = {
@@ -55943,6 +64332,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutClassInput = {
@@ -56000,6 +64393,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutClassInput = {
@@ -56351,6 +64748,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTeacherSubjectsInput = {
@@ -56408,6 +64809,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTeacherSubjectsInput = {
@@ -56649,6 +65054,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeacherSubjectsInput = {
@@ -56706,6 +65115,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type TopicUpsertWithWhereUniqueWithoutSubjectInput = {
@@ -57059,6 +65472,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProgressLogsInput = {
@@ -57116,6 +65533,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProgressLogsInput = {
@@ -57226,6 +65647,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgressLogsInput = {
@@ -57283,6 +65708,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type SubjectCreateWithoutUserSubjectsInput = {
@@ -57377,6 +65806,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUserSubjectsInput = {
@@ -57434,6 +65867,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUserSubjectsInput = {
@@ -57550,6 +65987,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserSubjectsInput = {
@@ -57607,6 +66048,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type ClassCreateWithoutSchedulesInput = {
@@ -57732,6 +66177,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTeacherSchedulesInput = {
@@ -57789,6 +66238,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTeacherSchedulesInput = {
@@ -57942,6 +66395,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeacherSchedulesInput = {
@@ -57999,6 +66456,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type ClassCreateWithoutMaterialsInput = {
@@ -58124,6 +66585,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTeacherMaterialsInput = {
@@ -58181,6 +66646,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTeacherMaterialsInput = {
@@ -58334,6 +66803,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeacherMaterialsInput = {
@@ -58391,6 +66864,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutEkskulLeaderInput = {
@@ -58448,6 +66925,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEkskulLeaderInput = {
@@ -58505,6 +66986,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEkskulLeaderInput = {
@@ -58567,6 +67052,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEkskulCoachInput = {
@@ -58624,6 +67113,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEkskulCoachInput = {
@@ -58749,6 +67242,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEkskulLeaderInput = {
@@ -58806,6 +67303,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutEkskulCoachInput = {
@@ -58874,6 +67375,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEkskulCoachInput = {
@@ -58931,6 +67436,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type ExtracurricularMemberUpsertWithWhereUniqueWithoutExtracurricularInput = {
@@ -59033,6 +67542,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEkskulMembersInput = {
@@ -59090,6 +67603,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEkskulMembersInput = {
@@ -59192,6 +67709,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEkskulMembersInput = {
@@ -59249,6 +67770,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type ExtracurricularUpsertWithoutMembersInput = {
@@ -59470,6 +67995,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEkskulAttendancesInput = {
@@ -59527,6 +68056,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEkskulAttendancesInput = {
@@ -59631,6 +68164,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEkskulAttendancesInput = {
@@ -59688,6 +68225,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type ClassCreateWithoutAssignmentsInput = {
@@ -59844,6 +68385,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTeacherAssignmentsInput = {
@@ -59901,6 +68446,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTeacherAssignmentsInput = {
@@ -60151,6 +68700,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeacherAssignmentsInput = {
@@ -60208,6 +68761,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type AssignmentSubmissionUpsertWithWhereUniqueWithoutAssignmentInput = {
@@ -60338,6 +68895,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutStudentSubmissionsInput = {
@@ -60395,6 +68956,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutStudentSubmissionsInput = {
@@ -60541,6 +69106,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStudentSubmissionsInput = {
@@ -60598,6 +69167,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type CommentUpsertWithWhereUniqueWithoutSubmissionInput = {
@@ -60671,6 +69244,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCommentsInput = {
@@ -60728,6 +69305,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCommentsInput = {
@@ -60871,6 +69452,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -60928,6 +69513,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type AssignmentUpsertWithoutCommentsInput = {
@@ -61067,6 +69656,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -61124,6 +69717,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -61218,6 +69815,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -61275,6 +69876,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type AnnouncementUpsertWithoutNotificationsInput = {
@@ -61405,6 +70010,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOperatorInput = {
@@ -61462,6 +70071,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOperatorInput = {
@@ -61535,6 +70148,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOperatorInput = {
@@ -61592,6 +70209,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -61649,6 +70270,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -61706,6 +70331,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -61779,6 +70408,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -61836,6 +70469,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -61893,6 +70530,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -61950,6 +70591,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -62023,6 +70668,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -62080,6 +70729,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutCalendarRemindersInput = {
@@ -62137,6 +70790,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCalendarRemindersInput = {
@@ -62194,6 +70851,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCalendarRemindersInput = {
@@ -62267,6 +70928,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCalendarRemindersInput = {
@@ -62324,6 +70989,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutDocumentsInput = {
@@ -62381,6 +71050,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDocumentsInput = {
@@ -62438,6 +71111,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDocumentsInput = {
@@ -62574,6 +71251,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDocumentsInput = {
@@ -62631,6 +71312,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type DocumentUpsertWithoutSubDocsInput = {
@@ -62739,6 +71424,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDiscussionThreadsInput = {
@@ -62796,6 +71485,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDiscussionThreadsInput = {
@@ -62926,6 +71619,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDiscussionThreadsInput = {
@@ -62983,6 +71680,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type ClassUpsertWithoutDiscussionThreadsInput = {
@@ -63118,6 +71819,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDiscussionRepliesInput = {
@@ -63175,6 +71880,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDiscussionRepliesInput = {
@@ -63279,6 +71988,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDiscussionRepliesInput = {
@@ -63336,6 +72049,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type ClassCreateWithoutExamsInput = {
@@ -63461,6 +72178,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTeacherExamsInput = {
@@ -63518,6 +72239,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTeacherExamsInput = {
@@ -63735,6 +72460,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeacherExamsInput = {
@@ -63792,6 +72521,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type ExamQuestionUpsertWithWhereUniqueWithoutExamInput = {
@@ -64072,6 +72805,10 @@ export namespace Prisma {
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutExamAttemptsInput = {
@@ -64129,6 +72866,10 @@ export namespace Prisma {
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutExamAttemptsInput = {
@@ -64273,6 +73014,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutExamAttemptsInput = {
@@ -64330,6 +73075,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type ExamAnswerUpsertWithWhereUniqueWithoutAttemptInput = {
@@ -64523,6 +73272,10 @@ export namespace Prisma {
     children?: UserCreateNestedManyWithoutParentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBillingsInput = {
@@ -64580,6 +73333,10 @@ export namespace Prisma {
     children?: UserUncheckedCreateNestedManyWithoutParentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBillingsInput = {
@@ -64653,6 +73410,10 @@ export namespace Prisma {
     children?: UserUpdateManyWithoutParentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBillingsInput = {
@@ -64710,6 +73471,1240 @@ export namespace Prisma {
     children?: UserUncheckedUpdateManyWithoutParentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type BookCirculationCreateWithoutBookInput = {
+    id?: string
+    borrowDate?: Date | string
+    dueDate: Date | string
+    returnDate?: Date | string | null
+    status?: $Enums.CirculationStatus
+    penalty?: number
+    student: UserCreateNestedOneWithoutBookCirculationsInput
+  }
+
+  export type BookCirculationUncheckedCreateWithoutBookInput = {
+    id?: string
+    studentId: string
+    borrowDate?: Date | string
+    dueDate: Date | string
+    returnDate?: Date | string | null
+    status?: $Enums.CirculationStatus
+    penalty?: number
+  }
+
+  export type BookCirculationCreateOrConnectWithoutBookInput = {
+    where: BookCirculationWhereUniqueInput
+    create: XOR<BookCirculationCreateWithoutBookInput, BookCirculationUncheckedCreateWithoutBookInput>
+  }
+
+  export type BookCirculationCreateManyBookInputEnvelope = {
+    data: BookCirculationCreateManyBookInput | BookCirculationCreateManyBookInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BookCirculationUpsertWithWhereUniqueWithoutBookInput = {
+    where: BookCirculationWhereUniqueInput
+    update: XOR<BookCirculationUpdateWithoutBookInput, BookCirculationUncheckedUpdateWithoutBookInput>
+    create: XOR<BookCirculationCreateWithoutBookInput, BookCirculationUncheckedCreateWithoutBookInput>
+  }
+
+  export type BookCirculationUpdateWithWhereUniqueWithoutBookInput = {
+    where: BookCirculationWhereUniqueInput
+    data: XOR<BookCirculationUpdateWithoutBookInput, BookCirculationUncheckedUpdateWithoutBookInput>
+  }
+
+  export type BookCirculationUpdateManyWithWhereWithoutBookInput = {
+    where: BookCirculationScalarWhereInput
+    data: XOR<BookCirculationUpdateManyMutationInput, BookCirculationUncheckedUpdateManyWithoutBookInput>
+  }
+
+  export type BookCreateWithoutCirculationsInput = {
+    id?: string
+    title: string
+    author: string
+    isbn?: string | null
+    stock?: number
+    coverImage?: string | null
+    createdAt?: Date | string
+  }
+
+  export type BookUncheckedCreateWithoutCirculationsInput = {
+    id?: string
+    title: string
+    author: string
+    isbn?: string | null
+    stock?: number
+    coverImage?: string | null
+    createdAt?: Date | string
+  }
+
+  export type BookCreateOrConnectWithoutCirculationsInput = {
+    where: BookWhereUniqueInput
+    create: XOR<BookCreateWithoutCirculationsInput, BookUncheckedCreateWithoutCirculationsInput>
+  }
+
+  export type UserCreateWithoutBookCirculationsInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    operator?: OperatorCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectCreateNestedManyWithoutTeacherInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    userNotes?: UserNoteCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialCreateNestedManyWithoutTeacherInput
+    documents?: DocumentCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
+    billings?: BillingCreateNestedManyWithoutStudentInput
+    absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
+    reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutBookCirculationsInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    parentId?: string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    operator?: OperatorUncheckedCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogUncheckedCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectUncheckedCreateNestedManyWithoutTeacherInput
+    userNotes?: UserNoteUncheckedCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteUncheckedCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderUncheckedCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularUncheckedCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularUncheckedCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberUncheckedCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialUncheckedCreateNestedManyWithoutTeacherInput
+    documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
+    billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
+    absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
+    reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutBookCirculationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBookCirculationsInput, UserUncheckedCreateWithoutBookCirculationsInput>
+  }
+
+  export type BookUpsertWithoutCirculationsInput = {
+    update: XOR<BookUpdateWithoutCirculationsInput, BookUncheckedUpdateWithoutCirculationsInput>
+    create: XOR<BookCreateWithoutCirculationsInput, BookUncheckedCreateWithoutCirculationsInput>
+    where?: BookWhereInput
+  }
+
+  export type BookUpdateToOneWithWhereWithoutCirculationsInput = {
+    where?: BookWhereInput
+    data: XOR<BookUpdateWithoutCirculationsInput, BookUncheckedUpdateWithoutCirculationsInput>
+  }
+
+  export type BookUpdateWithoutCirculationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    stock?: IntFieldUpdateOperationsInput | number
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookUncheckedUpdateWithoutCirculationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    stock?: IntFieldUpdateOperationsInput | number
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpsertWithoutBookCirculationsInput = {
+    update: XOR<UserUpdateWithoutBookCirculationsInput, UserUncheckedUpdateWithoutBookCirculationsInput>
+    create: XOR<UserCreateWithoutBookCirculationsInput, UserUncheckedCreateWithoutBookCirculationsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutBookCirculationsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutBookCirculationsInput, UserUncheckedUpdateWithoutBookCirculationsInput>
+  }
+
+  export type UserUpdateWithoutBookCirculationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    operator?: OperatorUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUpdateManyWithoutTeacherNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    userNotes?: UserNoteUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
+    billings?: BillingUpdateManyWithoutStudentNestedInput
+    absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
+    reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutBookCirculationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    operator?: OperatorUncheckedUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUncheckedUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUncheckedUpdateManyWithoutTeacherNestedInput
+    userNotes?: UserNoteUncheckedUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUncheckedUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUncheckedUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUncheckedUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUncheckedUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUncheckedUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUncheckedUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
+    billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
+    absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
+    reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type MedicalRecordCreateWithoutMedicineInput = {
+    id?: string
+    complaint: string
+    actionTaken: string
+    createdAt?: Date | string
+    student: UserCreateNestedOneWithoutStudentMedicalInput
+    handledBy: UserCreateNestedOneWithoutStaffMedicalInput
+  }
+
+  export type MedicalRecordUncheckedCreateWithoutMedicineInput = {
+    id?: string
+    studentId: string
+    complaint: string
+    actionTaken: string
+    handledById: string
+    createdAt?: Date | string
+  }
+
+  export type MedicalRecordCreateOrConnectWithoutMedicineInput = {
+    where: MedicalRecordWhereUniqueInput
+    create: XOR<MedicalRecordCreateWithoutMedicineInput, MedicalRecordUncheckedCreateWithoutMedicineInput>
+  }
+
+  export type MedicalRecordCreateManyMedicineInputEnvelope = {
+    data: MedicalRecordCreateManyMedicineInput | MedicalRecordCreateManyMedicineInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MedicalRecordUpsertWithWhereUniqueWithoutMedicineInput = {
+    where: MedicalRecordWhereUniqueInput
+    update: XOR<MedicalRecordUpdateWithoutMedicineInput, MedicalRecordUncheckedUpdateWithoutMedicineInput>
+    create: XOR<MedicalRecordCreateWithoutMedicineInput, MedicalRecordUncheckedCreateWithoutMedicineInput>
+  }
+
+  export type MedicalRecordUpdateWithWhereUniqueWithoutMedicineInput = {
+    where: MedicalRecordWhereUniqueInput
+    data: XOR<MedicalRecordUpdateWithoutMedicineInput, MedicalRecordUncheckedUpdateWithoutMedicineInput>
+  }
+
+  export type MedicalRecordUpdateManyWithWhereWithoutMedicineInput = {
+    where: MedicalRecordScalarWhereInput
+    data: XOR<MedicalRecordUpdateManyMutationInput, MedicalRecordUncheckedUpdateManyWithoutMedicineInput>
+  }
+
+  export type UserCreateWithoutStudentMedicalInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    operator?: OperatorCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectCreateNestedManyWithoutTeacherInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    userNotes?: UserNoteCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialCreateNestedManyWithoutTeacherInput
+    documents?: DocumentCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
+    billings?: BillingCreateNestedManyWithoutStudentInput
+    absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
+    reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutStudentMedicalInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    parentId?: string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    operator?: OperatorUncheckedCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogUncheckedCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectUncheckedCreateNestedManyWithoutTeacherInput
+    userNotes?: UserNoteUncheckedCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteUncheckedCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderUncheckedCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularUncheckedCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularUncheckedCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberUncheckedCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialUncheckedCreateNestedManyWithoutTeacherInput
+    documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
+    billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
+    absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
+    reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutStudentMedicalInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutStudentMedicalInput, UserUncheckedCreateWithoutStudentMedicalInput>
+  }
+
+  export type UserCreateWithoutStaffMedicalInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    operator?: OperatorCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectCreateNestedManyWithoutTeacherInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    userNotes?: UserNoteCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialCreateNestedManyWithoutTeacherInput
+    documents?: DocumentCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
+    billings?: BillingCreateNestedManyWithoutStudentInput
+    absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
+    reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutStaffMedicalInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    parentId?: string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    operator?: OperatorUncheckedCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogUncheckedCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectUncheckedCreateNestedManyWithoutTeacherInput
+    userNotes?: UserNoteUncheckedCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteUncheckedCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderUncheckedCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularUncheckedCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularUncheckedCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberUncheckedCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialUncheckedCreateNestedManyWithoutTeacherInput
+    documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
+    billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
+    absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
+    reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutStaffMedicalInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutStaffMedicalInput, UserUncheckedCreateWithoutStaffMedicalInput>
+  }
+
+  export type MedicalInventoryCreateWithoutRecordsInput = {
+    id?: string
+    name: string
+    stock?: number
+    unit?: string
+  }
+
+  export type MedicalInventoryUncheckedCreateWithoutRecordsInput = {
+    id?: string
+    name: string
+    stock?: number
+    unit?: string
+  }
+
+  export type MedicalInventoryCreateOrConnectWithoutRecordsInput = {
+    where: MedicalInventoryWhereUniqueInput
+    create: XOR<MedicalInventoryCreateWithoutRecordsInput, MedicalInventoryUncheckedCreateWithoutRecordsInput>
+  }
+
+  export type UserUpsertWithoutStudentMedicalInput = {
+    update: XOR<UserUpdateWithoutStudentMedicalInput, UserUncheckedUpdateWithoutStudentMedicalInput>
+    create: XOR<UserCreateWithoutStudentMedicalInput, UserUncheckedCreateWithoutStudentMedicalInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutStudentMedicalInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutStudentMedicalInput, UserUncheckedUpdateWithoutStudentMedicalInput>
+  }
+
+  export type UserUpdateWithoutStudentMedicalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    operator?: OperatorUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUpdateManyWithoutTeacherNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    userNotes?: UserNoteUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
+    billings?: BillingUpdateManyWithoutStudentNestedInput
+    absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
+    reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutStudentMedicalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    operator?: OperatorUncheckedUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUncheckedUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUncheckedUpdateManyWithoutTeacherNestedInput
+    userNotes?: UserNoteUncheckedUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUncheckedUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUncheckedUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUncheckedUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUncheckedUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUncheckedUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUncheckedUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
+    billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
+    absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
+    reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUpsertWithoutStaffMedicalInput = {
+    update: XOR<UserUpdateWithoutStaffMedicalInput, UserUncheckedUpdateWithoutStaffMedicalInput>
+    create: XOR<UserCreateWithoutStaffMedicalInput, UserUncheckedCreateWithoutStaffMedicalInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutStaffMedicalInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutStaffMedicalInput, UserUncheckedUpdateWithoutStaffMedicalInput>
+  }
+
+  export type UserUpdateWithoutStaffMedicalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    operator?: OperatorUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUpdateManyWithoutTeacherNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    userNotes?: UserNoteUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
+    billings?: BillingUpdateManyWithoutStudentNestedInput
+    absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
+    reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutStaffMedicalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    operator?: OperatorUncheckedUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUncheckedUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUncheckedUpdateManyWithoutTeacherNestedInput
+    userNotes?: UserNoteUncheckedUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUncheckedUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUncheckedUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUncheckedUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUncheckedUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUncheckedUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUncheckedUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
+    billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
+    absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
+    reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type MedicalInventoryUpsertWithoutRecordsInput = {
+    update: XOR<MedicalInventoryUpdateWithoutRecordsInput, MedicalInventoryUncheckedUpdateWithoutRecordsInput>
+    create: XOR<MedicalInventoryCreateWithoutRecordsInput, MedicalInventoryUncheckedCreateWithoutRecordsInput>
+    where?: MedicalInventoryWhereInput
+  }
+
+  export type MedicalInventoryUpdateToOneWithWhereWithoutRecordsInput = {
+    where?: MedicalInventoryWhereInput
+    data: XOR<MedicalInventoryUpdateWithoutRecordsInput, MedicalInventoryUncheckedUpdateWithoutRecordsInput>
+  }
+
+  export type MedicalInventoryUpdateWithoutRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MedicalInventoryUncheckedUpdateWithoutRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    stock?: IntFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UserCreateWithoutAlumniProfileInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    operator?: OperatorCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectCreateNestedManyWithoutTeacherInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    userNotes?: UserNoteCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialCreateNestedManyWithoutTeacherInput
+    documents?: DocumentCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
+    billings?: BillingCreateNestedManyWithoutStudentInput
+    absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
+    reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+  }
+
+  export type UserUncheckedCreateWithoutAlumniProfileInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    parentId?: string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    operator?: OperatorUncheckedCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogUncheckedCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectUncheckedCreateNestedManyWithoutTeacherInput
+    userNotes?: UserNoteUncheckedCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteUncheckedCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderUncheckedCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularUncheckedCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularUncheckedCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberUncheckedCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialUncheckedCreateNestedManyWithoutTeacherInput
+    documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
+    billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
+    absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
+    reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+  }
+
+  export type UserCreateOrConnectWithoutAlumniProfileInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAlumniProfileInput, UserUncheckedCreateWithoutAlumniProfileInput>
+  }
+
+  export type UserUpsertWithoutAlumniProfileInput = {
+    update: XOR<UserUpdateWithoutAlumniProfileInput, UserUncheckedUpdateWithoutAlumniProfileInput>
+    create: XOR<UserCreateWithoutAlumniProfileInput, UserUncheckedCreateWithoutAlumniProfileInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAlumniProfileInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAlumniProfileInput, UserUncheckedUpdateWithoutAlumniProfileInput>
+  }
+
+  export type UserUpdateWithoutAlumniProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    operator?: OperatorUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUpdateManyWithoutTeacherNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    userNotes?: UserNoteUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
+    billings?: BillingUpdateManyWithoutStudentNestedInput
+    absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
+    reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutAlumniProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    operator?: OperatorUncheckedUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUncheckedUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUncheckedUpdateManyWithoutTeacherNestedInput
+    userNotes?: UserNoteUncheckedUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUncheckedUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUncheckedUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUncheckedUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUncheckedUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUncheckedUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUncheckedUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
+    billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
+    absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
+    reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
   }
 
   export type UserCreateWithoutAbsenceRequestsInput = {
@@ -64767,6 +74762,10 @@ export namespace Prisma {
     children?: UserCreateNestedManyWithoutParentInput
     billings?: BillingCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAbsenceRequestsInput = {
@@ -64824,6 +74823,10 @@ export namespace Prisma {
     children?: UserUncheckedCreateNestedManyWithoutParentInput
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     reviewedRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutReviewerInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAbsenceRequestsInput = {
@@ -64886,6 +74889,10 @@ export namespace Prisma {
     children?: UserCreateNestedManyWithoutParentInput
     billings?: BillingCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestCreateNestedManyWithoutStudentInput
+    bookCirculations?: BookCirculationCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReviewedRequestsInput = {
@@ -64943,6 +74950,10 @@ export namespace Prisma {
     children?: UserUncheckedCreateNestedManyWithoutParentInput
     billings?: BillingUncheckedCreateNestedManyWithoutStudentInput
     absenceRequests?: AbsenceRequestUncheckedCreateNestedManyWithoutStudentInput
+    bookCirculations?: BookCirculationUncheckedCreateNestedManyWithoutStudentInput
+    studentMedical?: MedicalRecordUncheckedCreateNestedManyWithoutStudentInput
+    staffMedical?: MedicalRecordUncheckedCreateNestedManyWithoutHandledByInput
+    alumniProfile?: AlumniProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReviewedRequestsInput = {
@@ -65016,6 +75027,10 @@ export namespace Prisma {
     children?: UserUpdateManyWithoutParentNestedInput
     billings?: BillingUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAbsenceRequestsInput = {
@@ -65073,6 +75088,10 @@ export namespace Prisma {
     children?: UserUncheckedUpdateManyWithoutParentNestedInput
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutReviewedRequestsInput = {
@@ -65141,6 +75160,10 @@ export namespace Prisma {
     children?: UserUpdateManyWithoutParentNestedInput
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReviewedRequestsInput = {
@@ -65198,6 +75221,10 @@ export namespace Prisma {
     children?: UserUncheckedUpdateManyWithoutParentNestedInput
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -65500,6 +75527,34 @@ export namespace Prisma {
     status?: $Enums.RequestStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type BookCirculationCreateManyStudentInput = {
+    id?: string
+    bookId: string
+    borrowDate?: Date | string
+    dueDate: Date | string
+    returnDate?: Date | string | null
+    status?: $Enums.CirculationStatus
+    penalty?: number
+  }
+
+  export type MedicalRecordCreateManyStudentInput = {
+    id?: string
+    medicineId?: string | null
+    complaint: string
+    actionTaken: string
+    handledById: string
+    createdAt?: Date | string
+  }
+
+  export type MedicalRecordCreateManyHandledByInput = {
+    id?: string
+    studentId: string
+    medicineId?: string | null
+    complaint: string
+    actionTaken: string
+    createdAt?: Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -66295,6 +76350,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutParentInput = {
@@ -66352,6 +76411,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutParentInput = {
@@ -66500,6 +76563,90 @@ export namespace Prisma {
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookCirculationUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCirculationStatusFieldUpdateOperationsInput | $Enums.CirculationStatus
+    penalty?: IntFieldUpdateOperationsInput | number
+    book?: BookUpdateOneRequiredWithoutCirculationsNestedInput
+  }
+
+  export type BookCirculationUncheckedUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bookId?: StringFieldUpdateOperationsInput | string
+    borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCirculationStatusFieldUpdateOperationsInput | $Enums.CirculationStatus
+    penalty?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BookCirculationUncheckedUpdateManyWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bookId?: StringFieldUpdateOperationsInput | string
+    borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCirculationStatusFieldUpdateOperationsInput | $Enums.CirculationStatus
+    penalty?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MedicalRecordUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    complaint?: StringFieldUpdateOperationsInput | string
+    actionTaken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    handledBy?: UserUpdateOneRequiredWithoutStaffMedicalNestedInput
+    medicine?: MedicalInventoryUpdateOneWithoutRecordsNestedInput
+  }
+
+  export type MedicalRecordUncheckedUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    medicineId?: NullableStringFieldUpdateOperationsInput | string | null
+    complaint?: StringFieldUpdateOperationsInput | string
+    actionTaken?: StringFieldUpdateOperationsInput | string
+    handledById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MedicalRecordUncheckedUpdateManyWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    medicineId?: NullableStringFieldUpdateOperationsInput | string | null
+    complaint?: StringFieldUpdateOperationsInput | string
+    actionTaken?: StringFieldUpdateOperationsInput | string
+    handledById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MedicalRecordUpdateWithoutHandledByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    complaint?: StringFieldUpdateOperationsInput | string
+    actionTaken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    student?: UserUpdateOneRequiredWithoutStudentMedicalNestedInput
+    medicine?: MedicalInventoryUpdateOneWithoutRecordsNestedInput
+  }
+
+  export type MedicalRecordUncheckedUpdateWithoutHandledByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    medicineId?: NullableStringFieldUpdateOperationsInput | string | null
+    complaint?: StringFieldUpdateOperationsInput | string
+    actionTaken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MedicalRecordUncheckedUpdateManyWithoutHandledByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    medicineId?: NullableStringFieldUpdateOperationsInput | string | null
+    complaint?: StringFieldUpdateOperationsInput | string
+    actionTaken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AssignmentCreateManyClassInput = {
@@ -66737,6 +76884,10 @@ export namespace Prisma {
     billings?: BillingUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutClassInput = {
@@ -66794,6 +76945,10 @@ export namespace Prisma {
     billings?: BillingUncheckedUpdateManyWithoutStudentNestedInput
     absenceRequests?: AbsenceRequestUncheckedUpdateManyWithoutStudentNestedInput
     reviewedRequests?: AbsenceRequestUncheckedUpdateManyWithoutReviewerNestedInput
+    bookCirculations?: BookCirculationUncheckedUpdateManyWithoutStudentNestedInput
+    studentMedical?: MedicalRecordUncheckedUpdateManyWithoutStudentNestedInput
+    staffMedical?: MedicalRecordUncheckedUpdateManyWithoutHandledByNestedInput
+    alumniProfile?: AlumniProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutClassInput = {
@@ -67808,6 +77963,82 @@ export namespace Prisma {
     pointsAwarded?: IntFieldUpdateOperationsInput | number
   }
 
+  export type BookCirculationCreateManyBookInput = {
+    id?: string
+    studentId: string
+    borrowDate?: Date | string
+    dueDate: Date | string
+    returnDate?: Date | string | null
+    status?: $Enums.CirculationStatus
+    penalty?: number
+  }
+
+  export type BookCirculationUpdateWithoutBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCirculationStatusFieldUpdateOperationsInput | $Enums.CirculationStatus
+    penalty?: IntFieldUpdateOperationsInput | number
+    student?: UserUpdateOneRequiredWithoutBookCirculationsNestedInput
+  }
+
+  export type BookCirculationUncheckedUpdateWithoutBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCirculationStatusFieldUpdateOperationsInput | $Enums.CirculationStatus
+    penalty?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BookCirculationUncheckedUpdateManyWithoutBookInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    borrowDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    returnDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCirculationStatusFieldUpdateOperationsInput | $Enums.CirculationStatus
+    penalty?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MedicalRecordCreateManyMedicineInput = {
+    id?: string
+    studentId: string
+    complaint: string
+    actionTaken: string
+    handledById: string
+    createdAt?: Date | string
+  }
+
+  export type MedicalRecordUpdateWithoutMedicineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    complaint?: StringFieldUpdateOperationsInput | string
+    actionTaken?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    student?: UserUpdateOneRequiredWithoutStudentMedicalNestedInput
+    handledBy?: UserUpdateOneRequiredWithoutStaffMedicalNestedInput
+  }
+
+  export type MedicalRecordUncheckedUpdateWithoutMedicineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    complaint?: StringFieldUpdateOperationsInput | string
+    actionTaken?: StringFieldUpdateOperationsInput | string
+    handledById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MedicalRecordUncheckedUpdateManyWithoutMedicineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    complaint?: StringFieldUpdateOperationsInput | string
+    actionTaken?: StringFieldUpdateOperationsInput | string
+    handledById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
@@ -67869,6 +78100,14 @@ export namespace Prisma {
      * @deprecated Use ExamAttemptCountOutputTypeDefaultArgs instead
      */
     export type ExamAttemptCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ExamAttemptCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use BookCountOutputTypeDefaultArgs instead
+     */
+    export type BookCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BookCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use MedicalInventoryCountOutputTypeDefaultArgs instead
+     */
+    export type MedicalInventoryCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MedicalInventoryCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
@@ -68005,6 +78244,30 @@ export namespace Prisma {
      * @deprecated Use BillingDefaultArgs instead
      */
     export type BillingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BillingDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use BookDefaultArgs instead
+     */
+    export type BookArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BookDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use BookCirculationDefaultArgs instead
+     */
+    export type BookCirculationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BookCirculationDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use MedicalInventoryDefaultArgs instead
+     */
+    export type MedicalInventoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MedicalInventoryDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use MedicalRecordDefaultArgs instead
+     */
+    export type MedicalRecordArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MedicalRecordDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use AlumniProfileDefaultArgs instead
+     */
+    export type AlumniProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AlumniProfileDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use JobPostingDefaultArgs instead
+     */
+    export type JobPostingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = JobPostingDefaultArgs<ExtArgs>
     /**
      * @deprecated Use AbsenceRequestDefaultArgs instead
      */
