@@ -39,6 +39,7 @@ export function NotificationDropdown() {
         body: JSON.stringify({ id })
       })
       mutate()
+      router.refresh()
     } catch (error) {
       console.error('Failed to mark as read', error)
     }
@@ -49,6 +50,7 @@ export function NotificationDropdown() {
       mutate(notifsList.map((n: any) => ({ ...n, read: true })), false)
       await fetch('/api/notifications', { method: 'PATCH' })
       mutate()
+      router.refresh()
       toast.success('Semua notifikasi ditandai sudah dibaca')
     } catch (error) {
       toast.error('Gagal menandai semua notifikasi')
@@ -92,8 +94,8 @@ export function NotificationDropdown() {
               <div 
                 key={notif.id} 
                 className={`flex flex-col items-start gap-1 p-3 cursor-pointer hover:bg-[var(--muted)]/50 transition-colors ${!notif.read ? 'bg-[#5483B3]/5' : ''}`}
-                onClick={() => {
-                  if (!notif.read) markAsRead(notif.id)
+                onClick={async () => {
+                  if (!notif.read) await markAsRead(notif.id)
                   router.push('/dashboard/notifications')
                 }}
               >

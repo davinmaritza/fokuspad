@@ -14,8 +14,27 @@ import {
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { toast } from 'sonner'
 
 export function NotificationsClient({ notifications }: any) {
+  const router = useRouter()
+  const [isMarking, setIsMarking] = useState(false)
+
+  const handleMarkAllAsRead = async () => {
+    try {
+      setIsMarking(true)
+      await fetch('/api/notifications', { method: 'PATCH' })
+      toast.success('Semua notifikasi ditandai sudah dibaca')
+      router.refresh()
+    } catch (error) {
+      toast.error('Gagal menandai notifikasi')
+    } finally {
+      setIsMarking(false)
+    }
+  }
+
   const getIcon = (type: string) => {
     switch (type) {
       case 'ASSIGNMENT_NEW':
@@ -35,8 +54,13 @@ export function NotificationsClient({ notifications }: any) {
           <p className="text-sm text-[var(--muted-foreground)] mt-2 font-medium">Pembaruan terbaru tentang aktivitas akademik dan tugas Anda.</p>
         </div>
         
-        <Button variant="outline" className="border-[var(--border)] text-xs font-semibold rounded-xl gap-2 hover:bg-[#5483B3]/5 hover:text-[#5483B3] hover:border-[#5483B3]/30 transition-all">
-           <Check className="h-4 w-4" /> Tandai Semua Dibaca
+        <Button 
+          onClick={handleMarkAllAsRead}
+          disabled={isMarking || notifications.every((n: any) => n.read)}
+          variant="outline" 
+          className="border-[var(--border)] text-xs font-semibold rounded-xl gap-2 hover:bg-[#5483B3]/5 hover:text-[#5483B3] hover:border-[#5483B3]/30 transition-all"
+        >
+           <Check className="h-4 w-4" /> {isMarking ? "Memproses..." : "Tandai Semua Dibaca"}
         </Button>
       </div>
 
