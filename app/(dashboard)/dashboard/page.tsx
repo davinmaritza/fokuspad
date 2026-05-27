@@ -18,7 +18,7 @@ export default async function Page() {
   const userId = (session.user as any)?.id
 
   if (RBAC.canAccessAdminDashboard(role)) {
-    redirect("/dashboard/admin")
+    redirect("/dashboard/admin?v=2")
   }
 
   if (RBAC.isParentLevel(role)) {
