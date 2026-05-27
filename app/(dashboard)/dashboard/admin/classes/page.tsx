@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth"
 import prisma from "@/lib/prisma"
 import { redirect } from "next/navigation"
+import { RBAC } from "@/lib/rbac"
 import { AdminClassesClient } from "@/components/dashboard/admin-classes-client"
 import { Metadata } from 'next'
 
@@ -14,7 +15,7 @@ export default async function AdminClassesPage() {
   if (!session) redirect("/login")
   
   const role = (session.user as any).role
-  if (role !== 'ADMIN' && role !== 'TEACHER') redirect("/dashboard")
+  if (!RBAC.canAccessAdminDashboard(role) && !RBAC.isTeacherLevel(role)) redirect("/dashboard")
 
   const userId = (session.user as any).id
 

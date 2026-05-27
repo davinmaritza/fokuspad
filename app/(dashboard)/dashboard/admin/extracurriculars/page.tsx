@@ -11,7 +11,7 @@ export const metadata = {
 export default async function AdminExtracurricularsPage() {
   const session = await auth()
   
-  if (!session || (session.user as any)?.role !== 'ADMIN') {
+  if (!session || !RBAC.canAccessAdminDashboard((session.user as any)?.role)) {
     redirect('/login')
   }
 

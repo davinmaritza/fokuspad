@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth"
 import prisma from "@/lib/prisma"
 import { redirect } from "next/navigation"
+import { RBAC } from "@/lib/rbac"
 import { AdminOverview } from "@/components/dashboard/admin-overview"
 
 export default async function Page() {
@@ -11,7 +12,7 @@ export default async function Page() {
   }
 
   const role = (session.user as any)?.role
-  if (role !== 'ADMIN') {
+  if (!RBAC.canAccessAdminDashboard(role)) {
     redirect("/dashboard")
   }
 

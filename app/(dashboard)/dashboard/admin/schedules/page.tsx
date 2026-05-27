@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth"
 import prisma from "@/lib/prisma"
 import { redirect } from "next/navigation"
+import { RBAC } from "@/lib/rbac"
 import { AdminSchedulesClient } from "@/components/dashboard/admin-schedules-client"
 import { Metadata } from 'next'
 
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default async function AdminSchedulesPage() {
   const session = await auth()
-  if (!session || (session.user as any).role !== 'ADMIN') redirect("/dashboard")
+  if (!session || !RBAC.canAccessAdminDashboard((session.user as any).role)) redirect("/dashboard")
 
   const [schedules, classes, subjects, teachers] = await Promise.all([
     prisma.classSchedule.findMany({

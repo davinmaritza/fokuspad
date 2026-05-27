@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth"
 import prisma from "@/lib/prisma"
 import { redirect } from "next/navigation"
+import { RBAC } from "@/lib/rbac"
 import { AdminUsersClient } from "@/components/dashboard/admin-users-client"
 import { Metadata } from 'next'
 
@@ -13,7 +14,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function AdminStudentsPage() {
   const session = await auth()
-  if (!session || (session.user as any).role !== 'ADMIN') redirect("/dashboard")
+  if (!session || !RBAC.canAccessAdminDashboard((session.user as any).role)) redirect("/dashboard")
 
   const [users, classes] = await Promise.all([
     prisma.user.findMany({
