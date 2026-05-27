@@ -2,16 +2,12 @@ import { NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import prisma from '@/lib/prisma'
 
-// GET /api/dashboard/stats - Get dashboard statistics for current user
 export async function GET() {
   try {
     const session = await auth()
     
     if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      )
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const userId = session.user.id
@@ -20,60 +16,40 @@ export async function GET() {
     const lastWeekStart = new Date(weekStart)
     lastWeekStart.setDate(lastWeekStart.getDate() - 7)
 
-    // Get all subjects count
     const totalSubjects = await prisma.subject.count()
 
-    // Get this week's progress
     const thisWeekLogs = await prisma.progressLog.findMany({
-      where: {
-        userId,
-        date: { gte: weekStart },
-      },
+      where: { userId, loggedAt: { gte: weekStart } },
       select: { duration: true },
     })
     
     const thisWeekMinutes = thisWeekLogs.reduce((sum, log) => sum + log.duration, 0)
 
-    // Get last week's progress for comparison
     const lastWeekLogs = await prisma.progressLog.findMany({
-      where: {
-        userId,
-        date: { gte: lastWeekStart, lt: weekStart },
-      },
+      where: { userId, loggedAt: { gte: lastWeekStart, lt: weekStart } },
       select: { duration: true },
     })
     
     const lastWeekMinutes = lastWeekLogs.reduce((sum, log) => sum + log.duration, 0)
 
-    // Calculate percentage change
     const progressChange = lastWeekMinutes > 0 
       ? Math.round(((thisWeekMinutes - lastWeekMinutes) / lastWeekMinutes) * 100)
       : 0
 
-    // Calculate streak
     const streak = await calculateStreak(userId)
-
-    // Calculate rank (simplified - based on total study time this week)
     const rank = await calculateRank(userId, weekStart)
-
-    // Get weekly progress data per day
     const weeklyProgressData = await getWeeklyProgressData(userId, weekStart)
-
-    // Get subject progress
     const subjectProgress = await getSubjectProgress(userId)
 
-    // Get recent activity
     const recentActivity = await prisma.progressLog.findMany({
       where: { userId },
       include: {
-        subject: { select: { name: true, color: true } },
-        topic: { select: { name: true } },
+        topic: { include: { subject: { select: { name: true, color: true } } } },
       },
-      orderBy: { date: 'desc' },
+      orderBy: { loggedAt: 'desc' },
       take: 5,
     })
 
-    // Weekly target progress (estimate based on 10 hours/week goal)
     const weeklyTargetHours = 10
     const weeklyProgress = Math.min(Math.round((thisWeekMinutes / 60 / weeklyTargetHours) * 100), 100)
 
@@ -83,27 +59,24 @@ export async function GET() {
         weeklyProgress: `${weeklyProgress}%`,
         weeklyProgressChange: progressChange,
         streak: `${streak} hari`,
-        streakBest: Math.max(streak, 7), // Simplified best streak
+        streakBest: Math.max(streak, 7),
         rank: `#${rank}`,
-        rankChange: 2, // Simplified
+        rankChange: 2,
       },
       weeklyChartData: weeklyProgressData,
       subjectProgress,
       recentActivity: recentActivity.map(log => ({
         id: log.id,
-        subject: log.subject.name,
+        subject: log.topic?.subject?.name || 'General',
         topic: log.topic?.name || 'General',
         duration: log.duration,
-        date: log.date,
-        color: log.subject.color,
+        date: log.loggedAt,
+        color: log.topic?.subject?.color || '#000',
       })),
     })
   } catch (error) {
     console.error('Error fetching dashboard stats:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 
@@ -119,9 +92,9 @@ function getWeekStart(date: Date): Date {
 async function calculateStreak(userId: string): Promise<number> {
   const logs = await prisma.progressLog.findMany({
     where: { userId },
-    orderBy: { date: 'desc' },
-    select: { date: true },
-    distinct: ['date'],
+    orderBy: { loggedAt: 'desc' },
+    select: { loggedAt: true },
+    distinct: ['loggedAt'],
   })
 
   if (logs.length === 0) return 0
@@ -132,7 +105,7 @@ async function calculateStreak(userId: string): Promise<number> {
 
   const logDates = new Set(
     logs.map(log => {
-      const d = new Date(log.date)
+      const d = new Date(log.loggedAt)
       d.setHours(0, 0, 0, 0)
       return d.getTime()
     })
@@ -149,7 +122,7 @@ async function calculateStreak(userId: string): Promise<number> {
 async function calculateRank(userId: string, weekStart: Date): Promise<number> {
   const allUsers = await prisma.progressLog.groupBy({
     by: ['userId'],
-    where: { date: { gte: weekStart } },
+    where: { loggedAt: { gte: weekStart } },
     _sum: { duration: true },
   })
 
@@ -179,14 +152,13 @@ async function getWeeklyProgressData(userId: string, weekStart: Date) {
       const logs = await prisma.progressLog.findMany({
         where: {
           userId,
-          subjectId: subject.id,
-          date: { gte: dayStart, lt: dayEnd },
+          topic: { subjectId: subject.id },
+          loggedAt: { gte: dayStart, lt: dayEnd },
         },
         select: { duration: true },
       })
       
       const totalMinutes = logs.reduce((sum, log) => sum + log.duration, 0)
-      // Convert to a score (0-100 based on target of 60 min/subject/day)
       dayData[subject.name.toLowerCase()] = Math.min(Math.round((totalMinutes / 60) * 100), 100)
     }
 
@@ -199,21 +171,20 @@ async function getWeeklyProgressData(userId: string, weekStart: Date) {
 async function getSubjectProgress(userId: string) {
   const subjects = await prisma.subject.findMany({
     include: {
-      topics: { select: { id: true } },
-      progressLogs: {
-        where: { userId, completed: true },
-        select: { topicId: true },
-        distinct: ['topicId'],
-      },
+      topics: {
+        include: {
+          progressLogs: {
+            where: { userId }
+          }
+        }
+      }
     },
   })
 
   return subjects.map(subject => {
     const totalTopics = subject.topics.length
-    const completedTopics = subject.progressLogs.filter(l => l.topicId).length
-    const progress = totalTopics > 0 
-      ? Math.round((completedTopics / totalTopics) * 100) 
-      : 0
+    const completedTopics = subject.topics.filter(t => t.progressLogs.length > 0).length
+    const progress = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0
     
     let status: 'on-track' | 'lagging' | 'ahead' = 'on-track'
     if (progress >= 80) status = 'ahead'
@@ -227,7 +198,7 @@ async function getSubjectProgress(userId: string) {
       color: subject.color,
       topicCount: totalTopics,
       completedTopics,
-      lastUpdated: 'Baru saja', // Simplified
+      lastUpdated: 'Baru saja',
     }
-  }).slice(0, 4) // Limit to 4 subjects for dashboard
+  }).slice(0, 4)
 }

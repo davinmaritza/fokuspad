@@ -83,7 +83,7 @@ export async function GET(request: NextRequest) {
           select: {
             duration: true,
             difficulty: true,
-            completed: true,
+            ,
           },
         })
 
@@ -121,7 +121,7 @@ export async function GET(request: NextRequest) {
 
     // Find current user's rank
     const allRanked = studentsWithScores.sort((a, b) => b.score - a.score)
-    const currentUserIndex = allRanked.findIndex(s => s.id === session.user.id)
+    const currentUserIndex = allRanked.findIndex(s => s.id === session?.user?.id)
     const currentUserRank = currentUserIndex >= 0 ? currentUserIndex + 1 : null
     const currentUserStats = currentUserIndex >= 0 ? allRanked[currentUserIndex] : null
 

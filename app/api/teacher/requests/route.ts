@@ -47,7 +47,7 @@ export async function PATCH(req: Request) {
       while (currentDate <= end) {
         // Skip weekends if you want, but for now insert for all days in range
         attendanceData.push({
-          studentId: request.studentId,
+          userId: request.studentId,
           date: new Date(currentDate),
           status: request.reason, // SICK or PERMISSION
           notes: `(Otomatis) ${request.description}`,
