@@ -555,7 +555,9 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input 
                 type="text" 
-                placeholder="Search..." 
+                placeholder="Cari..." 
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 className="w-48 border border-gray-200 rounded-lg h-9 pl-9 pr-3 text-sm focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
               />
             </div>
@@ -737,22 +739,228 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
 
       {/* Dialogs mapping */}
       <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
-         <DialogContent className="bg-white rounded-2xl p-6">
-            <DialogHeader><DialogTitle>Tambah Pengguna</DialogTitle></DialogHeader>
-            <p className="text-sm text-gray-500 mb-4">Gunakan fitur ini untuk menambah pengguna secara manual.</p>
-            <form onSubmit={handleAddUser} className="space-y-4">
-              <Input required placeholder="Nama Lengkap" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
-              <Input required type="email" placeholder="Email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
-              <Select value={formData.role} onValueChange={(v) => setFormData({...formData, role: v})}>
-                <SelectTrigger><SelectValue placeholder="Pilih Role" /></SelectTrigger>
-                <SelectContent>{ALL_ROLES.map(r => <SelectItem key={r.value} value={r.value}>{r.label}</SelectItem>)}</SelectContent>
-              </Select>
-              <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold" disabled={isSubmitting}>
-                {isSubmitting ? 'Menyimpan...' : 'Simpan Pengguna'}
-              </Button>
-            </form>
-         </DialogContent>
-      </Dialog>
+               <DialogContent className="bg-[var(--card)] border-[var(--border)] text-[var(--foreground)] max-w-3xl rounded-2xl shadow-xl p-0 overflow-hidden max-h-[90vh]">
+                 <div className="p-6 md:p-8 overflow-y-auto max-h-[85vh] custom-scrollbar">
+                  <DialogHeader className="mb-6">
+                    <DialogTitle className="text-2xl font-extrabold tracking-tight">
+                      Registrasi {fixedRole === 'STUDENT' ? 'Siswa' : fixedRole === 'TEACHER' ? 'Guru' : 'User'}
+                    </DialogTitle>
+                    <DialogDescription className="text-sm font-medium mt-1">Lengkapi formulir di bawah untuk menambahkan data ke sistem.</DialogDescription>
+                  </DialogHeader>
+                  
+                  <form onSubmit={handleAddUser} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {/* Left: Avatar Upload */}
+                      <div className="flex flex-col items-center gap-4 p-5 bg-[var(--muted)]/30 border border-[var(--border)] rounded-xl">
+                         <Avatar className="h-32 w-32 rounded-2xl border-4 border-[var(--card)] shadow-sm group relative overflow-hidden bg-[var(--muted)]">
+                            {formData.image ? (
+                              <AvatarImage src={formData.image} className="object-cover" />
+                            ) : (
+                              <AvatarFallback className="bg-[var(--muted)] text-[var(--muted-foreground)] font-extrabold text-4xl">?</AvatarFallback>
+                            )}
+                         </Avatar>
+                         <div className="w-full space-y-2">
+                            <input type="file" id="add-user-photo" className="hidden" accept="image/*" onChange={handleFileUpload} />
+                            <Button 
+                              type="button" 
+                              variant="outline" 
+                              className="w-full rounded-xl border-[var(--border)] text-xs font-bold h-10 hover:bg-[var(--muted)] transition-all gap-2"
+                              onClick={() => document.getElementById('add-user-photo')?.click()}
+                            >
+                               <UploadCloud className="h-4 w-4" /> Upload Foto
+                            </Button>
+                            {formData.image && (
+                              <Button 
+                                type="button" 
+                                variant="ghost" 
+                                className="w-full text-red-500 text-xs font-bold hover:bg-red-500/10 rounded-xl"
+                                onClick={() => setFormData({...formData, image: ''})}
+                              >
+                                Hapus
+                              </Button>
+                            )}
+                         </div>
+                      </div>
+
+                      {/* Right: Basic Info */}
+                      <div className="md:col-span-2 space-y-5">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                          <div className="space-y-2">
+                              <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                                <User className="h-3.5 w-3.5 text-[#9333ea]" /> Nama Lengkap
+                              </Label>
+                              <Input required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" placeholder="Masukkan nama lengkap" />
+                          </div>
+                          <div className="space-y-2">
+                              <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                                <Mail className="h-3.5 w-3.5 text-[#9333ea]" /> Email
+                              </Label>
+                              <Input required type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" placeholder="Masukkan email aktif" />
+                          </div>
+                        </div>
+
+                        <div className={cn("grid grid-cols-1 gap-5", formData.role === 'STUDENT' ? "md:grid-cols-4" : "md:grid-cols-2")}>
+                          <div className="space-y-2">
+                            <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                              <Fingerprint className="h-3.5 w-3.5 text-[#9333ea]" /> {fixedRole === 'STUDENT' ? 'NIS' : 'NIP / ID'}
+                            </Label>
+                            <Input value={formData.nis} onChange={(e) => setFormData({...formData, nis: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" placeholder={fixedRole === 'STUDENT' ? "Masukkan NIS" : "Masukkan NIP"} />
+                          </div>
+                          {formData.role === 'STUDENT' && (
+                            <div className="space-y-2">
+                              <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                                <Fingerprint className="h-3.5 w-3.5 text-[#9333ea]" /> No Absen
+                              </Label>
+                              <Input type="number" value={formData.noAbsen} onChange={(e) => setFormData({...formData, noAbsen: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" placeholder="No Absen" />
+                            </div>
+                          )}
+                          <div className="space-y-2">
+                            <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                              <Phone className="h-3.5 w-3.5 text-[#9333ea]" /> Nomor Telepon
+                            </Label>
+                            <Input value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" placeholder="08xxxxxxxxxx" />
+                          </div>
+                          {formData.role === 'STUDENT' && (
+                            <div className="space-y-2">
+                              <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                                <Key className="h-3.5 w-3.5 text-[#9333ea]" /> PIN Orang Tua
+                              </Label>
+                              <Input value={formData.parentPin} onChange={(e) => setFormData({...formData, parentPin: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" placeholder="123456" />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                      <div className="space-y-2">
+                        <Label className="text-xs font-bold text-[var(--foreground)]">Jenis Kelamin</Label>
+                        <Select value={formData.gender} onValueChange={(v) => setFormData({...formData, gender: v})}>
+                          <SelectTrigger className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]">
+                            <SelectValue placeholder="Pilih Gender" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-[var(--card)] border-[var(--border)] rounded-xl shadow-lg">
+                            <SelectItem value="Laki-laki">Laki-laki</SelectItem>
+                            <SelectItem value="Perempuan">Perempuan</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      {!fixedRole ? (
+                        <div className="space-y-2">
+                          <Label className="text-xs font-bold text-[var(--foreground)]">Peran</Label>
+                          <Select value={formData.role} onValueChange={(v) => setFormData({...formData, role: v})}>
+                            <SelectTrigger className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]">
+                              <SelectValue placeholder="Pilih Peran" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-[var(--card)] border-[var(--border)] rounded-xl shadow-lg z-50">
+                              {ALL_ROLES.map(r => <SelectItem key={r.value} value={r.value}>{r.label}</SelectItem>)}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      ) : (
+                        <div className="space-y-2">
+                          <Label className="text-xs font-bold text-[var(--foreground)]">Afiliasi</Label>
+                          {fixedRole === 'STUDENT' ? (
+                            <Select value={formData.classId} onValueChange={(v) => setFormData({...formData, classId: v})}>
+                              <SelectTrigger className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]">
+                                <SelectValue placeholder="Pilih Kelas" />
+                              </SelectTrigger>
+                              <SelectContent className="bg-[var(--card)] border-[var(--border)] rounded-xl shadow-lg">
+                                {classes.map((c: any) => (
+                                  <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          ) : (
+                            <Select value={formData.subjectId} onValueChange={(v) => setFormData({...formData, subjectId: v})}>
+                              <SelectTrigger className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]">
+                                <SelectValue placeholder="Pilih Mapel" />
+                              </SelectTrigger>
+                              <SelectContent className="bg-[var(--card)] border-[var(--border)] rounded-xl shadow-lg">
+                                {subjects.map((s: any) => (
+                                  <SelectItem key={s.id} value={s.id}>{s.name}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          )}
+                        </div>
+                      )}
+
+                      <div className="space-y-2">
+                        <Label className="text-xs font-bold text-[var(--foreground)]">Password</Label>
+                        <div className="relative">
+                           <Input 
+                              required 
+                              type={showPassword ? "text" : "password"} 
+                              value={formData.password} 
+                              onChange={(e) => setFormData({...formData, password: e.target.value})} 
+                              className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 pr-10 text-sm focus-visible:ring-[#9333ea]" 
+                              placeholder="ΓÇóΓÇóΓÇóΓÇóΓÇóΓÇóΓÇóΓÇó"
+                           />
+                           <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] hover:text-[#9333ea] transition-colors">
+                              {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                           </button>
+                        </div>
+                      </div>
+                      </div>
+
+                      {(formData.role === 'TEACHER' || formData.role === 'COACH') && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+                          <div className="space-y-2">
+                              <Label className="text-xs font-bold text-[var(--foreground)]">Jabatan Opsional</Label>
+                              <Input value={formData.position} onChange={(e) => setFormData({...formData, position: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" placeholder="Contoh: Pembina Pramuka" />
+                          </div>
+                          <div className="space-y-2">
+                              <Label className="text-xs font-bold text-[var(--foreground)]">Keterangan Afiliasi</Label>
+                              <Input value={formData.affiliations} onChange={(e) => setFormData({...formData, affiliations: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" placeholder="Pisahkan dengan koma" />
+                          </div>
+                        </div>
+                      )}
+
+                      {formData.role === 'TEACHER' && (
+                        <div className="space-y-4 mt-5">
+                          <div className="flex items-center justify-between p-4 bg-[var(--muted)]/30 border border-[var(--border)] rounded-xl">
+                            <div className="space-y-0.5">
+                              <Label className="text-sm font-bold text-[var(--foreground)]">Bisa Edit Materi</Label>
+                              <p className="text-xs text-[var(--muted-foreground)]">Izinkan guru ini untuk menambah, menyunting, dan menghapus materinya sendiri.</p>
+                            </div>
+                            <Switch 
+                              checked={!!formData.canEditMaterials} 
+                              onCheckedChange={(checked) => setFormData({...formData, canEditMaterials: checked})} 
+                            />
+                          </div>
+
+                          <div className="flex items-center justify-between p-4 bg-[var(--muted)]/30 border border-[var(--border)] rounded-xl">
+                            <div className="space-y-0.5">
+                              <Label className="text-sm font-bold text-[var(--foreground)]">Bisa Edit Tugas</Label>
+                              <p className="text-xs text-[var(--muted-foreground)]">Izinkan guru ini untuk menambah, menyunting, dan menghapus tugasnya sendiri.</p>
+                            </div>
+                            <Switch 
+                              checked={!!formData.canEditAssignments} 
+                              onCheckedChange={(checked) => setFormData({...formData, canEditAssignments: checked})} 
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                    <div className="space-y-2">
+                      <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                        <MapPin className="h-3.5 w-3.5 text-[#9333ea]" /> Alamat Lengkap
+                      </Label>
+                      <Textarea value={formData.address} onChange={(e) => setFormData({...formData, address: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl min-h-[100px] text-sm focus-visible:ring-[#9333ea] p-3" placeholder="Jl. Raya No. 123..." />
+                    </div>
+
+                    <div className="flex gap-4 pt-4">
+                      <Button type="button" variant="ghost" onClick={() => setIsAddOpen(false)} className="flex-1 h-12 rounded-xl font-bold text-xs bg-[var(--muted)] hover:bg-[var(--muted)]/80">Batal</Button>
+                      <Button disabled={isSubmitting} className="flex-[2] h-12 bg-[#9333ea] text-white font-bold rounded-xl hover:bg-[#7e22ce] transition-all shadow-md text-xs">
+                        {isSubmitting ? 'Memproses...' : `Simpan ${fixedRole === 'STUDENT' ? 'Siswa' : 'Data'}`}
+                      </Button>
+                    </div>
+                  </form>
+                </div>
+              </DialogContent>
+           </Dialog>
       
       <Dialog open={isBulkDeleteConfirmOpen} onOpenChange={setIsBulkDeleteConfirmOpen}>
         <DialogContent className="bg-white rounded-2xl p-6">
@@ -766,16 +974,236 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
       </Dialog>
       
       <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
-        <DialogContent className="bg-white rounded-2xl p-6">
-          <DialogHeader><DialogTitle>Edit Pengguna</DialogTitle></DialogHeader>
-            <form onSubmit={handleEditUser} className="space-y-4 mt-4">
-              <Input required placeholder="Nama Lengkap" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
-              <Input required type="email" placeholder="Email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
-              <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold" disabled={isSubmitting}>
-                {isSubmitting ? 'Menyimpan...' : 'Simpan Perubahan'}
-              </Button>
-              <Button type="button" variant="ghost" className="w-full text-red-500" onClick={openDelete}>Hapus Pengguna Ini</Button>
+        <DialogContent className="bg-[var(--card)] border-[var(--border)] text-[var(--foreground)] max-w-3xl rounded-2xl shadow-xl p-0 overflow-hidden max-h-[90vh]">
+          <div className="p-6 md:p-8 overflow-y-auto max-h-[85vh] custom-scrollbar">
+            <DialogHeader className="mb-6">
+              <DialogTitle className="text-2xl font-extrabold tracking-tight">Edit Profil</DialogTitle>
+              <DialogDescription className="text-sm font-medium mt-1">Perbarui informasi pengguna untuk akun {selectedUser?.name}.</DialogDescription>
+            </DialogHeader>
+            
+            <form onSubmit={handleEditUser} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Left: Avatar Upload */}
+                <div className="flex flex-col items-center gap-4 p-5 bg-[var(--muted)]/30 border border-[var(--border)] rounded-xl">
+                   <Avatar className="h-32 w-32 rounded-2xl border-4 border-[var(--card)] shadow-sm group relative overflow-hidden bg-[var(--muted)]">
+                      {formData.image ? (
+                        <AvatarImage src={formData.image} className="object-cover" />
+                      ) : (
+                        <AvatarFallback className="bg-[var(--muted)] text-[var(--muted-foreground)] font-extrabold text-4xl">{selectedUser?.name?.[0] || '?'}</AvatarFallback>
+                      )}
+                   </Avatar>
+                   <div className="w-full space-y-2">
+                      <input type="file" id="edit-user-photo" className="hidden" accept="image/*" onChange={handleFileUpload} />
+                      <Button 
+                        type="button" 
+                        variant="outline" 
+                        className="w-full rounded-xl border-[var(--border)] text-xs font-bold h-10 hover:bg-[var(--muted)] transition-all gap-2"
+                        onClick={() => document.getElementById('edit-user-photo')?.click()}
+                      >
+                         <UploadCloud className="h-4 w-4" /> Ganti Foto
+                      </Button>
+                      {formData.image && (
+                        <Button 
+                          type="button" 
+                          variant="ghost" 
+                          className="w-full text-red-500 text-xs font-bold hover:bg-red-500/10 rounded-xl"
+                          onClick={() => setFormData({...formData, image: ''})}
+                        >
+                          Hapus
+                        </Button>
+                      )}
+                   </div>
+                </div>
+
+                {/* Right: Basic Info */}
+                <div className="md:col-span-2 space-y-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="space-y-2">
+                        <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                          <User className="h-3.5 w-3.5 text-[#9333ea]" /> Nama Lengkap
+                        </Label>
+                        <Input required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" />
+                    </div>
+                    <div className="space-y-2">
+                        <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                          <Mail className="h-3.5 w-3.5 text-[#9333ea]" /> Email
+                        </Label>
+                        <Input required type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" />
+                    </div>
+                  </div>
+
+                  <div className={cn("grid grid-cols-1 gap-5", selectedUser?.role === 'STUDENT' ? "md:grid-cols-4" : "md:grid-cols-2")}>
+                    <div className="space-y-2">
+                      <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                        <Fingerprint className="h-3.5 w-3.5 text-[#9333ea]" /> {selectedUser?.role === 'STUDENT' ? 'NIS' : 'NIP / ID'}
+                      </Label>
+                      <Input value={formData.nis} onChange={(e) => setFormData({...formData, nis: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" />
+                    </div>
+                    {selectedUser?.role === 'STUDENT' && (
+                      <div className="space-y-2">
+                        <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                          <Fingerprint className="h-3.5 w-3.5 text-[#9333ea]" /> No Absen
+                        </Label>
+                        <Input type="number" value={formData.noAbsen} onChange={(e) => setFormData({...formData, noAbsen: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" placeholder="No Absen" />
+                      </div>
+                    )}
+                    <div className="space-y-2">
+                      <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                        <Phone className="h-3.5 w-3.5 text-[#9333ea]" /> Nomor Telepon
+                      </Label>
+                      <Input value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" />
+                    </div>
+                    {selectedUser?.role === 'STUDENT' && (
+                      <div className="space-y-2">
+                        <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                          <Key className="h-3.5 w-3.5 text-[#9333ea]" /> PIN Orang Tua
+                        </Label>
+                        <Input value={formData.parentPin} onChange={(e) => setFormData({...formData, parentPin: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div className="space-y-2">
+                  <Label className="text-xs font-bold text-[var(--foreground)]">Gender</Label>
+                  <Select value={formData.gender} onValueChange={(v) => setFormData({...formData, gender: v})}>
+                    <SelectTrigger className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]">
+                      <SelectValue placeholder="Pilih Gender" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[var(--card)] border-[var(--border)] rounded-xl shadow-lg">
+                      <SelectItem value="Laki-laki">Laki-laki</SelectItem>
+                      <SelectItem value="Perempuan">Perempuan</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {!fixedRole ? (
+                  <div className="space-y-2">
+                    <Label className="text-xs font-bold text-[var(--foreground)]">Role</Label>
+                    <Select value={formData.role} onValueChange={(v) => setFormData({...formData, role: v})}>
+                      <SelectTrigger className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]">
+                        <SelectValue placeholder="Pilih Role" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-[var(--card)] border-[var(--border)] rounded-xl shadow-lg max-h-60 overflow-y-auto">
+                        {ALL_ROLES.map((role) => (
+                          <SelectItem key={role.value} value={role.value}>
+                            {role.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <Label className="text-xs font-bold text-[var(--foreground)]">Afiliasi</Label>
+                    {fixedRole === 'STUDENT' ? (
+                      <Select value={formData.classId} onValueChange={(v) => setFormData({...formData, classId: v})}>
+                        <SelectTrigger className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]">
+                          <SelectValue placeholder="Pilih Kelas" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-[var(--card)] border-[var(--border)] rounded-xl shadow-lg">
+                          {classes.map((c: any) => (
+                            <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    ) : (
+                      <Select value={formData.subjectId} onValueChange={(v) => setFormData({...formData, subjectId: v})}>
+                        <SelectTrigger className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]">
+                          <SelectValue placeholder="Pilih Mapel" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-[var(--card)] border-[var(--border)] rounded-xl shadow-lg">
+                          {subjects.map((s: any) => (
+                            <SelectItem key={s.id} value={s.id}>{s.name}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  </div>
+                )}
+
+                <div className="space-y-2">
+                  <Label className="text-xs font-bold text-[var(--foreground)]">Password Baru (Opsional)</Label>
+                  <div className="relative">
+                     <Input 
+                        type={showPassword ? "text" : "password"} 
+                        value={formData.password} 
+                        onChange={(e) => setFormData({...formData, password: e.target.value})} 
+                        className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 pr-10 text-sm focus-visible:ring-[#9333ea]" 
+                        placeholder="Kosongkan jika tidak diubah"
+                     />
+                     <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)] hover:text-[#9333ea] transition-colors">
+                        {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                     </button>
+                  </div>
+                </div>
+              </div>
+
+              {(fixedRole === 'TEACHER' || (!fixedRole && formData.role === 'TEACHER')) && (
+                <div className="space-y-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="space-y-2">
+                      <Label className="text-xs font-bold text-[var(--foreground)]">Jabatan (Custom)</Label>
+                      <Input 
+                        value={formData.position} 
+                        onChange={(e) => setFormData({...formData, position: e.target.value})} 
+                        className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" 
+                        placeholder="Contoh: Kepala Sekolah" 
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label className="text-xs font-bold text-[var(--foreground)]">Afiliasi (Koma pisahkan)</Label>
+                      <Input 
+                        value={formData.affiliations} 
+                        onChange={(e) => setFormData({...formData, affiliations: e.target.value})} 
+                        className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#9333ea]" 
+                        placeholder="Wali Kelas X, Guru Mapel" 
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-4 bg-[var(--muted)]/30 border border-[var(--border)] rounded-xl">
+                      <div className="space-y-0.5">
+                        <Label className="text-sm font-bold text-[var(--foreground)]">Bisa Edit Materi</Label>
+                        <p className="text-xs text-[var(--muted-foreground)]">Izinkan guru ini untuk menambah, menyunting, dan menghapus materinya sendiri.</p>
+                      </div>
+                      <Switch 
+                        checked={!!formData.canEditMaterials} 
+                        onCheckedChange={(checked) => setFormData({...formData, canEditMaterials: checked})} 
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between p-4 bg-[var(--muted)]/30 border border-[var(--border)] rounded-xl">
+                      <div className="space-y-0.5">
+                        <Label className="text-sm font-bold text-[var(--foreground)]">Bisa Edit Tugas</Label>
+                        <p className="text-xs text-[var(--muted-foreground)]">Izinkan guru ini untuk menambah, menyunting, dan menghapus tugasnya sendiri.</p>
+                      </div>
+                      <Switch 
+                        checked={!!formData.canEditAssignments} 
+                        onCheckedChange={(checked) => setFormData({...formData, canEditAssignments: checked})} 
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="space-y-2">
+                <Label className="text-xs font-bold text-[var(--foreground)] flex items-center gap-2">
+                  <MapPin className="h-3.5 w-3.5 text-[#9333ea]" /> Alamat Lengkap
+                </Label>
+                <Textarea value={formData.address} onChange={(e) => setFormData({...formData, address: e.target.value})} className="bg-[var(--card)] border-[var(--border)] rounded-xl min-h-[100px] text-sm focus-visible:ring-[#9333ea] p-3" />
+              </div>
+
+              <div className="flex gap-4 pt-4">
+                <Button type="button" variant="ghost" onClick={() => setIsEditOpen(false)} className="flex-1 h-12 rounded-xl font-bold text-xs bg-[var(--muted)] hover:bg-[var(--muted)]/80">Batal</Button>
+                <Button disabled={isSubmitting} className="flex-[2] h-12 bg-[#9333ea] text-white font-bold rounded-xl hover:bg-[#7e22ce] transition-all shadow-md text-xs">
+                  {isSubmitting ? 'Memproses...' : 'Simpan Perubahan'}
+                </Button>
+              </div>
             </form>
+          </div>
         </DialogContent>
       </Dialog>
 
