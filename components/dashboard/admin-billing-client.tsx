@@ -13,7 +13,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Checkbox } from "@/components/ui/checkbox"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
-import { Wallet, CheckCircle, XCircle, PlusCircle, Trash2, Edit, FileText, Download } from "lucide-react"
+import { Wallet, CheckCircle, XCircle, PlusCircle, Trash2, Edit } from "lucide-react"
+import dynamic from "next/dynamic"
+
+const PdfExportButton = dynamic(() => import("./pdf-export-button"), { ssr: false })
 
 export function AdminBillingClient({ students, billings }: { students: any[], billings: any[] }) {
   const router = useRouter()
@@ -148,37 +151,6 @@ export function AdminBillingClient({ students, billings }: { students: any[], bi
     return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(amount)
   }
 
-  // --- EXPORT PDF ---
-  const exportPDF = async () => {
-    const { default: jsPDF } = await import("jspdf")
-    const { default: autoTable } = await import("jspdf-autotable")
-
-    const doc = new jsPDF()
-    doc.setFontSize(16)
-    doc.text("Laporan Data SPP & Tagihan", 14, 20)
-    doc.setFontSize(10)
-    doc.text(`Dicetak pada: ${format(new Date(), 'dd MMMM yyyy HH:mm', { locale: idLocale })}`, 14, 28)
-
-    const tableData = filteredBillings.map((bill, index) => [
-      index + 1,
-      bill.student.name,
-      bill.title,
-      formatRupiah(bill.amount),
-      format(new Date(bill.dueDate), 'dd MMM yyyy', { locale: idLocale }),
-      bill.status === 'PAID' ? 'Lunas' : bill.status === 'PENDING' ? 'Proses' : 'Belum Bayar'
-    ])
-
-    autoTable(doc, {
-      startY: 35,
-      head: [['No', 'Siswa', 'Tagihan', 'Nominal', 'Jatuh Tempo', 'Status']],
-      body: tableData,
-      theme: 'grid',
-      headStyles: { fillColor: [84, 131, 179] }
-    })
-
-    doc.save(`Laporan_SPP_${Date.now()}.pdf`)
-  }
-
   const openEditModal = (bill: any) => {
     setEditData({
       id: bill.id,
@@ -199,9 +171,7 @@ export function AdminBillingClient({ students, billings }: { students: any[], bi
           <p className="text-sm text-[var(--muted-foreground)]">Kelola tagihan dan verifikasi pembayaran siswa.</p>
         </div>
         <div className="flex items-center gap-2">
-          <Button onClick={exportPDF} variant="outline" className="border-[var(--border)] gap-2">
-            <Download className="w-4 h-4" /> Export PDF
-          </Button>
+          <PdfExportButton filteredBillings={filteredBillings} formatRupiah={formatRupiah} />
 
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
