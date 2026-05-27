@@ -23,7 +23,7 @@ import {
   ChevronRight,
   MessageSquare,
   Wallet
-} from 'lucide-react'
+} , Library, HeartPulse, GraduationCap } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { RBAC } from '@/lib/rbac'
