@@ -1110,10 +1110,12 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
                       <SelectTrigger className="bg-[var(--card)] border-[var(--border)] rounded-xl h-11 text-sm focus-visible:ring-[#5483B3]">
                         <SelectValue placeholder="Pilih Role" />
                       </SelectTrigger>
-                      <SelectContent className="bg-[var(--card)] border-[var(--border)] rounded-xl shadow-lg">
-                        <SelectItem value="STUDENT">STUDENT</SelectItem>
-                        <SelectItem value="TEACHER">TEACHER</SelectItem>
-                        <SelectItem value="ADMIN">ADMIN</SelectItem>
+                      <SelectContent className="bg-[var(--card)] border-[var(--border)] rounded-xl shadow-lg max-h-60 overflow-y-auto">
+                        {ALL_ROLES.map((role) => (
+                          <SelectItem key={role.value} value={role.value}>
+                            {role.label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>
