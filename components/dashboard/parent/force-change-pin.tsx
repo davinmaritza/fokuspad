@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { AlertCircle, Lock } from "lucide-react"
-import { toast } from "react-hot-toast"
+import { toast } from "sonner"
 
 export function ForceChangePin({ studentId }: { studentId: string }) {
   const router = useRouter()
