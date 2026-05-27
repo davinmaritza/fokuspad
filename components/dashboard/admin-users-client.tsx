@@ -562,16 +562,6 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
           </div>
 
           <div className="flex items-center gap-4">
-            <button className="bg-amber-100 text-amber-700 hover:bg-amber-200 px-4 py-1.5 rounded-lg text-xs font-bold flex items-center gap-2 transition-colors">
-              <Star className="h-3.5 w-3.5" /> Upgrade
-            </button>
-            <button className="text-gray-400 hover:text-gray-600 relative">
-              <Bell className="h-5 w-5" />
-              <span className="absolute 0 top-0 w-2 h-2 bg-red-500 rounded-full"></span>
-            </button>
-            <div className="h-8 w-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-xs cursor-pointer">
-              {fixedRole ? fixedRole.charAt(0) : 'A'}
-            </div>
           </div>
         </div>
 
