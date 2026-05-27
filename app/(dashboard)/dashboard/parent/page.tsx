@@ -18,6 +18,7 @@ import {
   CheckCircle2,
   AlertCircle
 } from "lucide-react"
+import { LinkStudentForm } from "@/components/dashboard/parent/link-student-form"
 import { format } from "date-fns"
 import { id as idLocale } from "date-fns/locale"
 
@@ -31,61 +32,66 @@ export default async function ParentDashboardPage() {
   }
 
   const role = (session.user as any)?.role
-  const studentId = (session.user as any)?.id
+  const parentId = (session.user as any)?.id
 
   if (role !== 'PARENT') {
     redirect("/dashboard")
   }
 
-  const student = await prisma.user.findUnique({
-    where: { id: studentId },
+  // Fetch parent and their linked children
+  const parent = await prisma.user.findUnique({
+    where: { id: parentId },
     include: {
-      class: true,
-      studentSubmissions: {
+      children: {
         include: {
-          assignment: {
+          class: true,
+          studentSubmissions: {
+            include: {
+              assignment: {
+                include: {
+                  subject: true
+                }
+              }
+            },
+            orderBy: { submittedAt: 'desc' }
+          },
+          progressLogs: {
+            include: {
+              topic: {
+                include: {
+                  subject: true
+                }
+              }
+            },
+            orderBy: { loggedAt: 'desc' }
+          },
+          userSubjects: {
             include: {
               subject: true
             }
-          }
-        },
-        orderBy: { submittedAt: 'desc' }
-      },
-      progressLogs: {
-        include: {
-          topic: {
+          },
+          userNotes: {
             include: {
-              subject: true
-            }
+              author: true
+            },
+            orderBy: { createdAt: 'desc' }
+          },
+          attendances: {
+            orderBy: { date: 'desc' }
           }
-        },
-        orderBy: { loggedAt: 'desc' }
-      },
-      userSubjects: {
-        include: {
-          subject: true
         }
-      },
-      userNotes: {
-        include: {
-          author: true
-        },
-        orderBy: { createdAt: 'desc' }
-      },
-      attendances: {
-        orderBy: { date: 'desc' }
       }
     }
   })
 
-  if (!student) {
-    return (
-      <div className="p-8 text-center">
-        <h2 className="text-xl font-bold text-red-500">Data siswa tidak ditemukan</h2>
-        <p className="text-sm text-[var(--muted-foreground)] mt-2">Silakan hubungi administrator sekolah.</p>
-      </div>
-    )
+  // If no children linked, show link form
+  if (!parent || !parent.children || parent.children.length === 0) {
+    return <LinkStudentForm />
   }
+
+  // For now, we take the first child. If a parent has multiple children, we can add a selector later.
+  const student = parent.children[0]
+
 
   // Calculate statistics
   const totalSubmissions = student.studentSubmissions?.length || 0

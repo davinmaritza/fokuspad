@@ -76,7 +76,11 @@ async function main() {
   // Buat Orang Tua Demo
   const parent = await prisma.user.upsert({
     where: { email: 'ortu@demo.com' },
-    update: { password: hashedPassword },
+    update: { 
+      password: hashedPassword,
+      role: Role.PARENT,
+      name: 'Orang Tua Demo'
+    },
     create: {
       email: 'ortu@demo.com',
       name: 'Orang Tua Demo',

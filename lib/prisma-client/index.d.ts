@@ -3708,6 +3708,7 @@ export namespace Prisma {
     discussionReplies: number
     teacherExams: number
     examAttempts: number
+    children: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3735,6 +3736,7 @@ export namespace Prisma {
     discussionReplies?: boolean | UserCountOutputTypeCountDiscussionRepliesArgs
     teacherExams?: boolean | UserCountOutputTypeCountTeacherExamsArgs
     examAttempts?: boolean | UserCountOutputTypeCountExamAttemptsArgs
+    children?: boolean | UserCountOutputTypeCountChildrenArgs
   }
 
   // Custom InputTypes
@@ -3914,6 +3916,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountExamAttemptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ExamAttemptWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountChildrenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
   }
 
 
@@ -4494,6 +4503,7 @@ export namespace Prisma {
     position: string | null
     canEditMaterials: boolean | null
     canEditAssignments: boolean | null
+    parentId: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -4520,6 +4530,7 @@ export namespace Prisma {
     position: string | null
     canEditMaterials: boolean | null
     canEditAssignments: boolean | null
+    parentId: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -4548,6 +4559,7 @@ export namespace Prisma {
     affiliations: number
     canEditMaterials: number
     canEditAssignments: number
+    parentId: number
     _all: number
   }
 
@@ -4584,6 +4596,7 @@ export namespace Prisma {
     position?: true
     canEditMaterials?: true
     canEditAssignments?: true
+    parentId?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -4610,6 +4623,7 @@ export namespace Prisma {
     position?: true
     canEditMaterials?: true
     canEditAssignments?: true
+    parentId?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -4638,6 +4652,7 @@ export namespace Prisma {
     affiliations?: true
     canEditMaterials?: true
     canEditAssignments?: true
+    parentId?: true
     _all?: true
   }
 
@@ -4753,6 +4768,7 @@ export namespace Prisma {
     affiliations: string[]
     canEditMaterials: boolean
     canEditAssignments: boolean
+    parentId: string | null
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -4800,6 +4816,7 @@ export namespace Prisma {
     affiliations?: boolean
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     teacherAssignments?: boolean | User$teacherAssignmentsArgs<ExtArgs>
@@ -4826,6 +4843,8 @@ export namespace Prisma {
     discussionReplies?: boolean | User$discussionRepliesArgs<ExtArgs>
     teacherExams?: boolean | User$teacherExamsArgs<ExtArgs>
     examAttempts?: boolean | User$examAttemptsArgs<ExtArgs>
+    parent?: boolean | User$parentArgs<ExtArgs>
+    children?: boolean | User$childrenArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -4855,7 +4874,9 @@ export namespace Prisma {
     affiliations?: boolean
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: boolean
     class?: boolean | User$classArgs<ExtArgs>
+    parent?: boolean | User$parentArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -4884,6 +4905,7 @@ export namespace Prisma {
     affiliations?: boolean
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: boolean
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4913,10 +4935,13 @@ export namespace Prisma {
     discussionReplies?: boolean | User$discussionRepliesArgs<ExtArgs>
     teacherExams?: boolean | User$teacherExamsArgs<ExtArgs>
     examAttempts?: boolean | User$examAttemptsArgs<ExtArgs>
+    parent?: boolean | User$parentArgs<ExtArgs>
+    children?: boolean | User$childrenArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     class?: boolean | User$classArgs<ExtArgs>
+    parent?: boolean | User$parentArgs<ExtArgs>
   }
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4948,6 +4973,8 @@ export namespace Prisma {
       discussionReplies: Prisma.$DiscussionReplyPayload<ExtArgs>[]
       teacherExams: Prisma.$ExamPayload<ExtArgs>[]
       examAttempts: Prisma.$ExamAttemptPayload<ExtArgs>[]
+      parent: Prisma.$UserPayload<ExtArgs> | null
+      children: Prisma.$UserPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4975,6 +5002,7 @@ export namespace Prisma {
       affiliations: string[]
       canEditMaterials: boolean
       canEditAssignments: boolean
+      parentId: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -5365,6 +5393,8 @@ export namespace Prisma {
     discussionReplies<T extends User$discussionRepliesArgs<ExtArgs> = {}>(args?: Subset<T, User$discussionRepliesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DiscussionReplyPayload<ExtArgs>, T, "findMany"> | Null>
     teacherExams<T extends User$teacherExamsArgs<ExtArgs> = {}>(args?: Subset<T, User$teacherExamsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findMany"> | Null>
     examAttempts<T extends User$examAttemptsArgs<ExtArgs> = {}>(args?: Subset<T, User$examAttemptsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamAttemptPayload<ExtArgs>, T, "findMany"> | Null>
+    parent<T extends User$parentArgs<ExtArgs> = {}>(args?: Subset<T, User$parentArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    children<T extends User$childrenArgs<ExtArgs> = {}>(args?: Subset<T, User$childrenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5419,6 +5449,7 @@ export namespace Prisma {
     readonly affiliations: FieldRef<"User", 'String[]'>
     readonly canEditMaterials: FieldRef<"User", 'Boolean'>
     readonly canEditAssignments: FieldRef<"User", 'Boolean'>
+    readonly parentId: FieldRef<"User", 'String'>
   }
     
 
@@ -6244,6 +6275,41 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ExamAttemptScalarFieldEnum | ExamAttemptScalarFieldEnum[]
+  }
+
+  /**
+   * User.parent
+   */
+  export type User$parentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * User.children
+   */
+  export type User$childrenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    cursor?: UserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
   /**
@@ -38293,7 +38359,8 @@ export namespace Prisma {
     position: 'position',
     affiliations: 'affiliations',
     canEditMaterials: 'canEditMaterials',
-    canEditAssignments: 'canEditAssignments'
+    canEditAssignments: 'canEditAssignments',
+    parentId: 'parentId'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -38964,6 +39031,7 @@ export namespace Prisma {
     affiliations?: StringNullableListFilter<"User">
     canEditMaterials?: BoolFilter<"User"> | boolean
     canEditAssignments?: BoolFilter<"User"> | boolean
+    parentId?: StringNullableFilter<"User"> | string | null
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     teacherAssignments?: AssignmentListRelationFilter
@@ -38990,6 +39058,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyListRelationFilter
     teacherExams?: ExamListRelationFilter
     examAttempts?: ExamAttemptListRelationFilter
+    parent?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+    children?: UserListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -39018,6 +39088,7 @@ export namespace Prisma {
     affiliations?: SortOrder
     canEditMaterials?: SortOrder
     canEditAssignments?: SortOrder
+    parentId?: SortOrderInput | SortOrder
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
     teacherAssignments?: AssignmentOrderByRelationAggregateInput
@@ -39044,6 +39115,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyOrderByRelationAggregateInput
     teacherExams?: ExamOrderByRelationAggregateInput
     examAttempts?: ExamAttemptOrderByRelationAggregateInput
+    parent?: UserOrderByWithRelationInput
+    children?: UserOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -39075,6 +39148,7 @@ export namespace Prisma {
     affiliations?: StringNullableListFilter<"User">
     canEditMaterials?: BoolFilter<"User"> | boolean
     canEditAssignments?: BoolFilter<"User"> | boolean
+    parentId?: StringNullableFilter<"User"> | string | null
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     teacherAssignments?: AssignmentListRelationFilter
@@ -39101,6 +39175,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyListRelationFilter
     teacherExams?: ExamListRelationFilter
     examAttempts?: ExamAttemptListRelationFilter
+    parent?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+    children?: UserListRelationFilter
   }, "id" | "email" | "nis">
 
   export type UserOrderByWithAggregationInput = {
@@ -39129,6 +39205,7 @@ export namespace Prisma {
     affiliations?: SortOrder
     canEditMaterials?: SortOrder
     canEditAssignments?: SortOrder
+    parentId?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -39165,6 +39242,7 @@ export namespace Prisma {
     affiliations?: StringNullableListFilter<"User">
     canEditMaterials?: BoolWithAggregatesFilter<"User"> | boolean
     canEditAssignments?: BoolWithAggregatesFilter<"User"> | boolean
+    parentId?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type UserNoteWhereInput = {
@@ -41523,6 +41601,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -41551,6 +41631,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -41576,6 +41657,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserUpdateInput = {
@@ -41629,6 +41711,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -41657,6 +41741,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -41682,6 +41767,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -41710,6 +41796,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -41765,6 +41852,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserNoteCreateInput = {
@@ -44381,6 +44469,17 @@ export namespace Prisma {
     none?: ExamAttemptWhereInput
   }
 
+  export type UserNullableRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
+  export type UserListRelationFilter = {
+    every?: UserWhereInput
+    some?: UserWhereInput
+    none?: UserWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -44474,6 +44573,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type UserOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -44500,6 +44603,7 @@ export namespace Prisma {
     affiliations?: SortOrder
     canEditMaterials?: SortOrder
     canEditAssignments?: SortOrder
+    parentId?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -44530,6 +44634,7 @@ export namespace Prisma {
     position?: SortOrder
     canEditMaterials?: SortOrder
     canEditAssignments?: SortOrder
+    parentId?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -44556,6 +44661,7 @@ export namespace Prisma {
     position?: SortOrder
     canEditMaterials?: SortOrder
     canEditAssignments?: SortOrder
+    parentId?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -44783,16 +44889,6 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type UserListRelationFilter = {
-    every?: UserWhereInput
-    some?: UserWhereInput
-    none?: UserWhereInput
-  }
-
-  export type UserOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type ClassNameSchoolCompoundUniqueInput = {
     name: string
     school: string
@@ -44844,11 +44940,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type UserNullableRelationFilter = {
-    is?: UserWhereInput | null
-    isNot?: UserWhereInput | null
   }
 
   export type TopicListRelationFilter = {
@@ -46310,6 +46401,19 @@ export namespace Prisma {
     connect?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
   }
 
+  export type UserCreateNestedOneWithoutChildrenInput = {
+    create?: XOR<UserCreateWithoutChildrenInput, UserUncheckedCreateWithoutChildrenInput>
+    connectOrCreate?: UserCreateOrConnectWithoutChildrenInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserCreateNestedManyWithoutParentInput = {
+    create?: XOR<UserCreateWithoutParentInput, UserUncheckedCreateWithoutParentInput> | UserCreateWithoutParentInput[] | UserUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutParentInput | UserCreateOrConnectWithoutParentInput[]
+    createMany?: UserCreateManyParentInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -46482,6 +46586,13 @@ export namespace Prisma {
     connectOrCreate?: ExamAttemptCreateOrConnectWithoutStudentInput | ExamAttemptCreateOrConnectWithoutStudentInput[]
     createMany?: ExamAttemptCreateManyStudentInputEnvelope
     connect?: ExamAttemptWhereUniqueInput | ExamAttemptWhereUniqueInput[]
+  }
+
+  export type UserUncheckedCreateNestedManyWithoutParentInput = {
+    create?: XOR<UserCreateWithoutParentInput, UserUncheckedCreateWithoutParentInput> | UserCreateWithoutParentInput[] | UserUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutParentInput | UserCreateOrConnectWithoutParentInput[]
+    createMany?: UserCreateManyParentInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -46877,6 +46988,30 @@ export namespace Prisma {
     deleteMany?: ExamAttemptScalarWhereInput | ExamAttemptScalarWhereInput[]
   }
 
+  export type UserUpdateOneWithoutChildrenNestedInput = {
+    create?: XOR<UserCreateWithoutChildrenInput, UserUncheckedCreateWithoutChildrenInput>
+    connectOrCreate?: UserCreateOrConnectWithoutChildrenInput
+    upsert?: UserUpsertWithoutChildrenInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutChildrenInput, UserUpdateWithoutChildrenInput>, UserUncheckedUpdateWithoutChildrenInput>
+  }
+
+  export type UserUpdateManyWithoutParentNestedInput = {
+    create?: XOR<UserCreateWithoutParentInput, UserUncheckedCreateWithoutParentInput> | UserCreateWithoutParentInput[] | UserUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutParentInput | UserCreateOrConnectWithoutParentInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutParentInput | UserUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: UserCreateManyParentInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutParentInput | UserUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutParentInput | UserUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -47221,6 +47356,20 @@ export namespace Prisma {
     update?: ExamAttemptUpdateWithWhereUniqueWithoutStudentInput | ExamAttemptUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: ExamAttemptUpdateManyWithWhereWithoutStudentInput | ExamAttemptUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: ExamAttemptScalarWhereInput | ExamAttemptScalarWhereInput[]
+  }
+
+  export type UserUncheckedUpdateManyWithoutParentNestedInput = {
+    create?: XOR<UserCreateWithoutParentInput, UserUncheckedCreateWithoutParentInput> | UserCreateWithoutParentInput[] | UserUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutParentInput | UserCreateOrConnectWithoutParentInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutParentInput | UserUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: UserCreateManyParentInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutParentInput | UserUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutParentInput | UserUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutUserNotesInput = {
@@ -50264,6 +50413,237 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UserCreateWithoutChildrenInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    operator?: OperatorCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectCreateNestedManyWithoutTeacherInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    userNotes?: UserNoteCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialCreateNestedManyWithoutTeacherInput
+    documents?: DocumentCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+  }
+
+  export type UserUncheckedCreateWithoutChildrenInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    parentId?: string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    operator?: OperatorUncheckedCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogUncheckedCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectUncheckedCreateNestedManyWithoutTeacherInput
+    userNotes?: UserNoteUncheckedCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteUncheckedCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderUncheckedCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularUncheckedCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularUncheckedCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberUncheckedCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialUncheckedCreateNestedManyWithoutTeacherInput
+    documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type UserCreateOrConnectWithoutChildrenInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutChildrenInput, UserUncheckedCreateWithoutChildrenInput>
+  }
+
+  export type UserCreateWithoutParentInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    operator?: OperatorCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectCreateNestedManyWithoutTeacherInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    userNotes?: UserNoteCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialCreateNestedManyWithoutTeacherInput
+    documents?: DocumentCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    children?: UserCreateNestedManyWithoutParentInput
+  }
+
+  export type UserUncheckedCreateWithoutParentInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    operator?: OperatorUncheckedCreateNestedOneWithoutUserInput
+    progressLogs?: ProgressLogUncheckedCreateNestedManyWithoutUserInput
+    teacherSubjects?: SubjectUncheckedCreateNestedManyWithoutTeacherInput
+    userNotes?: UserNoteUncheckedCreateNestedManyWithoutUserInput
+    authoredNotes?: UserNoteUncheckedCreateNestedManyWithoutAuthorInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutUserInput
+    userSubjects?: UserSubjectUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    calendarReminders?: CalendarReminderUncheckedCreateNestedManyWithoutUserInput
+    ekskulLeader?: ExtracurricularUncheckedCreateNestedManyWithoutLeaderInput
+    ekskulCoach?: ExtracurricularUncheckedCreateNestedManyWithoutCoachInput
+    ekskulMembers?: ExtracurricularMemberUncheckedCreateNestedManyWithoutStudentInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedCreateNestedManyWithoutStudentInput
+    teacherMaterials?: MaterialUncheckedCreateNestedManyWithoutTeacherInput
+    documents?: DocumentUncheckedCreateNestedManyWithoutUserInput
+    discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
+    discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
+    teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type UserCreateOrConnectWithoutParentInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutParentInput, UserUncheckedCreateWithoutParentInput>
+  }
+
+  export type UserCreateManyParentInputEnvelope = {
+    data: UserCreateManyParentInput | UserCreateManyParentInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountWhereUniqueInput
     update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
@@ -51014,6 +51394,173 @@ export namespace Prisma {
     cheatWarnings?: IntFilter<"ExamAttempt"> | number
   }
 
+  export type UserUpsertWithoutChildrenInput = {
+    update: XOR<UserUpdateWithoutChildrenInput, UserUncheckedUpdateWithoutChildrenInput>
+    create: XOR<UserCreateWithoutChildrenInput, UserUncheckedCreateWithoutChildrenInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutChildrenInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutChildrenInput, UserUncheckedUpdateWithoutChildrenInput>
+  }
+
+  export type UserUpdateWithoutChildrenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    operator?: OperatorUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUpdateManyWithoutTeacherNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    userNotes?: UserNoteUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutChildrenInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    operator?: OperatorUncheckedUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUncheckedUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUncheckedUpdateManyWithoutTeacherNestedInput
+    userNotes?: UserNoteUncheckedUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUncheckedUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUncheckedUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUncheckedUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUncheckedUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUncheckedUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUncheckedUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type UserUpsertWithWhereUniqueWithoutParentInput = {
+    where: UserWhereUniqueInput
+    update: XOR<UserUpdateWithoutParentInput, UserUncheckedUpdateWithoutParentInput>
+    create: XOR<UserCreateWithoutParentInput, UserUncheckedCreateWithoutParentInput>
+  }
+
+  export type UserUpdateWithWhereUniqueWithoutParentInput = {
+    where: UserWhereUniqueInput
+    data: XOR<UserUpdateWithoutParentInput, UserUncheckedUpdateWithoutParentInput>
+  }
+
+  export type UserUpdateManyWithWhereWithoutParentInput = {
+    where: UserScalarWhereInput
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutParentInput>
+  }
+
+  export type UserScalarWhereInput = {
+    AND?: UserScalarWhereInput | UserScalarWhereInput[]
+    OR?: UserScalarWhereInput[]
+    NOT?: UserScalarWhereInput | UserScalarWhereInput[]
+    id?: StringFilter<"User"> | string
+    name?: StringFilter<"User"> | string
+    email?: StringFilter<"User"> | string
+    password?: StringNullableFilter<"User"> | string | null
+    role?: EnumRoleFilter<"User"> | $Enums.Role
+    school?: StringNullableFilter<"User"> | string | null
+    isActive?: BoolFilter<"User"> | boolean
+    lastActiveAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    reminderTime?: StringNullableFilter<"User"> | string | null
+    notificationPrefs?: JsonFilter<"User">
+    classId?: StringNullableFilter<"User"> | string | null
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+    image?: StringNullableFilter<"User"> | string | null
+    nis?: StringNullableFilter<"User"> | string | null
+    noAbsen?: IntNullableFilter<"User"> | number | null
+    phone?: StringNullableFilter<"User"> | string | null
+    gender?: StringNullableFilter<"User"> | string | null
+    address?: StringNullableFilter<"User"> | string | null
+    emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
+    parentPin?: StringNullableFilter<"User"> | string | null
+    position?: StringNullableFilter<"User"> | string | null
+    affiliations?: StringNullableListFilter<"User">
+    canEditMaterials?: BoolFilter<"User"> | boolean
+    canEditAssignments?: BoolFilter<"User"> | boolean
+    parentId?: StringNullableFilter<"User"> | string | null
+  }
+
   export type UserCreateWithoutUserNotesInput = {
     id?: string
     name: string
@@ -51064,6 +51611,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutUserNotesInput = {
@@ -51092,6 +51641,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -51116,6 +51666,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutUserNotesInput = {
@@ -51173,6 +51724,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutAuthoredNotesInput = {
@@ -51201,6 +51754,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -51225,6 +51779,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutAuthoredNotesInput = {
@@ -51293,6 +51848,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserNotesInput = {
@@ -51321,6 +51878,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -51345,6 +51903,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type UserUpsertWithoutAuthoredNotesInput = {
@@ -51408,6 +51967,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuthoredNotesInput = {
@@ -51436,6 +51997,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -51460,6 +52022,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type UserCreateWithoutAttendancesInput = {
@@ -51512,6 +52075,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutAttendancesInput = {
@@ -51540,6 +52105,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -51564,6 +52130,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutAttendancesInput = {
@@ -51632,6 +52199,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAttendancesInput = {
@@ -51660,6 +52229,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -51684,6 +52254,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type AssignmentCreateWithoutClassInput = {
@@ -51816,6 +52387,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutClassInput = {
@@ -51843,6 +52416,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -51868,6 +52442,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutClassInput = {
@@ -52034,37 +52609,6 @@ export namespace Prisma {
   export type UserUpdateManyWithWhereWithoutClassInput = {
     where: UserScalarWhereInput
     data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutClassInput>
-  }
-
-  export type UserScalarWhereInput = {
-    AND?: UserScalarWhereInput | UserScalarWhereInput[]
-    OR?: UserScalarWhereInput[]
-    NOT?: UserScalarWhereInput | UserScalarWhereInput[]
-    id?: StringFilter<"User"> | string
-    name?: StringFilter<"User"> | string
-    email?: StringFilter<"User"> | string
-    password?: StringNullableFilter<"User"> | string | null
-    role?: EnumRoleFilter<"User"> | $Enums.Role
-    school?: StringNullableFilter<"User"> | string | null
-    isActive?: BoolFilter<"User"> | boolean
-    lastActiveAt?: DateTimeNullableFilter<"User"> | Date | string | null
-    reminderTime?: StringNullableFilter<"User"> | string | null
-    notificationPrefs?: JsonFilter<"User">
-    classId?: StringNullableFilter<"User"> | string | null
-    createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeFilter<"User"> | Date | string
-    image?: StringNullableFilter<"User"> | string | null
-    nis?: StringNullableFilter<"User"> | string | null
-    noAbsen?: IntNullableFilter<"User"> | number | null
-    phone?: StringNullableFilter<"User"> | string | null
-    gender?: StringNullableFilter<"User"> | string | null
-    address?: StringNullableFilter<"User"> | string | null
-    emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
-    parentPin?: StringNullableFilter<"User"> | string | null
-    position?: StringNullableFilter<"User"> | string | null
-    affiliations?: StringNullableListFilter<"User">
-    canEditMaterials?: BoolFilter<"User"> | boolean
-    canEditAssignments?: BoolFilter<"User"> | boolean
   }
 
   export type MaterialUpsertWithWhereUniqueWithoutClassInput = {
@@ -52245,6 +52789,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutTeacherSubjectsInput = {
@@ -52273,6 +52819,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -52297,6 +52844,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutTeacherSubjectsInput = {
@@ -52533,6 +53081,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeacherSubjectsInput = {
@@ -52561,6 +53111,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -52585,6 +53136,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type TopicUpsertWithWhereUniqueWithoutSubjectInput = {
@@ -52933,6 +53485,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutProgressLogsInput = {
@@ -52961,6 +53515,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -52985,6 +53540,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutProgressLogsInput = {
@@ -53090,6 +53646,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProgressLogsInput = {
@@ -53118,6 +53676,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -53142,6 +53701,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type SubjectCreateWithoutUserSubjectsInput = {
@@ -53231,6 +53791,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutUserSubjectsInput = {
@@ -53259,6 +53821,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -53283,6 +53846,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutUserSubjectsInput = {
@@ -53394,6 +53958,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserSubjectsInput = {
@@ -53422,6 +53988,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -53446,6 +54013,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type ClassCreateWithoutSchedulesInput = {
@@ -53566,6 +54134,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutTeacherSchedulesInput = {
@@ -53594,6 +54164,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -53618,6 +54189,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutTeacherSchedulesInput = {
@@ -53766,6 +54338,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeacherSchedulesInput = {
@@ -53794,6 +54368,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -53818,6 +54393,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type ClassCreateWithoutMaterialsInput = {
@@ -53938,6 +54514,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutTeacherMaterialsInput = {
@@ -53966,6 +54544,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -53990,6 +54569,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutTeacherMaterialsInput = {
@@ -54138,6 +54718,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeacherMaterialsInput = {
@@ -54166,6 +54748,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -54190,6 +54773,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type UserCreateWithoutEkskulLeaderInput = {
@@ -54242,6 +54826,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutEkskulLeaderInput = {
@@ -54270,6 +54856,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -54294,6 +54881,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutEkskulLeaderInput = {
@@ -54351,6 +54939,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutEkskulCoachInput = {
@@ -54379,6 +54969,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -54403,6 +54994,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutEkskulCoachInput = {
@@ -54523,6 +55115,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEkskulLeaderInput = {
@@ -54551,6 +55145,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -54575,6 +55170,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type UserUpsertWithoutEkskulCoachInput = {
@@ -54638,6 +55234,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEkskulCoachInput = {
@@ -54666,6 +55264,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -54690,6 +55289,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type ExtracurricularMemberUpsertWithWhereUniqueWithoutExtracurricularInput = {
@@ -54787,6 +55387,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutEkskulMembersInput = {
@@ -54815,6 +55417,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -54839,6 +55442,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutEkskulMembersInput = {
@@ -54936,6 +55540,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEkskulMembersInput = {
@@ -54964,6 +55570,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -54988,6 +55595,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type ExtracurricularUpsertWithoutMembersInput = {
@@ -55204,6 +55812,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutEkskulAttendancesInput = {
@@ -55232,6 +55842,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -55256,6 +55867,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutEkskulAttendancesInput = {
@@ -55355,6 +55967,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEkskulAttendancesInput = {
@@ -55383,6 +55997,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -55407,6 +56022,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type ClassCreateWithoutAssignmentsInput = {
@@ -55558,6 +56174,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutTeacherAssignmentsInput = {
@@ -55586,6 +56204,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -55610,6 +56229,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutTeacherAssignmentsInput = {
@@ -55855,6 +56475,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeacherAssignmentsInput = {
@@ -55883,6 +56505,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -55907,6 +56530,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type AssignmentSubmissionUpsertWithWhereUniqueWithoutAssignmentInput = {
@@ -56032,6 +56656,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutStudentSubmissionsInput = {
@@ -56060,6 +56686,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -56084,6 +56711,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutStudentSubmissionsInput = {
@@ -56225,6 +56853,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStudentSubmissionsInput = {
@@ -56253,6 +56883,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -56277,6 +56908,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type CommentUpsertWithWhereUniqueWithoutSubmissionInput = {
@@ -56345,6 +56977,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutCommentsInput = {
@@ -56373,6 +57007,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -56397,6 +57032,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutCommentsInput = {
@@ -56535,6 +57171,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -56563,6 +57201,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -56587,6 +57226,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type AssignmentUpsertWithoutCommentsInput = {
@@ -56721,6 +57361,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -56749,6 +57391,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -56773,6 +57416,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -56862,6 +57506,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -56890,6 +57536,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -56914,6 +57561,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type AnnouncementUpsertWithoutNotificationsInput = {
@@ -57039,6 +57687,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutOperatorInput = {
@@ -57067,6 +57717,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -57091,6 +57742,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutOperatorInput = {
@@ -57159,6 +57811,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOperatorInput = {
@@ -57187,6 +57841,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -57211,6 +57866,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -57263,6 +57919,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -57291,6 +57949,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -57315,6 +57974,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -57383,6 +58043,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -57411,6 +58073,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -57435,6 +58098,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -57487,6 +58151,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -57515,6 +58181,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -57539,6 +58206,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -57607,6 +58275,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -57635,6 +58305,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -57659,6 +58330,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type UserCreateWithoutCalendarRemindersInput = {
@@ -57711,6 +58383,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutCalendarRemindersInput = {
@@ -57739,6 +58413,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -57763,6 +58438,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutCalendarRemindersInput = {
@@ -57831,6 +58507,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCalendarRemindersInput = {
@@ -57859,6 +58537,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -57883,6 +58562,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type UserCreateWithoutDocumentsInput = {
@@ -57935,6 +58615,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutDocumentsInput = {
@@ -57963,6 +58645,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -57987,6 +58670,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutDocumentsInput = {
@@ -58118,6 +58802,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDocumentsInput = {
@@ -58146,6 +58832,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -58170,6 +58857,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type DocumentUpsertWithoutSubDocsInput = {
@@ -58273,6 +58961,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutDiscussionThreadsInput = {
@@ -58301,6 +58991,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -58325,6 +59016,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutDiscussionThreadsInput = {
@@ -58450,6 +59142,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDiscussionThreadsInput = {
@@ -58478,6 +59172,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -58502,6 +59197,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type ClassUpsertWithoutDiscussionThreadsInput = {
@@ -58632,6 +59328,8 @@ export namespace Prisma {
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutDiscussionRepliesInput = {
@@ -58660,6 +59358,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -58684,6 +59383,7 @@ export namespace Prisma {
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutDiscussionRepliesInput = {
@@ -58783,6 +59483,8 @@ export namespace Prisma {
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDiscussionRepliesInput = {
@@ -58811,6 +59513,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -58835,6 +59538,7 @@ export namespace Prisma {
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type ClassCreateWithoutExamsInput = {
@@ -58955,6 +59659,8 @@ export namespace Prisma {
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     examAttempts?: ExamAttemptCreateNestedManyWithoutStudentInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutTeacherExamsInput = {
@@ -58983,6 +59689,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -59007,6 +59714,7 @@ export namespace Prisma {
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     examAttempts?: ExamAttemptUncheckedCreateNestedManyWithoutStudentInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutTeacherExamsInput = {
@@ -59219,6 +59927,8 @@ export namespace Prisma {
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeacherExamsInput = {
@@ -59247,6 +59957,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -59271,6 +59982,7 @@ export namespace Prisma {
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type ExamQuestionUpsertWithWhereUniqueWithoutExamInput = {
@@ -59546,6 +60258,8 @@ export namespace Prisma {
     discussionThreads?: DiscussionThreadCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamCreateNestedManyWithoutTeacherInput
+    parent?: UserCreateNestedOneWithoutChildrenInput
+    children?: UserCreateNestedManyWithoutParentInput
   }
 
   export type UserUncheckedCreateWithoutExamAttemptsInput = {
@@ -59574,6 +60288,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -59598,6 +60313,7 @@ export namespace Prisma {
     discussionThreads?: DiscussionThreadUncheckedCreateNestedManyWithoutAuthorInput
     discussionReplies?: DiscussionReplyUncheckedCreateNestedManyWithoutAuthorInput
     teacherExams?: ExamUncheckedCreateNestedManyWithoutTeacherInput
+    children?: UserUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type UserCreateOrConnectWithoutExamAttemptsInput = {
@@ -59737,6 +60453,8 @@ export namespace Prisma {
     discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutExamAttemptsInput = {
@@ -59765,6 +60483,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -59789,6 +60508,7 @@ export namespace Prisma {
     discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type ExamAnswerUpsertWithWhereUniqueWithoutAttemptInput = {
@@ -60159,6 +60879,34 @@ export namespace Prisma {
     status?: $Enums.AttemptStatus
     score?: number | null
     cheatWarnings?: number
+  }
+
+  export type UserCreateManyParentInput = {
+    id?: string
+    name: string
+    email: string
+    password?: string | null
+    role?: $Enums.Role
+    school?: string | null
+    isActive?: boolean
+    lastActiveAt?: Date | string | null
+    reminderTime?: string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: string | null
+    nis?: string | null
+    noAbsen?: number | null
+    phone?: string | null
+    gender?: string | null
+    address?: string | null
+    emailVerified?: Date | string | null
+    parentPin?: string | null
+    position?: string | null
+    affiliations?: UserCreateaffiliationsInput | string[]
+    canEditMaterials?: boolean
+    canEditAssignments?: boolean
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -60899,6 +61647,142 @@ export namespace Prisma {
     cheatWarnings?: IntFieldUpdateOperationsInput | number
   }
 
+  export type UserUpdateWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    operator?: OperatorUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUpdateManyWithoutTeacherNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    userNotes?: UserNoteUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    operator?: OperatorUncheckedUpdateOneWithoutUserNestedInput
+    progressLogs?: ProgressLogUncheckedUpdateManyWithoutUserNestedInput
+    teacherSubjects?: SubjectUncheckedUpdateManyWithoutTeacherNestedInput
+    userNotes?: UserNoteUncheckedUpdateManyWithoutUserNestedInput
+    authoredNotes?: UserNoteUncheckedUpdateManyWithoutAuthorNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutUserNestedInput
+    userSubjects?: UserSubjectUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    calendarReminders?: CalendarReminderUncheckedUpdateManyWithoutUserNestedInput
+    ekskulLeader?: ExtracurricularUncheckedUpdateManyWithoutLeaderNestedInput
+    ekskulCoach?: ExtracurricularUncheckedUpdateManyWithoutCoachNestedInput
+    ekskulMembers?: ExtracurricularMemberUncheckedUpdateManyWithoutStudentNestedInput
+    ekskulAttendances?: ExtracurricularAttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    teacherMaterials?: MaterialUncheckedUpdateManyWithoutTeacherNestedInput
+    documents?: DocumentUncheckedUpdateManyWithoutUserNestedInput
+    discussionThreads?: DiscussionThreadUncheckedUpdateManyWithoutAuthorNestedInput
+    discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
+    teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
+    examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type UserUncheckedUpdateManyWithoutParentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastActiveAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderTime?: NullableStringFieldUpdateOperationsInput | string | null
+    notificationPrefs?: JsonNullValueInput | InputJsonValue
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    nis?: NullableStringFieldUpdateOperationsInput | string | null
+    noAbsen?: NullableIntFieldUpdateOperationsInput | number | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    parentPin?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    affiliations?: UserUpdateaffiliationsInput | string[]
+    canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
+    canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type AssignmentCreateManyClassInput = {
     id?: string
     title: string
@@ -60952,6 +61836,7 @@ export namespace Prisma {
     affiliations?: UserCreateaffiliationsInput | string[]
     canEditMaterials?: boolean
     canEditAssignments?: boolean
+    parentId?: string | null
   }
 
   export type MaterialCreateManyClassInput = {
@@ -61128,6 +62013,8 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUpdateManyWithoutStudentNestedInput
+    parent?: UserUpdateOneWithoutChildrenNestedInput
+    children?: UserUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateWithoutClassInput = {
@@ -61155,6 +62042,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -61180,6 +62068,7 @@ export namespace Prisma {
     discussionReplies?: DiscussionReplyUncheckedUpdateManyWithoutAuthorNestedInput
     teacherExams?: ExamUncheckedUpdateManyWithoutTeacherNestedInput
     examAttempts?: ExamAttemptUncheckedUpdateManyWithoutStudentNestedInput
+    children?: UserUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutClassInput = {
@@ -61207,6 +62096,7 @@ export namespace Prisma {
     affiliations?: UserUpdateaffiliationsInput | string[]
     canEditMaterials?: BoolFieldUpdateOperationsInput | boolean
     canEditAssignments?: BoolFieldUpdateOperationsInput | boolean
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type MaterialUpdateWithoutClassInput = {

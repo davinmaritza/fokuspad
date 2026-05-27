@@ -66,6 +66,11 @@ model User {
   // CBT Exams
   teacherExams       Exam[]                 @relation("TeacherExams")
   examAttempts       ExamAttempt[]          @relation("StudentExamAttempts")
+
+  // Parent-Child Relation
+  parentId           String?
+  parent             User?                  @relation("ParentChild", fields: [parentId], references: [id])
+  children           User[]                 @relation("ParentChild")
 }
 
 model UserNote {

@@ -19,10 +19,22 @@ export default async function StudentReportsPage() {
     include: { topic: { include: { subject: true } } }
   })
 
+  const studentData = await prisma.user.findUnique({
+    where: { id: userId },
+    include: {
+      class: true,
+      studentSubmissions: {
+        include: { assignment: { include: { subject: true } } }
+      },
+      attendances: true
+    }
+  })
+
   return (
     <ReportsClient 
       subjects={subjects}
       logs={logs}
+      student={studentData}
     />
   )
 }

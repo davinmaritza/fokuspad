@@ -21,39 +21,42 @@ import {
   TableHeader, 
   TableRow 
 } from "@/components/ui/table"
+import { useReactToPrint } from 'react-to-print'
+import { useRef } from 'react'
+import { ReportCardPDF } from './report-card-pdf'
 
-export function ReportsClient({ subjects, logs }: any) {
+export function ReportsClient({ subjects, logs, student }: any) {
   const totalMinutes = logs?.reduce((acc: number, log: any) => acc + log.duration, 0) || 0
   const totalHours = (totalMinutes / 60).toFixed(1)
   const avgDifficulty = logs?.length > 0 ? (logs.reduce((acc: number, log: any) => acc + log.difficulty, 0) / logs.length).toFixed(1) : 0
 
-  const handleExport = () => {
-    window.print()
-  }
+  const componentRef = useRef<HTMLDivElement>(null)
+
+  const handleExport = useReactToPrint({
+    contentRef: componentRef,
+    documentTitle: `Rapor_Digital_${student?.name || 'Siswa'}`
+  })
 
   return (
     <div className="space-y-8 print:p-0 pb-20">
       <style jsx global>{`
         @media print {
-          aside, nav, .top-bar, button, .no-print {
+          /* When generating PDF, hide everything else */
+          body > *:not(.print-container) {
             display: none !important;
           }
-          body {
-            background: white !important;
-            color: black !important;
+          .print-container {
+            display: block !important;
           }
-          .print-area {
-            width: 100% !important;
-            margin: 0 !important;
-            padding: 20px !important;
-          }
-          .card {
-            border: 1px solid #eee !important;
-            break-inside: avoid;
-            box-shadow: none !important;
+          @page {
+            size: A4;
+            margin: 0;
           }
         }
       `}</style>
+      
+      {/* Hidden PDF Content */}
+      <ReportCardPDF ref={componentRef} student={student} />
       
       {/* Header Section */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 print:mb-8 border-b border-[var(--border)] pb-6">
