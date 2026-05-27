@@ -18,7 +18,7 @@ import {
   CheckCircle2,
   AlertCircle
 } from "lucide-react"
-import { LinkStudentForm } from "@/components/dashboard/parent/link-student-form"
+import { ForceChangePin } from "@/components/dashboard/parent/force-change-pin"
 import { format } from "date-fns"
 import { id as idLocale } from "date-fns/locale"
 
@@ -32,65 +32,62 @@ export default async function ParentDashboardPage() {
   }
 
   const role = (session.user as any)?.role
-  const parentId = (session.user as any)?.id
+  const studentId = (session.user as any)?.id
 
   if (role !== 'PARENT') {
     redirect("/dashboard")
   }
 
-  // Fetch parent and their linked children
-  const parent = await prisma.user.findUnique({
-    where: { id: parentId },
+  // Sesi parent mengambil id student
+  const student = await prisma.user.findUnique({
+    where: { id: studentId },
     include: {
-      children: {
+      class: true,
+      studentSubmissions: {
         include: {
-          class: true,
-          studentSubmissions: {
-            include: {
-              assignment: {
-                include: {
-                  subject: true
-                }
-              }
-            },
-            orderBy: { submittedAt: 'desc' }
-          },
-          progressLogs: {
-            include: {
-              topic: {
-                include: {
-                  subject: true
-                }
-              }
-            },
-            orderBy: { loggedAt: 'desc' }
-          },
-          userSubjects: {
+          assignment: {
             include: {
               subject: true
             }
-          },
-          userNotes: {
-            include: {
-              author: true
-            },
-            orderBy: { createdAt: 'desc' }
-          },
-          attendances: {
-            orderBy: { date: 'desc' }
           }
+        },
+        orderBy: { submittedAt: 'desc' }
+      },
+      progressLogs: {
+        include: {
+          topic: {
+            include: {
+              subject: true
+            }
+          }
+        },
+        orderBy: { loggedAt: 'desc' }
+      },
+      userSubjects: {
+        include: {
+          subject: true
         }
+      },
+      userNotes: {
+        include: {
+          author: true
+        },
+        orderBy: { createdAt: 'desc' }
+      },
+      attendances: {
+        orderBy: { date: 'desc' }
       }
     }
   })
 
-  // If no children linked, show link form
-  if (!parent || !parent.children || parent.children.length === 0) {
-    return <LinkStudentForm />
+  if (!student) {
+    redirect("/login")
   }
 
-  // For now, we take the first child. If a parent has multiple children, we can add a selector later.
-  const student = parent.children[0]
+  // Paksa ganti PIN jika masih default (kecuali akun demo)
+  if (student.parentPin === '123456' && student.nis !== '12345678') {
+    return <ForceChangePin studentId={student.id} />
+  }
 
 
   // Calculate statistics

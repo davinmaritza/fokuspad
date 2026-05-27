@@ -1,4 +1,4 @@
-import { PrismaClient, Role } from '@prisma/client'
+import { PrismaClient, Role } from '../lib/prisma-client'
 import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
@@ -91,6 +91,13 @@ async function main() {
     },
   })
   console.log('✅ Orang Tua Demo berhasil dibuat:', parent.email)
+
+  // Hubungkan Siswa Demo ke Orang Tua Demo
+  await prisma.user.update({
+    where: { email: 'siswa@demo.com' },
+    data: { parentId: parent.id }
+  })
+  console.log('✅ Siswa Demo berhasil dihubungkan ke Orang Tua Demo')
 
   console.log('🎉 Seeding selesai! Anda dapat login dengan akun-akun tersebut menggunakan password: password123')
 }
