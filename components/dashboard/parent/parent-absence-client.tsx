@@ -74,7 +74,7 @@ export function ParentAbsenceClient({ requests }: { requests: any[] }) {
               + Buat Pengajuan Baru
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[500px]">
+          <DialogContent className="sm:max-w-[500px] bg-white dark:bg-slate-900 border-[var(--border)] shadow-xl z-50">
             <DialogHeader>
               <DialogTitle>Form Pengajuan Izin</DialogTitle>
             </DialogHeader>
@@ -82,18 +82,18 @@ export function ParentAbsenceClient({ requests }: { requests: any[] }) {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="text-xs font-bold text-[#64748B]">Tanggal Mulai</Label>
-                  <Input type="date" required value={formData.startDate} onChange={e => setFormData({...formData, startDate: e.target.value})} />
+                  <Input type="date" className="bg-white dark:bg-slate-800" required value={formData.startDate} onChange={e => setFormData({...formData, startDate: e.target.value})} />
                 </div>
                 <div className="space-y-2">
                   <Label className="text-xs font-bold text-[#64748B]">Tanggal Selesai</Label>
-                  <Input type="date" required value={formData.endDate} onChange={e => setFormData({...formData, endDate: e.target.value})} />
+                  <Input type="date" className="bg-white dark:bg-slate-800" required value={formData.endDate} onChange={e => setFormData({...formData, endDate: e.target.value})} />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label className="text-xs font-bold text-[#64748B]">Alasan</Label>
                 <Select value={formData.reason} onValueChange={v => setFormData({...formData, reason: v})}>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white dark:bg-slate-800">
                     <SelectValue placeholder="Pilih alasan" />
                   </SelectTrigger>
                   <SelectContent>
@@ -107,6 +107,7 @@ export function ParentAbsenceClient({ requests }: { requests: any[] }) {
                 <Label className="text-xs font-bold text-[#64748B]">Keterangan Tambahan</Label>
                 <Textarea 
                   required
+                  className="bg-white dark:bg-slate-800"
                   placeholder="Jelaskan alasan secara singkat..." 
                   value={formData.description} 
                   onChange={e => setFormData({...formData, description: e.target.value})} 
@@ -116,6 +117,7 @@ export function ParentAbsenceClient({ requests }: { requests: any[] }) {
               <div className="space-y-2">
                 <Label className="text-xs font-bold text-[#64748B]">URL Surat Dokter / Bukti (Opsional)</Label>
                 <Input 
+                  className="bg-white dark:bg-slate-800"
                   placeholder="https://contoh.com/surat.jpg" 
                   value={formData.attachmentUrl} 
                   onChange={e => setFormData({...formData, attachmentUrl: e.target.value})} 

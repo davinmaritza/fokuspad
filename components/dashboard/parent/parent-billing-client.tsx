@@ -124,7 +124,7 @@ export function ParentBillingClient({ billings }: { billings: any[] }) {
                           Bayar
                         </Button>
                       </DialogTrigger>
-                      <DialogContent>
+                      <DialogContent className="sm:max-w-[500px] bg-white dark:bg-slate-900 border-[var(--border)] shadow-xl z-50">
                         <DialogHeader>
                           <DialogTitle>Konfirmasi Pembayaran</DialogTitle>
                         </DialogHeader>
@@ -143,6 +143,7 @@ export function ParentBillingClient({ billings }: { billings: any[] }) {
                             <div className="space-y-2">
                               <Label className="text-xs font-bold text-[#64748B] uppercase tracking-wider">URL Bukti Transfer (Simulasi MVP)</Label>
                               <Input 
+                                className="bg-white dark:bg-slate-800"
                                 placeholder="https://contoh.com/bukti.jpg" 
                                 value={proofUrl} 
                                 onChange={(e) => setProofUrl(e.target.value)}
