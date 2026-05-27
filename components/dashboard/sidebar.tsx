@@ -105,6 +105,26 @@ const sidebarLinks = {
     { label: 'Notifikasi', icon: Bell, href: '/dashboard/notifications' },
     { label: 'Bantuan', icon: HelpCircle, href: '/dashboard/help' },
     { label: 'Pengaturan', icon: Settings, href: '/dashboard/settings' },
+  ],
+  PUSTAKAWAN: [
+    { label: 'Beranda', icon: LayoutDashboard, href: '/dashboard/pustakawan' },
+    { label: 'Sirkulasi Buku', icon: Library, href: '/dashboard/pustakawan' },
+    { label: 'Kalender', icon: Calendar, href: '/dashboard/calendar' },
+    { label: 'Bantuan', icon: HelpCircle, href: '/dashboard/help' },
+    { label: 'Pengaturan', icon: Settings, href: '/dashboard/settings' },
+  ],
+  PETUGAS_UKS: [
+    { label: 'Beranda', icon: LayoutDashboard, href: '/dashboard/uks' },
+    { label: 'Rekam Medis', icon: HeartPulse, href: '/dashboard/uks' },
+    { label: 'Kalender', icon: Calendar, href: '/dashboard/calendar' },
+    { label: 'Bantuan', icon: HelpCircle, href: '/dashboard/help' },
+    { label: 'Pengaturan', icon: Settings, href: '/dashboard/settings' },
+  ],
+  ALUMNI: [
+    { label: 'Beranda', icon: LayoutDashboard, href: '/dashboard/alumni' },
+    { label: 'Kalender', icon: Calendar, href: '/dashboard/calendar' },
+    { label: 'Bantuan', icon: HelpCircle, href: '/dashboard/help' },
+    { label: 'Pengaturan', icon: Settings, href: '/dashboard/settings' },
   ]
 }
 
@@ -119,13 +139,16 @@ export function Sidebar({ isMobile, onClose }: SidebarProps = {}) {
   
   const rawRole = (session?.user as any)?.role || 'USER'
   
+  // Resolve sidebar menu based on role (check specific roles first, then broad categories)
   let roleKey: keyof typeof sidebarLinks = 'USER'
-  if (RBAC.isAdminLevel(rawRole)) roleKey = 'ADMIN'
+  if (rawRole === 'PUSTAKAWAN') roleKey = 'PUSTAKAWAN'
+  else if (rawRole === 'PETUGAS_UKS') roleKey = 'PETUGAS_UKS'
+  else if (RBAC.isAlumniLevel(rawRole)) roleKey = 'ALUMNI'
+  else if (RBAC.isParentLevel(rawRole)) roleKey = 'PARENT'
+  else if (rawRole === 'COACH') roleKey = 'COACH'
+  else if (RBAC.canAccessAdminDashboard(rawRole)) roleKey = 'ADMIN'
   else if (RBAC.isTeacherLevel(rawRole)) roleKey = 'TEACHER'
   else if (RBAC.isStudentLevel(rawRole)) roleKey = 'STUDENT'
-  else if (RBAC.isParentLevel(rawRole)) roleKey = 'PARENT'
-  else if (RBAC.isAlumniLevel(rawRole)) roleKey = 'USER' // or ALUMNI later
-  else if (rawRole === 'COACH') roleKey = 'COACH'
 
   const links = sidebarLinks[roleKey] || sidebarLinks['USER']
 

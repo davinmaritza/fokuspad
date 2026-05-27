@@ -17,17 +17,24 @@ export default async function Page() {
   const role = (session.user as any)?.role
   const userId = (session.user as any)?.id
 
+  // === ADMIN-LEVEL ROLES (Yayasan, Kepala Sekolah, Wakasek, TU, Bendahara, Kepala Lab, Staf Sarpras, PPDB) ===
   if (RBAC.canAccessAdminDashboard(role)) {
-    redirect("/dashboard/admin?v=3")
+    redirect("/dashboard/admin")
   }
 
-  // Fallback for unauthorized
-  // return (
-  //   <div style={{ backgroundColor: 'blue', color: 'white', padding: '50px', fontSize: '24px', fontWeight: 'bold' }}>
-  //     DEBUG DASHBOARD: Role Anda adalah: {role || 'UNDEFINED'}. 
-  //     IsAdmin: {RBAC.canAccessAdminDashboard(role) ? 'YES' : 'NO'}
-  //   </div>
-  // )
+  // === ROLE-SPECIFIC DASHBOARDS (harus dicek sebelum isSupportLevel catch-all) ===
+  if (role === 'PUSTAKAWAN') {
+    redirect("/dashboard/pustakawan")
+  }
+  
+  if (role === 'PETUGAS_UKS') {
+    redirect("/dashboard/uks")
+  }
+
+  // === SUPPORT STAFF catch-all (yang tidak punya dashboard sendiri) ===
+  if (RBAC.isSupportLevel(role)) {
+    redirect("/dashboard/admin")
+  }
 
   if (RBAC.isParentLevel(role)) {
     redirect("/dashboard/parent")
@@ -35,14 +42,6 @@ export default async function Page() {
   
   if (RBAC.isAlumniLevel(role)) {
     redirect("/dashboard/alumni")
-  }
-  
-  if (role === 'PUSTAKAWAN') {
-    redirect("/dashboard/pustakawan")
-  }
-  
-  if (role === 'PETUGAS_UKS') {
-    redirect("/dashboard/uks")
   }
 
   if (role === 'USER') {
