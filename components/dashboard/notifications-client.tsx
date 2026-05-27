@@ -67,7 +67,7 @@ export function NotificationsClient({ notifications }: any) {
                           <h4 className={`text-sm font-bold truncate ${notif.read ? 'text-[var(--muted-foreground)]' : 'text-[var(--foreground)]'}`}>{notif.title}</h4>
                           <span className="text-[10px] font-semibold text-[var(--muted-foreground)] shrink-0">{new Date(notif.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
                        </div>
-                       <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">{notif.message}</p>
+                       <div className="text-sm text-[var(--muted-foreground)] leading-relaxed prose prose-sm max-w-none dark:prose-invert" dangerouslySetInnerHTML={{ __html: notif.message }} />
                     </div>
 
                     <div className="flex flex-col sm:flex-row items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
