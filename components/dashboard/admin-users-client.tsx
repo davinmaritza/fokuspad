@@ -463,10 +463,10 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
   const openEdit = (user: any) => {
     setSelectedUser(user)
     setFormData({
-      name: user.name,
-      email: user.email,
+      name: user.name || '',
+      email: user.email || '',
       password: '', 
-      role: user.role,
+      role: user.role || 'STUDENT',
       school: user.school || 'SMKN 13 Bandung',
       classId: user.classId || '',
       subjectId: user.teacherSubjects?.[0]?.id || '',
