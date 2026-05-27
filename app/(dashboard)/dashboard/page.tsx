@@ -5,6 +5,7 @@ import { StudentDashboard } from "@/components/dashboard/student-view"
 import { TeacherDashboard } from "@/components/dashboard/teacher-view"
 import { CoachDashboard } from "@/components/dashboard/coach-view"
 import { GuestDashboard } from "@/components/dashboard/guest-view"
+import { RBAC } from "@/lib/rbac"
 
 export default async function Page() {
   const session = await auth()
@@ -16,19 +17,31 @@ export default async function Page() {
   const role = (session.user as any)?.role
   const userId = (session.user as any)?.id
 
-  if (role === 'ADMIN') {
+  if (RBAC.canAccessAdminDashboard(role)) {
     redirect("/dashboard/admin")
   }
 
-  if (role === 'PARENT') {
+  if (RBAC.isParentLevel(role)) {
     redirect("/dashboard/parent")
+  }
+  
+  if (RBAC.isAlumniLevel(role)) {
+    redirect("/dashboard/alumni")
+  }
+  
+  if (role === 'PUSTAKAWAN') {
+    redirect("/dashboard/pustakawan")
+  }
+  
+  if (role === 'PETUGAS_UKS') {
+    redirect("/dashboard/uks")
   }
 
   if (role === 'USER') {
     return <GuestDashboard user={session.user} />
   }
 
-  if (role === 'STUDENT') {
+  if (RBAC.isStudentLevel(role)) {
     // Fetch Student specific data
     const userSubjects = await prisma.userSubject.findMany({
       where: { userId },
@@ -65,7 +78,7 @@ export default async function Page() {
     )
   }
 
-  if (role === 'TEACHER') {
+  if (RBAC.isTeacherLevel(role)) {
     // Fetch Teacher specific data
     const teacherSubjects = await prisma.subject.findMany({
       where: { teacherId: userId },
