@@ -4,18 +4,20 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Mail, Lock, Loader2, ArrowRight, Eye, EyeOff, User, AlertTriangle, GraduationCap } from 'lucide-react'
+import { Mail, Lock, Loader2, ArrowRight, Eye, EyeOff, User, AlertTriangle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
 import { signIn } from 'next-auth/react'
+import { Turnstile } from '@marsidev/react-turnstile'
 
 export default function RegisterPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [isRegistrationDisabled, setIsRegistrationDisabled] = useState(false)
+  const [captchaToken, setCaptchaToken] = useState('')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -38,11 +40,20 @@ export default function RegisterPage() {
     e.preventDefault()
     setIsLoading(true)
 
+    if (!captchaToken) {
+      toast.error('Silakan selesaikan verifikasi CAPTCHA terlebih dahulu.')
+      setIsLoading(false)
+      return
+    }
+
     try {
       const res = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          captcha: captchaToken
+        })
       })
 
       if (res.ok) {
@@ -51,6 +62,7 @@ export default function RegisterPage() {
       } else {
         const data = await res.json()
         toast.error(data.error || 'Gagal mendaftar. Email mungkin sudah digunakan.')
+        setCaptchaToken('')
       }
     } catch (error) {
       toast.error('Terjadi kesalahan sistem')
@@ -262,6 +274,22 @@ export default function RegisterPage() {
                 <option value="Laki-laki">Laki-laki</option>
                 <option value="Perempuan">Perempuan</option>
               </select>
+            </div>
+
+            {/* Turnstile Captcha Box */}
+            <div className="flex justify-center p-2 bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl">
+              <Turnstile 
+                siteKey="0x4AAAAAADX4nRxaGOi9LSGI" 
+                onSuccess={(token) => setCaptchaToken(token)}
+                onError={() => {
+                  toast.error('Gagal memuat sistem CAPTCHA Cloudflare')
+                  setCaptchaToken('')
+                }}
+                onExpire={() => {
+                  toast.error('Sesi CAPTCHA kedaluwarsa, silakan verifikasi kembali')
+                  setCaptchaToken('')
+                }}
+              />
             </div>
 
             <Button

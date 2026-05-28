@@ -4,37 +4,25 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Mail, Lock, Loader2, ArrowRight, Eye, EyeOff, User, AlertTriangle, RefreshCw } from 'lucide-react'
+import { Mail, Lock, Loader2, ArrowRight, Eye, EyeOff, User, AlertTriangle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
+import { Turnstile } from '@marsidev/react-turnstile'
 
 export default function RegisterPpdbPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [isRegistrationDisabled, setIsRegistrationDisabled] = useState(false)
-  const [captchaQuestion, setCaptchaQuestion] = useState('')
-  const [captchaAnswer, setCaptchaAnswer] = useState('')
+  const [captchaToken, setCaptchaToken] = useState('')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     gender: 'Laki-laki',
   })
-
-  const loadCaptcha = async () => {
-    try {
-      const res = await fetch('/api/auth/captcha')
-      if (res.ok) {
-        const data = await res.json()
-        setCaptchaQuestion(data.question)
-      }
-    } catch (err) {
-      console.error("Failed to load captcha", err)
-    }
-  }
 
   useEffect(() => {
     // Check if PPDB registration is closed
@@ -46,13 +34,17 @@ export default function RegisterPpdbPage() {
         }
       })
       .catch(() => {})
-
-    loadCaptcha()
   }, [])
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+
+    if (!captchaToken) {
+      toast.error('Silakan selesaikan verifikasi CAPTCHA terlebih dahulu.')
+      setIsLoading(false)
+      return
+    }
 
     try {
       const res = await fetch('/api/auth/register', {
@@ -60,7 +52,7 @@ export default function RegisterPpdbPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          captcha: captchaAnswer
+          captcha: captchaToken
         })
       })
 
@@ -69,9 +61,8 @@ export default function RegisterPpdbPage() {
         router.push('/login')
       } else {
         const data = await res.json()
-        toast.error(data.error || 'Gagal registrasi. Silakan periksa kembali jawaban CAPTCHA Anda.')
-        loadCaptcha()
-        setCaptchaAnswer('')
+        toast.error(data.error || 'Gagal registrasi. Silakan periksa kembali verifikasi CAPTCHA Anda.')
+        setCaptchaToken('')
       }
     } catch (error) {
       toast.error('Terjadi kesalahan sistem')
@@ -207,33 +198,20 @@ export default function RegisterPpdbPage() {
               </select>
             </div>
 
-            {/* Captcha Box */}
-            <div className="p-4 bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl space-y-3">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="captcha" className="text-xs font-bold text-[#0F172A]">Verifikasi Spam (CAPTCHA)</Label>
-                <button 
-                  type="button" 
-                  onClick={loadCaptcha}
-                  className="text-[#5483B3] hover:text-[#1E293B] transition-colors p-1"
-                  title="Refresh Captcha"
-                >
-                  <RefreshCw className="h-4 w-4" />
-                </button>
-              </div>
-              <div className="flex gap-4 items-center">
-                <span className="text-sm font-extrabold text-[#1E293B] bg-white border border-[#CBD5E1] px-4 py-2 rounded-xl shadow-xs tracking-wider select-none">
-                  {captchaQuestion || 'Loading...'}
-                </span>
-                <Input
-                  id="captcha"
-                  type="text"
-                  placeholder="Jawaban"
-                  className="h-11 bg-white border-[#E2E8F0] rounded-xl text-center font-bold text-xs"
-                  value={captchaAnswer}
-                  onChange={(e) => setCaptchaAnswer(e.target.value)}
-                  required
-                />
-              </div>
+            {/* Turnstile Captcha Box */}
+            <div className="flex justify-center p-2 bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl">
+              <Turnstile 
+                siteKey="0x4AAAAAADX4nRxaGOi9LSGI" 
+                onSuccess={(token) => setCaptchaToken(token)}
+                onError={() => {
+                  toast.error('Gagal memuat sistem CAPTCHA Cloudflare')
+                  setCaptchaToken('')
+                }}
+                onExpire={() => {
+                  toast.error('Sesi CAPTCHA kedaluwarsa, silakan verifikasi kembali')
+                  setCaptchaToken('')
+                }}
+              />
             </div>
 
             <Button

@@ -34,17 +34,36 @@ export async function POST(req: Request) {
     const body = await req.json()
     const { name, email, password, role, school, className, subject, gender, captcha } = body
 
-    if (captcha !== undefined) {
-      const cookieStore = await cookies()
-      const captchaHash = cookieStore.get('captcha_hash')?.value
-      if (!captchaHash) {
-        return NextResponse.json({ error: "Sesi CAPTCHA kedaluwarsa. Silakan muat ulang." }, { status: 400 })
+    // Verify Cloudflare Turnstile CAPTCHA (cara 1: server verify using the secret key)
+    if (!captcha) {
+      return NextResponse.json({ error: "Verifikasi CAPTCHA diperlukan." }, { status: 400 })
+    }
+
+    try {
+      const turnstileRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          secret: '0x4AAAAAADX4nfBjRLGqwoF85tsNo5YC2V0',
+          response: captcha,
+        }),
+      })
+
+      const turnstileData = await turnstileRes.json()
+      if (!turnstileData.success) {
+        return NextResponse.json(
+          { error: "Verifikasi CAPTCHA (Turnstile) gagal. Silakan coba kembali." },
+          { status: 400 }
+        )
       }
-      const CAPTCHA_SECRET = process.env.NEXTAUTH_SECRET || 'fallback-secret-for-captcha'
-      const userHash = crypto.createHmac('sha256', CAPTCHA_SECRET).update(captcha.trim()).digest('hex')
-      if (userHash !== captchaHash) {
-        return NextResponse.json({ error: "Jawaban CAPTCHA salah. Silakan coba lagi." }, { status: 400 })
-      }
+    } catch (err) {
+      console.error("Turnstile error:", err)
+      return NextResponse.json(
+        { error: "Gagal melakukan verifikasi keamanan. Silakan coba lagi." },
+        { status: 500 }
+      )
     }
 
     if (!email || !password || !name) {
