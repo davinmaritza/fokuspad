@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import { auth } from '@/lib/auth'
 import prisma from '@/lib/prisma'
 import { AdminExtracurricularsClient } from '@/components/dashboard/admin-extracurriculars-client'
+import { RBAC } from '@/lib/rbac'
 
 export const metadata = {
   title: 'Kelola Ekstrakurikuler | Admin EduTrack',
