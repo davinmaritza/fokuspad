@@ -737,11 +737,6 @@ export function AdminUsersClient({ initialUsers, classes, subjects = [], fixedRo
         )}
       </AnimatePresence>
 
-      {/* FLOATING CHAT ICON */}
-      <button className="fixed bottom-8 right-8 h-14 w-14 bg-purple-600 rounded-full shadow-lg shadow-purple-600/30 flex items-center justify-center text-white hover:scale-105 transition-transform z-40">
-        <MessageCircle className="h-6 w-6" />
-      </button>
-
       {/* Dialogs mapping */}
       <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
                <DialogContent className="bg-[var(--card)] border-[var(--border)] text-[var(--foreground)] sm:max-w-3xl md:max-w-4xl rounded-2xl shadow-xl p-0 overflow-hidden max-h-[90vh]">
