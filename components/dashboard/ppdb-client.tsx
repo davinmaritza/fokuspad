@@ -335,6 +335,11 @@ export function PpdbDashboardClient({
                     placeholder="16-digit NIK sesuai Kartu Keluarga"
                     value={registration.nik || ''} 
                     onChange={e => handleInputChange('nik', e.target.value)}
+                    onKeyPress={(e) => {
+                      if (!/[0-9]/.test(e.key)) {
+                        e.preventDefault()
+                      }
+                    }}
                   />
                 </div>
                 <div className="space-y-2">
@@ -344,6 +349,11 @@ export function PpdbDashboardClient({
                     placeholder="10-digit NISN aktif"
                     value={registration.nisn || ''} 
                     onChange={e => handleInputChange('nisn', e.target.value)}
+                    onKeyPress={(e) => {
+                      if (!/[0-9]/.test(e.key)) {
+                        e.preventDefault()
+                      }
+                    }}
                   />
                 </div>
                 <div className="space-y-2">
@@ -401,13 +411,18 @@ export function PpdbDashboardClient({
                     onChange={e => handleInputChange('fatherOccupation', e.target.value)}
                   />
                 </div>
-                <div className="space-y-2">
+                 <div className="space-y-2">
                   <Label htmlFor="fatherPhone" className="text-xs font-bold">Nomor WhatsApp/Telepon Ayah</Label>
                   <Input 
                     id="fatherPhone" 
                     placeholder="081xxxxxxxxxx"
                     value={registration.fatherPhone || ''} 
                     onChange={e => handleInputChange('fatherPhone', e.target.value)}
+                    onKeyPress={(e) => {
+                      if (!/[0-9]/.test(e.key)) {
+                        e.preventDefault()
+                      }
+                    }}
                   />
                 </div>
                 <div className="space-y-2">
@@ -435,6 +450,11 @@ export function PpdbDashboardClient({
                     placeholder="081xxxxxxxxxx"
                     value={registration.motherPhone || ''} 
                     onChange={e => handleInputChange('motherPhone', e.target.value)}
+                    onKeyPress={(e) => {
+                      if (!/[0-9]/.test(e.key)) {
+                        e.preventDefault()
+                      }
+                    }}
                   />
                 </div>
               </div>
@@ -761,6 +781,32 @@ export function PpdbDashboardClient({
                 {registration.revisionNotes}
               </div>
             )}
+          </div>
+
+          <div className="bg-white border border-[#E2E8F0] p-6 rounded-3xl shadow-sm space-y-6">
+            <h3 className="text-sm font-bold text-[#0F172A] border-b border-[#F1F5F9] pb-3">Biodata Saya</h3>
+            <div className="space-y-3 text-xs">
+              <div>
+                <span className="text-[#64748B] font-semibold block">Nama Lengkap:</span>
+                <span className="font-bold text-[#0F172A]">{user.name}</span>
+              </div>
+              <div>
+                <span className="text-[#64748B] font-semibold block">NIK / NISN:</span>
+                <span className="font-bold text-[#0F172A]">{registration.nik || '-'} / {registration.nisn || '-'}</span>
+              </div>
+              <div>
+                <span className="text-[#64748B] font-semibold block">Asal Sekolah:</span>
+                <span className="font-bold text-[#0F172A]">{registration.originSchool || '-'}</span>
+              </div>
+              <div className="border-t border-[#F1F5F9] pt-2">
+                <span className="text-[#64748B] font-semibold block">Ayah / Ibu Kandung:</span>
+                <span className="font-bold text-[#0F172A]">{registration.fatherName || '-'} / {registration.motherName || '-'}</span>
+              </div>
+              <div>
+                <span className="text-[#64748B] font-semibold block">No. HP Orang Tua:</span>
+                <span className="font-bold text-[#0F172A]">{registration.fatherPhone || registration.motherPhone || '-'}</span>
+              </div>
+            </div>
           </div>
 
           <div className="bg-white border border-[#E2E8F0] p-6 rounded-3xl shadow-sm space-y-6">
