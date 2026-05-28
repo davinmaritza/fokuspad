@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth"
 import prisma from "@/lib/prisma"
 import { redirect } from "next/navigation"
-import { PpdbDashboardClient } from "@/components/dashboard/ppdb-client"
+import PpdbDashboardWrapper from "@/components/dashboard/ppdb-wrapper"
 
 export const dynamic = 'force-dynamic'
 
@@ -32,7 +32,7 @@ export default async function PpdbDashboardPage() {
   ])
 
   return (
-    <PpdbDashboardClient 
+    <PpdbDashboardWrapper 
       initialRegistration={JSON.parse(JSON.stringify(registration))}
       initialBillings={JSON.parse(JSON.stringify(billings))}
       initialExams={JSON.parse(JSON.stringify(exams))}

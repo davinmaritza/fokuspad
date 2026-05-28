@@ -12,7 +12,6 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
-import { jsPDF } from 'jspdf'
 
 interface PpdbDashboardClientProps {
   initialRegistration: any
@@ -162,7 +161,8 @@ export function PpdbDashboardClient({
     }
   }
 
-  const printRegistrationCard = () => {
+  const printRegistrationCard = async () => {
+    const { jsPDF } = await import('jspdf')
     const doc = new jsPDF()
     
     // Header
