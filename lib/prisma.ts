@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client"
 const prismaVps = new PrismaClient({
   datasources: {
     db: {
-      url: process.env.DATABASE_URL
+      url: process.env.DATABASE_URL || "postgresql://dummy:dummy@localhost:5432/dummy"
     }
   }
 })
@@ -12,7 +12,7 @@ const prismaVps = new PrismaClient({
 const prismaSupabase = new PrismaClient({
   datasources: {
     db: {
-      url: process.env.SUPABASE_DATABASE_URL || process.env.DATABASE_URL
+      url: process.env.SUPABASE_DATABASE_URL || process.env.DATABASE_URL || "postgresql://dummy:dummy@localhost:5432/dummy"
     }
   }
 })
