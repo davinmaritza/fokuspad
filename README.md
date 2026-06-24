@@ -33,13 +33,14 @@ EduTrack adalah platform edukasi modern yang dirancang untuk mempermudah pemanta
 - **Frontend:** Next.js (App Router), React, Tailwind CSS, Framer Motion, Lucide Icons, Recharts
 - **Backend:** Next.js API Routes, Node.js
 - **Database:** PostgreSQL (dengan Prisma ORM)
-- **Autentikasi:** NextAuth.js (Session-based authentication)
+- **Autentikasi:** NextAuth.js (Session-based authentication dengan Google OAuth & Credentials)
+- **Penyimpanan Gambar Profil:** Penyimpanan langsung di Database PostgreSQL dalam format Base64 Data URL (bebas ketergantungan storage eksternal)
 
 ## Prasyarat
 
 Sebelum menjalankan proyek ini, pastikan Anda telah menginstal:
 - [Node.js](https://nodejs.org/) (versi 18.x atau lebih baru)
-- [PostgreSQL](https://www.postgresql.org/) (aktif dan berjalan)
+- [PostgreSQL](https://www.postgresql.org/) (aktif dan berjalan lokal atau VPS)
 - [Git](https://git-scm.com/)
 
 ## Cara Menjalankan Proyek di Lokal
@@ -60,16 +61,20 @@ Sebelum menjalankan proyek ini, pastikan Anda telah menginstal:
    ```
 
 3. **Atur variabel lingkungan (Environment Variables):**
-   Buat file `.env` di folder root, lalu salin isi dari `.env.example` (jika ada) dan sesuaikan dengan konfigurasi database Anda. Contoh:
+   Buat file `.env` di folder root, lalu sesuaikan dengan konfigurasi database Anda. Contoh:
    ```env
    DATABASE_URL="postgresql://user:password@localhost:5432/edutrack?schema=public"
-   NEXTAUTH_SECRET="rahasia_super_aman_anda"
+   DIRECT_URL="postgresql://user:password@localhost:5432/edutrack?schema=public"
    NEXTAUTH_URL="http://localhost:3000"
+   AUTH_SECRET="rahasia_super_aman_anda"
+   AUTH_TRUST_HOST=true
+   GOOGLE_CLIENT_ID="your-google-client-id"
+   GOOGLE_CLIENT_SECRET="your-google-client-secret"
    ```
 
 4. **Jalankan migrasi database:**
    ```bash
-   npx prisma migrate dev --name init
+   npx prisma db push
    ```
 
 5. **Isi data awal (Seeding) & Akun Demo:**
@@ -92,12 +97,18 @@ Sebelum menjalankan proyek ini, pastikan Anda telah menginstal:
 
 7. Buka [http://localhost:3000](http://localhost:3000) di browser Anda.
 
-## Deploy ke Vercel (Web Demo)
+## Deploy ke Vercel (Production)
 
-Untuk mendeploy EduTrack ke Vercel dan menjadikannya web demo, pastikan Anda memiliki *database* PostgreSQL (misalnya dari Supabase atau Neon) dan ikuti langkah berikut:
+Untuk mendeploy EduTrack ke Vercel sebagai aplikasi siap pakai (production), ikuti langkah berikut:
 1. Hubungkan repositori GitHub Anda ke Vercel.
-2. Pada pengaturan Environment Variables di Vercel, tambahkan `DATABASE_URL`, `NEXTAUTH_SECRET`, dan `NEXTAUTH_URL`.
-3. Setelah deploy selesai, jalankan seeding akun demo agar pengunjung dapat mencoba.
+2. Di Vercel Dashboard, masuk ke menu **Environment Variables** dan tambahkan variabel-variabel lingkungan berikut:
+   * `DATABASE_URL` (Gunakan URL database PostgreSQL VPS Anda atau cloud database)
+   * `DIRECT_URL` (Sama dengan DATABASE_URL)
+   * `NEXTAUTH_URL` (Gunakan domain production Vercel Anda, misal: `https://edutrack.id`)
+   * `AUTH_SECRET` (String rahasia untuk enkripsi token NextAuth)
+   * `AUTH_TRUST_HOST` (`true`)
+   * `GOOGLE_CLIENT_ID` & `GOOGLE_CLIENT_SECRET` (Kredensial Google OAuth)
+3. Setelah deploy selesai, jalankan perintah seeding jika database VPS Anda masih kosong agar data demo terisi.
 
 ## Struktur Direktori Utama
 
