@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,31 +9,23 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Tidak ada file yang diunggah" }, { status: 400 });
     }
 
+    // Batasi ukuran file (misal maks 2MB untuk mencegah database menjadi terlalu berat)
+    const MAX_SIZE = 2 * 1024 * 1024; // 2MB
+    if (file.size > MAX_SIZE) {
+      return NextResponse.json({ error: "Ukuran file terlalu besar (maksimal 2MB)" }, { status: 400 });
+    }
+
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Tentukan direktori penyimpanan lokal (public/uploads)
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
-    
-    // Buat folder jika belum ada
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
-    }
+    // Konversi file gambar menjadi format Base64 Data URL
+    const base64Image = `data:${file.type};base64,${buffer.toString("base64")}`;
 
-    // Buat nama file unik
-    const fileExt = file.name.split('.').pop();
-    const filename = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
-    const filePath = path.join(uploadDir, filename);
-
-    // Simpan file ke sistem penyimpanan lokal VPS/Komputer
-    fs.writeFileSync(filePath, buffer);
-
-    // URL publik akses file
-    const publicUrl = `/uploads/${filename}`;
-
-    return NextResponse.json({ url: publicUrl, name: file.name });
+    // Kembalikan base64 string sebagai URL. 
+    // String ini akan disimpan langsung ke kolom 'image' (tipe data Text) di database User Anda.
+    return NextResponse.json({ url: base64Image, name: file.name });
   } catch (error) {
     console.error("Upload Error:", error);
-    return NextResponse.json({ error: "Gagal mengunggah file secara lokal" }, { status: 500 });
+    return NextResponse.json({ error: "Gagal memproses gambar" }, { status: 500 });
   }
 }
