@@ -23,23 +23,11 @@ export default function DatabaseOfflinePage() {
         {/* Heading & description */}
         <div className="space-y-3">
           <h1 className="text-2xl font-black tracking-tight text-[#0F172A] font-serif">
-            Koneksi Database Terputus
+            Server Sedang Pemeliharaan
           </h1>
           <p className="text-xs text-[#64748B] font-semibold leading-relaxed max-w-sm mx-auto">
-            Sistem gagal menghubungi server basis data utama. 
-            Hal ini dapat terjadi jika server database sedang offline, dalam perbaikan, atau firewall memblokir alamat IP internet Anda.
+            Kami sedang melakukan pemeliharaan sistem atau pembaruan basis data untuk meningkatkan performa layanan. Silakan coba beberapa saat lagi.
           </p>
-        </div>
-
-        {/* Warning card for whitelisting IP */}
-        <div className="p-4 bg-amber-50/50 border border-amber-200 rounded-2xl flex items-start gap-3 text-left">
-          <AlertTriangle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
-          <div>
-            <h4 className="text-xs font-bold text-amber-900">Perhatian untuk Developer</h4>
-            <p className="text-[10px] text-amber-700 leading-normal font-medium mt-0.5">
-              Jika Anda berganti koneksi internet (Wi-Fi/modem/hotspot), IP publik Anda telah berubah. Pastikan IP baru Anda sudah terdaftar di whitelist port firewall VPS PostgreSQL (`51.79.188.247:5432`).
-            </p>
-          </div>
         </div>
 
         {/* Actions */}
@@ -49,13 +37,13 @@ export default function DatabaseOfflinePage() {
             className="w-full h-11 bg-[#1E293B] hover:bg-[#0F172A] text-white font-bold rounded-xl text-xs gap-2 transition-all hover:shadow-lg hover:shadow-slate-300"
           >
             <RefreshCw className="h-4 w-4" />
-            Coba Hubungkan Kembali
+            Muat Ulang Halaman
           </Button>
         </div>
 
         {/* Footer */}
         <p className="text-[10px] text-slate-400 font-semibold">
-          Error Code: PrismaClientInitializationError
+          Status Code: 503 Service Unavailable
         </p>
       </div>
     </div>
