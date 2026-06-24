@@ -1,31 +1,46 @@
-const { PrismaClient } = require('@prisma/client');
-const bcrypt = require('bcryptjs');
-const prisma = new PrismaClient();
+const { PrismaClient } = require('@prisma/client')
+const bcrypt = require('bcryptjs')
+
+const prisma = new PrismaClient()
 
 async function main() {
-  const passwordHash = await bcrypt.hash('davin123', 10);
+  const email = 'alfarrezald@gmail.com'
+  const password = 'AdminTrack2026!'
+  const name = 'Davin Maritza (Admin)'
   
-  const user = await prisma.user.upsert({
-    where: { email: 'admin@davinn.net' },
+  console.log(`Creating/Updating admin account for ${email}...`)
+  const hashedPassword = await bcrypt.hash(password, 10)
+  
+  const admin = await prisma.user.upsert({
+    where: { email: email },
     update: {
-      password: passwordHash,
+      password: hashedPassword,
       role: 'ADMIN',
       isActive: true
     },
     create: {
-      email: 'admin@davinn.net',
-      name: 'Admin Davin',
-      password: passwordHash,
+      email: email,
+      name: name,
+      password: hashedPassword,
       role: 'ADMIN',
+      school: 'SMK Demo',
+      nis: 'ADMIN_DAVIN',
       isActive: true
     }
-  });
-
-  console.log("Admin user updated/created:", user);
-  await prisma.$disconnect();
+  })
+  
+  console.log('✅ Admin account created successfully!')
+  console.log(`Email: ${admin.email}`)
+  console.log(`Password: ${password}`)
+  console.log(`Role: ${admin.role}`)
 }
 
-main().catch(e => {
-  console.error(e);
-  process.exit(1);
-});
+main()
+  .then(async () => {
+    await prisma.$disconnect()
+  })
+  .catch(async (e) => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })
