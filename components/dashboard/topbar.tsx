@@ -161,11 +161,11 @@ export function Topbar() {
         </Sheet>
         <Link href="/dashboard" className="flex items-center gap-2">
           <Image
-            src="/logo.png"
+            src="/logo.svg"
             alt="Fokuspad Logo"
-            width={120}
-            height={28}
-            className="h-7 w-auto"
+            width={140}
+            height={36}
+            className="h-8 w-auto dark:invert"
           />
         </Link>
       </div>

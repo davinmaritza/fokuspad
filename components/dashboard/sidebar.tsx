@@ -241,11 +241,11 @@ export function Sidebar({ isMobile, onClose }: SidebarProps = {}) {
           className="flex items-center gap-2.5"
         >
           <Image
-            src="/logo.png"
+            src="/logo.svg"
             alt="Fokuspad Logo"
             width={140}
             height={36}
-            className="h-9 w-auto"
+            className="h-9 w-auto dark:invert"
             priority
           />
         </Link>

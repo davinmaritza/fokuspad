@@ -59,8 +59,8 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
   },
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+    icon: '/icon.svg',
+    apple: '/icon.svg',
   },
   metadataBase: new URL(process.env.NEXTAUTH_URL || 'http://localhost:3000'),
 }
