@@ -255,7 +255,7 @@ export default function LandingPage() {
           <Link href="/" aria-label="Fokuspad — Beranda">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 52" className="h-7 w-auto" fill="none">
               <text x="0" y="42" fontFamily="'Geist', 'Inter', system-ui, sans-serif" fontSize="44" fontWeight="800" letterSpacing="-2" fill="#0F172A">
-                Edu<tspan fill="#5483B3">Track</tspan>
+                Fokus<tspan fill="#5483B3">pad</tspan>
               </text>
             </svg>
           </Link>
@@ -747,7 +747,7 @@ export default function LandingPage() {
             <div className="md:col-span-2 space-y-4">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 52" className="h-7 w-auto" fill="none">
                 <text x="0" y="42" fontFamily="'Geist', 'Inter', system-ui, sans-serif" fontSize="44" fontWeight="800" letterSpacing="-2" fill="#F1F5F9">
-                  Edu<tspan fill="#5483B3">Track</tspan>
+                  Fokus<tspan fill="#5483B3">pad</tspan>
                 </text>
               </svg>
               <p className="text-[12px] leading-relaxed font-medium max-w-xs text-slate-500">
