@@ -315,12 +315,12 @@ export default async function LandingPage() {
               </p>
               <div className="flex items-center gap-2.5 pt-1">
                 {[
-                  { href: 'https://github.com/davinmaritza', icon: Github },
-                  { href: 'https://x.com/workwithsuzirz', icon: Twitter },
-                  { href: 'https://instagram.com/davinmaritza', icon: Instagram },
-                  { href: 'https://davinn.net', icon: Globe2 },
+                  { href: 'https://github.com/davinmaritza', icon: Github, name: 'GitHub' },
+                  { href: 'https://x.com/workwithsuzirz', icon: Twitter, name: 'Twitter' },
+                  { href: 'https://instagram.com/davinmaritza', icon: Instagram, name: 'Instagram' },
+                  { href: 'https://davinn.net', icon: Globe2, name: 'Website' },
                 ].map((s, i) => (
-                  <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
+                  <a key={i} href={s.href} aria-label={`Kunjungi ${s.name}`} target="_blank" rel="noopener noreferrer"
                     className="h-9 w-9 rounded-full bg-white/6 hover:bg-white/12 flex items-center justify-center text-slate-500 hover:text-white transition-all duration-200">
                     <s.icon className="h-4 w-4" />
                   </a>
@@ -343,8 +343,8 @@ export default async function LandingPage() {
               <nav className="flex flex-col gap-2.5 text-[12px] font-semibold text-slate-500">
                 <a href="#faq" className="text-left hover:text-white transition-colors">FAQ</a>
                 <a href="mailto:hello@davinn.net" className="text-left hover:text-white transition-colors">Hubungi Kami</a>
-                <a href="#" className="text-left hover:text-white transition-colors">Kebijakan Privasi</a>
-                <a href="#" className="text-left hover:text-white transition-colors">Ketentuan Layanan</a>
+                <Link href="/privacy" className="text-left hover:text-white transition-colors">Kebijakan Privasi</Link>
+                <Link href="/terms" className="text-left hover:text-white transition-colors">Ketentuan Layanan</Link>
               </nav>
             </div>
           </div>
