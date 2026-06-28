@@ -379,18 +379,18 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 w-full max-w-5xl mx-auto px-5 md:px-8 mt-14"
+            className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-5 md:px-8 mt-14"
           >
-            <div className="p-1.5 bg-white/60 ring-1 ring-slate-200/70 rounded-[1.75rem] shadow-2xl shadow-slate-900/8">
-              <div className="bg-white rounded-[calc(1.75rem-6px)] overflow-hidden border border-slate-100/80">
+            <div className="double-bezel shadow-2xl shadow-slate-900/10">
+              <div className="double-bezel-inner overflow-hidden bg-white">
                 {/* Window bar */}
-                <div className="h-9 bg-slate-50/80 border-b border-slate-100 flex items-center px-4 gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-red-400/60" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/60" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-green-400/60" />
+                <div className="h-10 bg-slate-50/90 backdrop-blur-md border-b border-slate-100 flex items-center px-4 gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
                   <div className="flex-1 mx-4">
-                    <div className="h-5 max-w-[180px] mx-auto rounded-full bg-slate-100 flex items-center justify-center">
-                      <span className="text-[9.5px] text-slate-400 font-medium">fokuspad.my.id/dashboard</span>
+                    <div className="h-6 max-w-[200px] mx-auto rounded-md bg-white shadow-sm border border-slate-100 flex items-center justify-center">
+                      <span className="text-[10px] text-slate-400 font-mono tracking-tight">fokuspad.my.id/dashboard</span>
                     </div>
                   </div>
                 </div>
@@ -399,42 +399,40 @@ export default function LandingPage() {
                   {/* Sidebar */}
                   <div className="hidden md:flex flex-col bg-[#0F172A] p-5 gap-2.5">
                     <div className="flex items-center gap-2 mb-4">
-                      <div className="w-7 h-7 rounded-lg bg-[#5483B3] flex items-center justify-center">
-                        <GraduationCap className="h-4 w-4 text-white" />
-                      </div>
-                      <span className="text-[11px] font-bold text-white">Fokuspad</span>
+                       <Image src="/logo-cube-transparent.png" alt="Logo" width={24} height={24} className="h-6 w-6 object-contain" />
+                       <span className="text-[12px] font-black tracking-tight text-white font-serif">Fokuspad</span>
                     </div>
                     {['Dashboard', 'Kelas Saya', 'Nilai', 'Absensi', 'Kalender'].map((item, i) => (
                       <div
                         key={i}
-                        className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-[10px] font-semibold ${i === 0 ? 'bg-[#5483B3]/20 text-[#93C5FD]' : 'text-slate-500'}`}
+                        className={`flex items-center gap-2 px-3 py-2 rounded-lg text-[10px] font-semibold transition-colors ${i === 0 ? 'bg-[#5483B3]/20 text-[#93C5FD]' : 'text-slate-400 hover:bg-white/5'}`}
                       >
-                        <div className="w-1.5 h-1.5 rounded-full bg-current opacity-50" />
+                        <div className={`w-1.5 h-1.5 rounded-full ${i === 0 ? 'bg-current' : 'bg-slate-600'}`} />
                         {item}
                       </div>
                     ))}
                   </div>
                   {/* Main */}
-                  <div className="md:col-span-3 p-5 md:p-6 space-y-4">
-                    <div className="flex items-center justify-between">
+                  <div className="md:col-span-3 p-5 md:p-6 space-y-4 bg-slate-50/50">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                       <div>
                         <p className="text-[11px] text-slate-400 font-medium">Selamat datang kembali 👋</p>
-                        <p className="text-sm font-bold text-slate-900">Dashboard Guru — Semester Ganjil 2025/2026</p>
+                        <p className="text-[13px] sm:text-sm font-bold text-slate-900 mt-0.5">Dashboard Guru — Semester Ganjil 2025</p>
                       </div>
-                      <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100">
+                      <div className="self-start sm:self-auto flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 shadow-sm">
                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                        <span className="text-[10px] font-bold text-emerald-700">Online</span>
+                        <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider">Online</span>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                       {[
-                        { label: 'Siswa Aktif', value: '32', color: 'bg-blue-50 text-blue-600' },
-                        { label: 'Tugas Menunggu', value: '5', color: 'bg-amber-50 text-amber-600' },
-                        { label: 'Rata-rata Nilai', value: '78%', color: 'bg-emerald-50 text-emerald-600' },
+                        { label: 'Siswa Aktif', value: '32', color: 'bg-white border-blue-100 text-blue-600', valColor: 'text-[#0F172A]' },
+                        { label: 'Tugas Menunggu', value: '5', color: 'bg-white border-amber-100 text-amber-600', valColor: 'text-[#0F172A]' },
+                        { label: 'Rata-rata Nilai', value: '78%', color: 'bg-white border-emerald-100 text-emerald-600', valColor: 'text-[#0F172A]' },
                       ].map((c, i) => (
-                        <div key={i} className={`${c.color} rounded-xl p-3`}>
-                          <p className="text-[18px] font-black">{c.value}</p>
-                          <p className="text-[10px] font-semibold opacity-65 mt-0.5">{c.label}</p>
+                        <div key={i} className={`${c.color} border shadow-sm rounded-2xl p-4 transition-transform hover:-translate-y-0.5 duration-300`}>
+                          <p className={`text-[20px] font-black ${c.valColor}`}>{c.value}</p>
+                          <p className="text-[10px] font-bold uppercase tracking-wider opacity-70 mt-1">{c.label}</p>
                         </div>
                       ))}
                     </div>
@@ -444,17 +442,17 @@ export default function LandingPage() {
                         { name: 'Siti Rahayu', kelas: 'XI RPL 1', progress: 67, no: 24 },
                         { name: 'Bintang Pratama', kelas: 'XI RPL 1', progress: 45, no: 4 },
                       ].map((s, i) => (
-                        <div key={i} className="flex items-center gap-3 p-2.5 bg-slate-50 rounded-xl">
+                        <div key={i} className="flex items-center gap-3 p-3 bg-white border border-slate-100 rounded-xl shadow-sm">
                           <span className="text-[10px] font-bold text-slate-400 w-5 text-center">{s.no}</span>
                           <div className="flex-1 min-w-0">
-                            <p className="text-[11px] font-bold text-slate-800 truncate">{s.name}</p>
-                            <p className="text-[9px] text-slate-400 font-medium">{s.kelas}</p>
+                            <p className="text-[11.5px] font-bold text-slate-800 truncate">{s.name}</p>
+                            <p className="text-[9.5px] text-slate-400 font-medium">{s.kelas}</p>
                           </div>
-                          <div className="w-20 text-right">
-                            <p className="text-[10px] font-bold text-slate-600 mb-1">{s.progress}%</p>
+                          <div className="w-24 text-right">
+                            <p className="text-[10px] font-bold text-slate-600 mb-1.5">{s.progress}% Selesai</p>
                             <Progress
                               value={s.progress}
-                              className="h-1.5 bg-slate-200"
+                              className="h-1.5 bg-slate-100"
                               indicatorClassName={s.progress > 75 ? 'bg-emerald-500' : s.progress > 55 ? 'bg-amber-500' : 'bg-rose-400'}
                             />
                           </div>
@@ -484,12 +482,14 @@ export default function LandingPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {PROBLEMS.map((p, i) => (
                 <FadeUp key={i} delay={i * 0.07}>
-                  <div className="group p-7 rounded-2xl bg-[#FAFAF8] border border-slate-100 hover:border-slate-200 hover:shadow-lg hover:shadow-slate-100/60 transition-all duration-400 hover:-translate-y-1 h-full">
-                    <div className={`h-11 w-11 rounded-xl ${p.color} flex items-center justify-center mb-5`}>
-                      <p.icon className="h-5 w-5" />
+                  <div className="double-bezel h-full group">
+                    <div className="double-bezel-inner p-7 bg-[#FDFCF7] transition-all duration-500 group-hover:bg-white h-full flex flex-col">
+                      <div className={`h-11 w-11 rounded-xl ${p.color} flex items-center justify-center mb-5 shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
+                        <p.icon className="h-5 w-5" />
+                      </div>
+                      <h3 className="text-[15px] font-bold text-[#0F172A] mb-2.5 leading-snug">{p.title}</h3>
+                      <p className="text-[12px] text-slate-500 font-medium leading-relaxed">{p.desc}</p>
                     </div>
-                    <h3 className="text-[15px] font-bold text-[#0F172A] mb-2.5 leading-snug">{p.title}</h3>
-                    <p className="text-[12px] text-slate-500 font-medium leading-relaxed">{p.desc}</p>
                   </div>
                 </FadeUp>
               ))}
@@ -523,12 +523,14 @@ export default function LandingPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {FEATURES.map((f, i) => (
                 <FadeUp key={i} delay={i * 0.035}>
-                  <div className="group p-6 rounded-2xl bg-white border border-slate-100 hover:border-[#5483B3]/25 hover:shadow-lg hover:shadow-[#5483B3]/6 transition-all duration-400 hover:-translate-y-1 h-full">
-                    <div className={`h-10 w-10 rounded-xl ${f.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                      <f.icon className="h-[18px] w-[18px]" />
+                  <div className="double-bezel h-full group">
+                    <div className="double-bezel-inner p-6 bg-white transition-all duration-500 hover:bg-slate-50/50 h-full flex flex-col">
+                      <div className={`h-10 w-10 rounded-xl ${f.color} flex items-center justify-center mb-4 shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                        <f.icon className="h-[18px] w-[18px]" />
+                      </div>
+                      <h3 className="text-[13.5px] font-bold text-[#0F172A] mb-2 leading-snug">{f.title}</h3>
+                      <p className="text-[11.5px] text-slate-500 font-medium leading-relaxed">{f.desc}</p>
                     </div>
-                    <h3 className="text-[13.5px] font-bold text-[#0F172A] mb-2 leading-snug">{f.title}</h3>
-                    <p className="text-[11.5px] text-slate-500 font-medium leading-relaxed">{f.desc}</p>
                   </div>
                 </FadeUp>
               ))}
@@ -569,17 +571,17 @@ export default function LandingPage() {
 
               {/* Mockup card */}
               <FadeUp delay={0.14}>
-                <div className="p-2 bg-slate-50/80 ring-1 ring-slate-200/70 rounded-[1.75rem] shadow-2xl shadow-slate-900/7">
-                  <div className="bg-white rounded-[calc(1.75rem-8px)] overflow-hidden border border-slate-100 p-6 space-y-5">
+                <div className="double-bezel shadow-2xl shadow-slate-900/10">
+                  <div className="double-bezel-inner bg-white overflow-hidden p-6 space-y-5">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-[10.5px] text-slate-400 font-medium">Laporan Kelas</p>
-                        <p className="text-[13.5px] font-bold text-slate-900">XI RPL 1 — Pemrograman Web</p>
+                        <p className="text-[10.5px] font-bold uppercase tracking-widest text-slate-400">Laporan Kelas</p>
+                        <p className="text-[13.5px] font-bold text-slate-900 mt-0.5">XI RPL 1 — Pemrograman Web</p>
                       </div>
-                      <Badge className="bg-blue-50 text-blue-700 border-none text-[10px] font-bold rounded-full px-2.5">Aktif</Badge>
+                      <Badge className="bg-blue-50 text-blue-700 border-none text-[10px] font-bold rounded-full px-3 py-1">Aktif</Badge>
                     </div>
 
-                    <div className="space-y-3">
+                    <div className="space-y-4 pt-2">
                       {[
                         { name: 'HTML & CSS Dasar', val: 94, color: 'bg-emerald-500' },
                         { name: 'JavaScript', val: 71, color: 'bg-[#5483B3]' },
@@ -587,11 +589,11 @@ export default function LandingPage() {
                         { name: 'Database & API', val: 38, color: 'bg-rose-400' },
                       ].map((item, i) => (
                         <div key={i}>
-                          <div className="flex justify-between text-[10px] font-bold text-slate-600 mb-1.5">
+                          <div className="flex justify-between text-[10.5px] font-bold text-slate-700 mb-2">
                             <span>{item.name}</span>
                             <span>{item.val}%</span>
                           </div>
-                          <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                          <div className="h-2.5 bg-slate-100 rounded-full overflow-hidden shadow-inner">
                             <motion.div
                               initial={{ width: 0 }}
                               whileInView={{ width: `${item.val}%` }}
@@ -604,20 +606,20 @@ export default function LandingPage() {
                       ))}
                     </div>
 
-                    <div className="pt-2 border-t border-slate-100">
-                      <p className="text-[10px] font-black uppercase tracking-wider text-slate-400 mb-3">Perlu perhatian lebih</p>
+                    <div className="pt-4 border-t border-slate-100 mt-2">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">Perlu perhatian khusus</p>
                       {[
                         { name: 'Hendri Saputra', score: 36, no: 11 },
                         { name: 'Nadia Kusuma', score: 41, no: 19 },
                       ].map((s, i) => (
-                        <div key={i} className="flex items-center justify-between p-3 bg-rose-50/70 border border-rose-100/70 rounded-xl mb-2">
-                          <div className="flex items-center gap-2.5">
-                            <div className="w-7 h-7 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 text-[10px] font-bold">
+                        <div key={i} className="flex items-center justify-between p-3.5 bg-rose-50/50 border border-rose-100 rounded-xl mb-2 shadow-sm transition-transform hover:-translate-y-0.5 duration-300">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-white border border-rose-100 flex items-center justify-center text-rose-600 text-[11px] font-black shadow-sm">
                               {s.no}
                             </div>
-                            <span className="text-[11px] font-bold text-slate-700">{s.name}</span>
+                            <span className="text-[12px] font-bold text-slate-800">{s.name}</span>
                           </div>
-                          <span className="text-[11px] font-black text-rose-500">{s.score}% ↓</span>
+                          <span className="text-[11px] font-black text-rose-500 bg-rose-100/50 px-2.5 py-1 rounded-md">{s.score}% ↓</span>
                         </div>
                       ))}
                     </div>
