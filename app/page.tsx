@@ -321,7 +321,7 @@ export default async function LandingPage() {
                   { href: 'https://davinn.net', icon: Globe2, name: 'Website' },
                 ].map((s, i) => (
                   <a key={i} href={s.href} aria-label={`Kunjungi ${s.name}`} target="_blank" rel="noopener noreferrer"
-                    className="h-9 w-9 rounded-full bg-white/6 hover:bg-white/12 flex items-center justify-center text-slate-500 hover:text-white transition-all duration-200">
+                    className="h-9 w-9 rounded-full bg-white/6 hover:bg-white/12 flex items-center justify-center text-slate-400 hover:text-white transition-all duration-200">
                     <s.icon className="h-4 w-4" />
                   </a>
                 ))}

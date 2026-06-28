@@ -6,7 +6,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    // unoptimized: true removed for PageSpeed
   },
   allowedDevOrigins: ['192.168.0.105'],
   turbopack: {},

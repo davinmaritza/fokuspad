@@ -25,7 +25,7 @@ export function LandingNavbar({ hasSession }: { hasSession: boolean }) {
           </span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-7 text-[13px] font-semibold text-slate-500">
+        <div className="hidden md:flex items-center gap-7 text-[13px] font-semibold text-slate-600">
           <button onClick={() => scrollTo('masalah')} className="hover:text-slate-900 transition-colors">Kenapa Fokuspad?</button>
           <button onClick={() => scrollTo('fitur')} className="hover:text-slate-900 transition-colors">Fitur</button>
           <button onClick={() => scrollTo('cara-kerja')} className="hover:text-slate-900 transition-colors">Cara Kerja</button>
